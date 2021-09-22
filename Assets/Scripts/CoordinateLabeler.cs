@@ -39,6 +39,6 @@ public class CoordinateLabeler : MonoBehaviour
 
     private void UpdateObjectName()
     {
-        this.gameObject.transform.parent.name = $"({this.coordinates.x}, {this.coordinates.y}, {this.coordinates.z})";
+        this.gameObject.transform.parent.name = this.coordinates.ToString();
     }
 }
