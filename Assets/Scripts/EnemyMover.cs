@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<Waypoint> path = new List<Waypoint>();
-    [SerializeField] float waitTime = default;
+    [Range(0f, 5f)] [SerializeField] float movementSpeed = default;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +21,14 @@ public class EnemyMover : MonoBehaviour
             Vector3 finishPos = item.transform.position;
             float travelPercent = 0f;
 
-            //this.gameObject.transform.position = item.transform.position;
+            this.gameObject.transform.LookAt(finishPos);
+
+            //this.gameObject.transform.position = item.transform.position; // Used for grid static movement
             //yield return new WaitForSeconds(this.waitTime);
 
             while (travelPercent < 1f)
             {
-                travelPercent += Time.deltaTime;
+                travelPercent += this.movementSpeed * Time.deltaTime;
 
                 this.gameObject.transform.position = Vector3.Lerp(startPos, finishPos, travelPercent);
 

@@ -6443,4 +6443,4 @@ MonoBehaviour:
   - {fileID: 496202242}
   - {fileID: 1242516233}
   - {fileID: 2005090968}
-  waitTime: 1
+  movementSpeed: 3
