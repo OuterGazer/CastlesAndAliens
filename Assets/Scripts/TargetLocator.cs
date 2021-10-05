@@ -15,7 +15,6 @@ public class TargetLocator : MonoBehaviour
     void Start()
     {
         this.target = GameObject.FindObjectOfType<EnemyMover>().transform;
-        this.lastFramePos = this.target.position - this.pedestal.position;
     }
 
     // Update is called once per frame
@@ -26,22 +25,43 @@ public class TargetLocator : MonoBehaviour
 
     private void AimWeapon()
     {
-        Vector3 newPos = this.target.position - this.pedestal.position;
+        /*LookAtHorizontal();
+        LookAtVertical();*/
 
-        Vector3 lastPosProj = Vector3.ProjectOnPlane(this.lastFramePos, Vector3.up);
+        AimToEnemy(this.pedestal, Vector3.up);
+        AimToEnemy(this.weapon, this.weapon.right);
+    }
+    
+    private void AimToEnemy(Transform objectToRotate, Vector3 axis)
+    {
+        Vector3 newPos = this.target.position - objectToRotate.position;
+        Vector3 newPosProj = Vector3.ProjectOnPlane(newPos, axis);
+
+        float deltaAngle = Vector3.SignedAngle(objectToRotate.forward, newPosProj, axis);
+
+        if(axis == Vector3.up)
+            objectToRotate.Rotate(0, deltaAngle, 0);
+        else
+            objectToRotate.Rotate(deltaAngle, 0, 0);
+    }
+
+    /*private void LookAtHorizontal()
+    {
+        Vector3 newPos = this.target.position - this.pedestal.position;
         Vector3 newPosProj = Vector3.ProjectOnPlane(newPos, Vector3.up);
 
-        float angleToRotate = Vector3.Angle(lastPosProj, newPosProj);
+        float deltaAngle = Vector3.SignedAngle(this.pedestal.forward, newPosProj, Vector3.up);
 
-        this.pedestal.Rotate(Vector3.up, angleToRotate);
-
-        this.lastFramePos = this.target.position - this.pedestal.position;
-
-
-        /*this.pedestal.LookAt(this.target);
-        this.pedestal.rotation = Quaternion.Euler(0, this.pedestal.rotation.y, 0);
-
-        this.weapon.LookAt(this.target);
-        this.weapon.rotation = Quaternion.Euler(this.weapon.rotation.x, 0, 0);*/
+        this.pedestal.Rotate(0, deltaAngle, 0);
     }
+
+    private void LookAtVertical()
+    {
+        Vector3 newPos = this.target.position - this.weapon.position;
+        Vector3 newPosProj = Vector3.ProjectOnPlane(newPos, this.weapon.right);
+
+        float deltaAngle = Vector3.SignedAngle(this.weapon.forward, newPosProj, this.weapon.right);
+
+        this.weapon.Rotate(deltaAngle, 0, 0);
+    }*/
 }
