@@ -5,7 +5,9 @@ using UnityEngine;
 public class MouseInteraction : MonoBehaviour
 {
     [SerializeField] GameObject basicTowerPrefab;
+
     [SerializeField] bool isPlaceable = default;
+    public bool IsPlaceable => this.isPlaceable;
 
     private void OnMouseDown()
     {
