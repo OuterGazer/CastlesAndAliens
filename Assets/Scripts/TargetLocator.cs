@@ -41,6 +41,8 @@ public class TargetLocator : MonoBehaviour
     
     private void AimToEnemy(Transform objectToRotate, Vector3 axis)
     {
+        if (this.target == null) { return; }
+
         Vector3 newPos = this.target.position - objectToRotate.position;
         Vector3 newPosProj = Vector3.ProjectOnPlane(newPos, axis);
 
@@ -76,7 +78,7 @@ public class TargetLocator : MonoBehaviour
     {
         this.timeToNextShot -= Time.deltaTime;
 
-        if(this.timeToNextShot <= 0)
+        if(this.timeToNextShot <= 0 && this.target != null)
         {
             Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
 
