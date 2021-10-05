@@ -4,8 +4,29 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    [SerializeField] int poolSize = default;
+
     [SerializeField] Transform enemyPrefab;
     [SerializeField] float spawnTime = default;
+
+    private Transform[] pool;
+
+
+    private void Awake()
+    {
+        PopulatePool();
+    }
+
+    private void PopulatePool() 
+    {
+        this.pool = new Transform[this.poolSize];
+
+        for(int i = 0; i < this.pool.Length; i++)
+        {
+            this.pool[i] = GameObject.Instantiate<Transform>(this.enemyPrefab, this.gameObject.transform);
+            this.pool[i].gameObject.SetActive(false);
+        }
+    }
 
     // Start is called before the first frame update
     private IEnumerator Start()
@@ -14,9 +35,19 @@ public class ObjectPool : MonoBehaviour
 
         while (Application.isPlaying)
         {
-            GameObject.Instantiate<Transform>(this.enemyPrefab, this.gameObject.transform);
+            for(int i = 0; i < this.pool.Length; i++)
+            {
+                if (!pool[i].gameObject.activeInHierarchy)
+                {
+                    pool[i].gameObject.SetActive(true);
 
-            yield return timeBetweenEnemies;
+                    yield return timeBetweenEnemies;
+                }
+                
+
+                if (i == this.pool.Length)
+                    i = 0;
+            }        
         }
     }
 }

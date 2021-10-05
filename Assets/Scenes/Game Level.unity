@@ -2663,7 +2663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3156e8c40ba2e9b4280908e39a1f5da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 726340424}
+  poolSize: 5
   enemyPrefab: {fileID: 7004775153819084567, guid: 55c05b15ebd978447a781bbd12752ee4, type: 3}
   spawnTime: 1
 --- !u!4 &726340424

@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] int hitPoints = default;
+    [SerializeField] int maxHitPoints = default;
+    private int currentHitPoints = 0;
+
+    private void OnEnable()
+    {
+        this.currentHitPoints = maxHitPoints;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,11 +22,12 @@ public class EnemyHealth : MonoBehaviour
 
     private void ProcessDamage()
     {
-        this.hitPoints -= 1;
+        this.currentHitPoints -= 1;
 
-        if(this.hitPoints <= 0)
+        if(this.currentHitPoints <= 0)
         {
-            GameObject.Destroy(this.gameObject);
+            //GameObject.Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 }
