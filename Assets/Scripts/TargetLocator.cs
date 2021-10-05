@@ -6,6 +6,9 @@ public class TargetLocator : MonoBehaviour
 {
     [SerializeField] Transform pedestal;
     [SerializeField] Transform weapon;
+    [SerializeField] Transform bolt;
+    [SerializeField] float shootingCooldown = default;
+    private float timeToNextShot = 0;
 
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
 
@@ -15,12 +18,16 @@ public class TargetLocator : MonoBehaviour
     void Start()
     {
         this.target = GameObject.FindObjectOfType<EnemyMover>().transform;
+
+        this.timeToNextShot = this.shootingCooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
         AimWeapon();
+
+        ShootWeapon();
     }
 
     private void AimWeapon()
@@ -64,4 +71,35 @@ public class TargetLocator : MonoBehaviour
 
         this.weapon.Rotate(deltaAngle, 0, 0);
     }*/
+
+    private void ShootWeapon()
+    {
+        this.timeToNextShot -= Time.deltaTime;
+
+        if(this.timeToNextShot <= 0)
+        {
+            Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
+
+            bolt.SetParent(null);
+
+            bolt.GetComponent<BallistaBolt>().ShootBolt();
+            bolt.GetComponent<BallistaBolt>().SetShotOrigin(this);
+
+            this.bolt.gameObject.SetActive(false);
+
+            this.timeToNextShot = this.shootingCooldown;
+        }
+    }
+
+    public void ChargeNextBolt()
+    {
+        this.StartCoroutine(LoadBolt());
+    }
+
+    private IEnumerator LoadBolt()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        this.bolt.gameObject.SetActive(true);
+    }
 }
