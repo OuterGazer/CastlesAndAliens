@@ -15,24 +15,29 @@ public class Bank : MonoBehaviour
     private void Awake()
     {
         this.currentBalance = this.startingBalance;
-        this.balanceText.text = $"Gold: {this.currentBalance}";
+        UpdateBalanceDisplay();
     }
 
     public void Deposit(int amount)
     {
         this.currentBalance += Mathf.Abs(amount);
-        this.balanceText.text = $"Gold: {this.currentBalance}";
+        UpdateBalanceDisplay();
     }
 
     public void Withdraw(int amount)
     {
         this.currentBalance -= Mathf.Abs(amount);
-        this.balanceText.text = $"Gold: {this.currentBalance}";
+        UpdateBalanceDisplay();
 
         if (this.currentBalance < 0)
         {
             this.balanceText.text = "Gold: 0";
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    private void UpdateBalanceDisplay()
+    {
+        this.balanceText.text = $"Gold: {this.currentBalance}";
     }
 }
