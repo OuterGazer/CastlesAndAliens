@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
 
         if(this.currentHitPoints <= 0)
         {
-            //GameObject.Destroy(this.gameObject);
+            this.gameObject.GetComponent<Enemy>().RewardGold();
             this.gameObject.SetActive(false);
         }
     }
