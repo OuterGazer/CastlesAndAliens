@@ -7,6 +7,7 @@ public class TargetLocator : MonoBehaviour
     [SerializeField] Transform pedestal;
     [SerializeField] Transform weapon;
     [SerializeField] Transform bolt;
+    [SerializeField] float range = default;
     [SerializeField] float shootingCooldown = default;
     private float timeToNextShot = 0;
 
@@ -104,9 +105,13 @@ public class TargetLocator : MonoBehaviour
     {
         if (!this.isTargetAcquired) { return; }
 
+        float distanceToEnemySqr = (this.target.transform.position - this.gameObject.transform.position).sqrMagnitude;
+
+        if (distanceToEnemySqr > (this.range * this.range)) { ClearTarget(); return; }
+
         this.timeToNextShot -= Time.deltaTime;
 
-        if(this.timeToNextShot <= 0 && this.target != null)
+        if(this.timeToNextShot <= 0)
         {
             Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
 
