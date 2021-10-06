@@ -43,11 +43,12 @@ public class ObjectPool : MonoBehaviour
 
                     yield return timeBetweenEnemies;
                 }
-                
 
                 if (i == this.pool.Length)
                     i = 0;
-            }        
+
+                yield return null;
+            }
         }
     }
 }

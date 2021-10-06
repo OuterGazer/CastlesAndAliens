@@ -44,6 +44,7 @@ public class TargetLocator : MonoBehaviour
 
             if (distanceToCurrentEnemy < distanceToClosestEnemy)
             {
+                distanceToClosestEnemy = distanceToCurrentEnemy;
                 enemyToAim = enemies[i];
             }
         }
