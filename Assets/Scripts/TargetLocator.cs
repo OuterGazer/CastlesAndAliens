@@ -12,22 +12,45 @@ public class TargetLocator : MonoBehaviour
 
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
 
-    private Vector3 lastFramePos;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.target = GameObject.FindObjectOfType<EnemyMover>().transform;
+    private bool isTargetAcquired = false;
 
-        this.timeToNextShot = this.shootingCooldown;
-    }
 
     // Update is called once per frame
     void Update()
     {
+        FindClosestTarget();
+
         AimWeapon();
 
         ShootWeapon();
+    }
+
+    private void FindClosestTarget()
+    {
+        if (this.isTargetAcquired) { return; }
+
+        Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+
+        if (enemies.Length == 0) { return; }
+
+        Enemy enemyToAim = default;
+
+        float distanceToClosestEnemy = Mathf.Infinity;
+
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            float distanceToCurrentEnemy = (enemies[i].transform.position - this.gameObject.transform.position).sqrMagnitude;
+
+            if (distanceToCurrentEnemy < distanceToClosestEnemy)
+            {
+                enemyToAim = enemies[i];
+            }
+        }
+
+        this.isTargetAcquired = true;
+        enemyToAim.SetHasBeenTargeted(this);
+        this.target = enemyToAim.transform;
     }
 
     private void AimWeapon()
@@ -35,13 +58,15 @@ public class TargetLocator : MonoBehaviour
         /*LookAtHorizontal();
         LookAtVertical();*/
 
+        if (!this.isTargetAcquired) { return; }
+
         AimToEnemy(this.pedestal, Vector3.up);
         AimToEnemy(this.weapon, this.weapon.right);
     }
     
     private void AimToEnemy(Transform objectToRotate, Vector3 axis)
     {
-        if (this.target == null) { return; }
+        //if (this.target == null) { return; }
 
         Vector3 newPos = this.target.position - objectToRotate.position;
         Vector3 newPosProj = Vector3.ProjectOnPlane(newPos, axis);
@@ -76,6 +101,8 @@ public class TargetLocator : MonoBehaviour
 
     private void ShootWeapon()
     {
+        if (!this.isTargetAcquired) { return; }
+
         this.timeToNextShot -= Time.deltaTime;
 
         if(this.timeToNextShot <= 0 && this.target != null)
@@ -103,5 +130,11 @@ public class TargetLocator : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         this.bolt.gameObject.SetActive(true);
+    }
+
+    public void ClearTarget()
+    {
+        this.isTargetAcquired = false;
+        this.target = default;
     }
 }
