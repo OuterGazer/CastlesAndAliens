@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] int poolSize = default;
+    [Range(0, 50)][SerializeField] int poolSize = default;
 
     [SerializeField] Transform enemyPrefab;
-    [SerializeField] float spawnTime = default;
+    [Range(0.1f, 30f)][SerializeField] float spawnTime = default;
 
     private Transform[] pool;
 
