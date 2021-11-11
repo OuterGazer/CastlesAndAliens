@@ -5,11 +5,17 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     private GridManager gridManager;
-    private Dictionary<Vector3Int, Node> gameGrid;
+    private Dictionary<Vector3Int, Node> gameGrid = new Dictionary<Vector3Int, Node>();
 
-    [SerializeField] private Node currentSearchNode;
-    [SerializeField] Vector2Int pathStart;
-    [SerializeField] Vector2Int pathEnd;
+    [SerializeField] Vector3Int pathStart;
+    [SerializeField] Vector3Int pathEnd;
+
+    private Node startNode;
+    private Node endNode;
+    private Node currentSearchNode;
+
+    Dictionary<Vector3Int, Node> reached = new Dictionary<Vector3Int, Node>();
+    Queue<Node> frontier = new Queue<Node>();
 
     // This array influences the path depending on the order of directions
     Vector3Int[] directions = { Vector3Int.right, Vector3Int.left, Vector3Int.up, Vector3Int.down };
@@ -22,18 +28,19 @@ public class Pathfinder : MonoBehaviour
 
         if (this.gridManager != null)
             this.gameGrid = this.gridManager.GameGrid;
+
+        this.startNode = new Node(this.pathStart, true);
+        this.endNode = new Node(this.pathEnd, true);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        ExploreNeighbours();
+        BreadthFirstSearch();
     }
 
     private void ExploreNeighbours()
     {
-        // TODO: tweak this method so it recognizes neighboring tiles lying at a different height
-
         List<Node> neighboursList = new List<Node>();
 
         for(int i = 0; i < this.directions.Length; i++)
@@ -59,12 +66,36 @@ public class Pathfinder : MonoBehaviour
 
                 neighboursList.Add(this.gameGrid[curNeighbourCoords]);
 
-                // TODO: remove after testing
-                this.gameGrid[curNeighbourCoords].SetIsExplored(true);
-                this.gameGrid[this.currentSearchNode.Coordinates].SetIsPath(true);
+                foreach(Node item in neighboursList)
+                {
+                    if(!this.reached.ContainsKey(item.Coordinates) && item.IsWalkable)
+                    {
+                        this.reached.Add(item.Coordinates, item);
+                        this.frontier.Enqueue(item);
+                    }
+                }
             }
                 
         }
 
+    }
+
+    private void BreadthFirstSearch()
+    {
+        bool isRunning = true;
+
+        this.frontier.Enqueue(this.startNode);
+        this.reached.Add(this.pathStart, this.startNode);
+
+        while((this.frontier.Count > 0) && (isRunning == true))
+        {
+            this.currentSearchNode = this.frontier.Dequeue();
+            this.currentSearchNode.SetIsExplored(true);
+
+            ExploreNeighbours();
+
+            if (this.currentSearchNode.Coordinates == this.pathEnd)
+                isRunning = false;
+        }
     }
 }
