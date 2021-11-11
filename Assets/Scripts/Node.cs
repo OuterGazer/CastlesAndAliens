@@ -13,9 +13,17 @@ public class Node
 
     [SerializeField] private bool isExplored = false;
     public bool IsExplored => this.isExplored;
+    public void SetIsExplored(bool isExplored)
+    {
+        this.isExplored = isExplored;
+    }
 
     [SerializeField] private bool isPath = false;
     public bool IsPath => this.isPath;
+    public void SetIsPath(bool isPath)
+    {
+        this.isPath = isPath;
+    }
 
     // The previous Node that this Node is connected to
     [SerializeField] private Node connectedTo;

@@ -61,8 +61,11 @@ public class CoordinateLabeler : MonoBehaviour
     private void SetWaypointColor()
     {
         if (this.gridManager == null) { return; }
+        //Node node = this.gridManager.GetNode(this.coordinates);
 
-        Node node = this.gridManager.GetNode(this.coordinates);
+        Node node = null;
+        if (this.gridManager.GameGrid.ContainsKey(this.coordinates))
+            node = this.gridManager.GameGrid[this.coordinates];
 
         if (node == null) { return; }
 

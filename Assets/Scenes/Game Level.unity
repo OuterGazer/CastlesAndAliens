@@ -521,6 +521,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd58bb3aa170648a7a8d2cc8ea97bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSearchNode:
+    coordinates: {x: 2, y: 1, z: 0}
+    isWalkable: 0
+    isExplored: 0
+    isPath: 0
 --- !u!1 &89264005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a4728524823bdfe42bc592eb99768a2c, type: 3}
@@ -3761,7 +3766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc386a8fc40266d41a3aa1448b8bf9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 5, y: 5, z: 3}
+  gridSize: {x: 5, y: 3, z: 5}
 --- !u!4 &1018281134
 Transform:
   m_ObjectHideFlags: 0

@@ -8,7 +8,11 @@ public class GridManager : MonoBehaviour
 
 
     private Dictionary<Vector3Int, Node> gameGrid = new Dictionary<Vector3Int, Node>();
-    public Node GetNode(Vector3Int coordinates)
+    public Dictionary<Vector3Int, Node> GameGrid
+    {
+        get { return this.gameGrid; }
+    }
+    /*public Node GetNode(Vector3Int coordinates)
     {
         if (this.gameGrid.ContainsKey(coordinates))
         {
@@ -20,7 +24,7 @@ public class GridManager : MonoBehaviour
             //Debug.LogWarning($"Coordinates {coordinates} are not part of the grid!");
         }
         return null;
-    }
+    }*/
 
     private void Awake()
     {
@@ -30,11 +34,11 @@ public class GridManager : MonoBehaviour
 
     private void CreateGrid()
     {
-        for(int i = 0; i < gridSize.x; i++)
+        for(int i = 0; i <= gridSize.z; i++)
         {
-            for(int j = 0; j < gridSize.y; j++)
+            for(int j = 0; j <= gridSize.x; j++)
             {
-                for(int k = 0; k < gridSize.z; k++)
+                for(int k = 0; k <= gridSize.y; k++)
                 {
                     Vector3Int curCoord = new Vector3Int(i, j, k);
 
