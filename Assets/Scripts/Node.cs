@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable] // It allows for a non-Monobehaviour class to be shown in the inspector, but [SerializedField] it still needs to be written
 public class Node
 {
-    [SerializeField] private Vector2Int coordinates;
-    public Vector2Int Coordinates => this.coordinates;
+    [SerializeField] private Vector3Int coordinates;
+    public Vector3Int Coordinates => this.coordinates;
 
     [SerializeField] private bool isWalkable;
     public bool IsWalkable => this.isWalkable;
@@ -22,7 +22,7 @@ public class Node
     public Node ConnectedTo => this.connectedTo;
 
 
-    public Node(Vector2Int coordinates, bool isWalkable)
+    public Node(Vector3Int coordinates, bool isWalkable)
     {
         this.coordinates = coordinates;
 

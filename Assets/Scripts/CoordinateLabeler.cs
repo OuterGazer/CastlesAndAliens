@@ -10,17 +10,22 @@ public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] Color defColor = Color.red;
     [SerializeField] Color placedColor = Color.grey;
+    [SerializeField] Color exploredColor = Color.blue;
+    [SerializeField] Color pathColor = Color.green;
 
-    private MouseInteraction waypoint;
+    //private MouseInteraction waypoint;
+    private GridManager gridManager;
     private TextMeshPro coordinateLabel;
     private Vector3Int coordinates = new Vector3Int();
+
 
     private void Awake()
     {
         this.coordinateLabel = this.gameObject.GetComponent<TextMeshPro>();
         this.coordinateLabel.enabled = false;
 
-        this.waypoint = this.gameObject.GetComponentInParent<MouseInteraction>();
+        //this.waypoint = this.gameObject.GetComponentInParent<MouseInteraction>();
+        this.gridManager = GameObject.FindObjectOfType<GridManager>();
 
         DisplayCoordinates(); //will display coordinates entering play mode
     }
@@ -55,10 +60,25 @@ public class CoordinateLabeler : MonoBehaviour
 
     private void SetWaypointColor()
     {
-        if (this.waypoint.IsPlaceable)
-            this.coordinateLabel.color = defColor;
+        if (this.gridManager == null) { return; }
+
+        Node node = this.gridManager.GetNode(this.coordinates);
+
+        if (node == null) { return; }
+
+        if (!node.IsWalkable)
+            this.coordinateLabel.color = this.placedColor;
+        else if (node.IsPath)
+            this.coordinateLabel.color = this.pathColor;
+        else if (node.IsExplored)
+            this.coordinateLabel.color = this.exploredColor;        
         else
-            this.coordinateLabel.color = placedColor;
+            this.coordinateLabel.color = this.defColor;
+
+        /*if (this.waypoint.IsPlaceable)
+            this.coordinateLabel.color = this.defColor;
+        else
+            this.coordinateLabel.color = this.placedColor;*/
     }
 
     private void ToggleCoordinates()
