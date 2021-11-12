@@ -40,22 +40,22 @@ public class Pathfinder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindPath();
+        //FindPath();
     }
 
     public List<Node> FindPath()
     {
+        this.gridManager.ResetNodes();
+        this.reached.Clear();
+        this.frontier.Clear();
+
         BreadthFirstSearch();
 
         return CreatePath();
     }
 
     private bool ExploreNeighbours()
-    {
-        this.gridManager.ResetNodes();
-        this.reached.Clear();
-        this.frontier.Clear();
-
+    {      
         List<Node> neighboursList = new List<Node>();
 
         for(int i = 0; i < this.directions.Length; i++)
@@ -82,6 +82,9 @@ public class Pathfinder : MonoBehaviour
                 neighboursList.Add(this.gameGrid[curNeighbourCoords]);
 
                 Node lastNodeAdded = neighboursList[neighboursList.Count - 1];
+
+                //Debug.Log("Start Node: " + startNode.IsWalkable);
+                //Debug.Log("End Node: " + endNode.IsWalkable);
 
                 if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.IsWalkable)
                 {
