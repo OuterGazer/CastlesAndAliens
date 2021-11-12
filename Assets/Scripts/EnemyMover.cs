@@ -5,10 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] List<Waypoint> path = new List<Waypoint>();
+    //[SerializeField] List<Waypoint> path = new List<Waypoint>();
+    List<Node> path = new List<Node>();
     [Range(0f, 5f)] [SerializeField] float movementSpeed = default;
 
-    // Start is called before the first frame update
+    private GridManager gridManager;
+    private Pathfinder pathFinder;
+
+    private void Awake()
+    {
+        this.gridManager = GameObject.FindObjectOfType<GridManager>();
+        this.pathFinder = GameObject.FindObjectOfType<Pathfinder>();
+    }
+
     void OnEnable()
     {
         FindPath();
@@ -18,14 +27,17 @@ public class EnemyMover : MonoBehaviour
 
     private void ReturnToStart()
     {
-        this.gameObject.transform.position = this.path[0].gameObject.transform.position;
+        //this.gameObject.transform.position = this.path[0].gameObject.transform.position;
+        this.gameObject.transform.position = this.gridManager.GetPosFromCoords(this.pathFinder.PathStart);
     }
 
     private void FindPath()
     {
         this.path.Clear();
 
-        GameObject waypoints = GameObject.FindWithTag("Path");
+        this.path = this.pathFinder.FindPath();
+
+        /*GameObject waypoints = GameObject.FindWithTag("Path");
 
         foreach(Transform item in waypoints.transform)
         {
@@ -33,15 +45,17 @@ public class EnemyMover : MonoBehaviour
 
             if(waypoint != null)
                 this.path.Add(waypoint);
-        }
+        }*/
     }
 
     private IEnumerator FollowPath()
     {
-        foreach (Waypoint item in path)
+        //foreach (Waypoint item in path)
+        for(int i = 0; i < this.path.Count; i++)
         {
             Vector3 startPos = this.gameObject.transform.position;
-            Vector3 finishPos = item.transform.position;
+            //Vector3 finishPos = item.transform.position;
+            Vector3 finishPos = this.gridManager.GetPosFromCoords(this.path[i].Coordinates);
             float travelPercent = 0f;
 
             this.gameObject.transform.LookAt(finishPos);

@@ -53,6 +53,16 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void ResetNodes()
+    {
+        foreach(KeyValuePair<Vector3Int, Node> item in this.gameGrid)
+        {
+            item.Value.SetConnectedTo(null);
+            item.Value.SetIsExplored(false);
+            item.Value.SetIsPath(false);
+        }
+    }
+
     public void BlockNode(Vector3Int coordinates)
     {
         if (this.gameGrid.ContainsKey(coordinates))

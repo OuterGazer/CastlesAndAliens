@@ -8,7 +8,9 @@ public class Pathfinder : MonoBehaviour
     private Dictionary<Vector3Int, Node> gameGrid = new Dictionary<Vector3Int, Node>();
 
     [SerializeField] Vector3Int pathStart;
+    public Vector3Int PathStart => this.pathStart;
     [SerializeField] Vector3Int pathEnd;
+    public Vector3Int PathEnd => this.pathEnd;
 
     private Node startNode;
     private Node endNode;
@@ -27,22 +29,33 @@ public class Pathfinder : MonoBehaviour
         this.gridManager = GameObject.FindObjectOfType<GridManager>();
 
         if (this.gridManager != null)
-            this.gameGrid = this.gridManager.GameGrid;        
+        {
+            this.gameGrid = this.gridManager.GameGrid;
+            this.startNode = this.gameGrid[this.pathStart];
+            this.endNode = this.gameGrid[this.pathEnd];            
+        }
+                    
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        this.startNode = this.gameGrid[this.pathStart];
-        this.endNode = this.gameGrid[this.pathEnd];
+        FindPath();
+    }
 
+    public List<Node> FindPath()
+    {
         BreadthFirstSearch();
 
-        CreatePath();
+        return CreatePath();
     }
 
     private bool ExploreNeighbours()
     {
+        this.gridManager.ResetNodes();
+        this.reached.Clear();
+        this.frontier.Clear();
+
         List<Node> neighboursList = new List<Node>();
 
         for(int i = 0; i < this.directions.Length; i++)
@@ -101,6 +114,9 @@ public class Pathfinder : MonoBehaviour
 
     private void BreadthFirstSearch()
     {
+        //this.startNode.SetIsWalkable(true);
+        //this.endNode.SetIsWalkable(true);
+
         this.frontier.Enqueue(this.startNode);
         this.reached.Add(this.pathStart, this.startNode);
 
@@ -136,5 +152,27 @@ public class Pathfinder : MonoBehaviour
         path.Reverse();
 
         return path;
+    }
+
+    public bool WillBlockPath(Vector3Int tileCoords)
+    {
+        if (this.gameGrid.ContainsKey(tileCoords))
+        {
+            Node tempNode = this.gameGrid[tileCoords];
+            bool previousState = tempNode.IsWalkable;
+
+            tempNode.SetIsWalkable(false);
+            List<Node> newPath = FindPath();
+            tempNode.SetIsWalkable(previousState);
+
+            if(newPath.Count <= 1)
+            {
+                FindPath();
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }
