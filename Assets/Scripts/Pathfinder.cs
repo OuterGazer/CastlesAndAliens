@@ -19,7 +19,7 @@ public class Pathfinder : MonoBehaviour
 
     // This array influences the path depending on the order of directions
     Vector3Int[] directions = { Vector3Int.right, Vector3Int.left, Vector3Int.up, Vector3Int.down };
-    Vector3Int[] height = { Vector3Int.back, Vector3Int.forward };
+    Vector3Int[] height = { Vector3Int.back, 2 * Vector3Int.back, Vector3Int.forward, 2 * Vector3Int.forward };
 
 
     private void Awake()
@@ -27,19 +27,21 @@ public class Pathfinder : MonoBehaviour
         this.gridManager = GameObject.FindObjectOfType<GridManager>();
 
         if (this.gridManager != null)
-            this.gameGrid = this.gridManager.GameGrid;
-
-        this.startNode = new Node(this.pathStart, true);
-        this.endNode = new Node(this.pathEnd, true);
+            this.gameGrid = this.gridManager.GameGrid;        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        this.startNode = this.gameGrid[this.pathStart];
+        this.endNode = this.gameGrid[this.pathEnd];
+
         BreadthFirstSearch();
+
+        CreatePath();
     }
 
-    private void ExploreNeighbours()
+    private bool ExploreNeighbours()
     {
         List<Node> neighboursList = new List<Node>();
 
@@ -66,36 +68,73 @@ public class Pathfinder : MonoBehaviour
 
                 neighboursList.Add(this.gameGrid[curNeighbourCoords]);
 
-                foreach(Node item in neighboursList)
+                Node lastNodeAdded = neighboursList[neighboursList.Count - 1];
+
+                if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.IsWalkable)
+                {
+                    lastNodeAdded.SetConnectedTo(this.currentSearchNode);
+
+                    this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
+
+                    if (this.currentSearchNode.Coordinates == this.pathEnd)
+                        return true;
+
+                    this.frontier.Enqueue(lastNodeAdded);
+                }
+
+                /*foreach(Node item in neighboursList)
                 {
                     if(!this.reached.ContainsKey(item.Coordinates) && item.IsWalkable)
                     {
+                        item.SetConnectedTo(this.currentSearchNode);
+
                         this.reached.Add(item.Coordinates, item);
                         this.frontier.Enqueue(item);
                     }
-                }
+                }*/
             }
                 
         }
 
+        return false;
     }
 
     private void BreadthFirstSearch()
     {
-        bool isRunning = true;
-
         this.frontier.Enqueue(this.startNode);
         this.reached.Add(this.pathStart, this.startNode);
 
-        while((this.frontier.Count > 0) && (isRunning == true))
+        while(this.frontier.Count > 0)
         {
             this.currentSearchNode = this.frontier.Dequeue();
             this.currentSearchNode.SetIsExplored(true);
 
-            ExploreNeighbours();
-
-            if (this.currentSearchNode.Coordinates == this.pathEnd)
-                isRunning = false;
+            if (ExploreNeighbours() == true)
+                break;
         }
+    }
+
+    private List<Node> CreatePath()
+    {
+        List<Node> path = new List<Node>();
+        Node currentNode = this.endNode;
+
+        path.Add(currentNode);
+        currentNode.SetIsPath(true);
+
+        while(true)
+        {
+            currentNode = currentNode.ConnectedTo;
+
+            if (currentNode == null)
+                break;
+
+            path.Add(currentNode);
+            currentNode.SetIsPath(true);
+        }
+
+        path.Reverse();
+
+        return path;
     }
 }

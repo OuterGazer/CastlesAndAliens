@@ -28,6 +28,10 @@ public class Node
     // The previous Node that this Node is connected to
     [SerializeField] private Node connectedTo;
     public Node ConnectedTo => this.connectedTo;
+    public void SetConnectedTo(Node connectedTo)
+    {
+        this.connectedTo = connectedTo;
+    }
 
 
     public Node(Vector3Int coordinates, bool isWalkable)

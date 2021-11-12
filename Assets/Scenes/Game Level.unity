@@ -521,8 +521,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd58bb3aa170648a7a8d2cc8ea97bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathStart: {x: 1, y: 1, z: 0}
-  pathEnd: {x: 4, y: 4, z: 0}
+  pathStart: {x: 4, y: 2, z: 0}
+  pathEnd: {x: 1, y: 2, z: 2}
 --- !u!1 &89264005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a4728524823bdfe42bc592eb99768a2c, type: 3}
