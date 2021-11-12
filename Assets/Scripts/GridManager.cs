@@ -5,7 +5,12 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] Vector3Int gridSize;
-
+    
+    [Tooltip("World Grid Size - should match Unity snap settings.")]
+    [SerializeField] int unityGridSize = 1;
+    public int UnityGridSize => this.unityGridSize;
+    [SerializeField] float unitydHeightSize = 0.1f;
+    public float UnityHeightSize => this.unitydHeightSize;
 
     private Dictionary<Vector3Int, Node> gameGrid = new Dictionary<Vector3Int, Node>();
     public Dictionary<Vector3Int, Node> GameGrid
@@ -46,5 +51,35 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void BlockNode(Vector3Int coordinates)
+    {
+        if (this.gameGrid.ContainsKey(coordinates))
+        {
+            this.gameGrid[coordinates].SetIsWalkable(false);
+        }
+    }
+
+    public Vector3Int GetCoordsFromPos(Vector3 position)
+    {
+        Vector3Int coordinates = new Vector3Int();
+
+        coordinates.x = Mathf.RoundToInt(position.z / this.unityGridSize); // UnityEditor.EditorSnapSettings.move.z
+        coordinates.y = Mathf.RoundToInt(position.x / this.unityGridSize); // EditorSnapSettings.move.x
+        coordinates.z = Mathf.RoundToInt(position.y / this.unitydHeightSize) -1 ; // EditorSnapSettings.move.y
+
+        return coordinates;
+    }
+
+    public Vector3 GetPosFromCoords(Vector3Int coordinates)
+    {
+        Vector3 position = new Vector3();
+
+        position.z = coordinates.x * this.unityGridSize; 
+        position.x = coordinates.y * this.unityGridSize;
+        position.y = ((float)coordinates.z + 1) * this.unitydHeightSize;
+
+        return position;
     }
 }

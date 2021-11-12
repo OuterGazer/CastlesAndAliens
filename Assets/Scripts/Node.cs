@@ -10,6 +10,10 @@ public class Node
 
     [SerializeField] private bool isWalkable;
     public bool IsWalkable => this.isWalkable;
+    public void SetIsWalkable(bool isWalkable)
+    {
+        this.isWalkable = isWalkable;
+    }
 
     [SerializeField] private bool isExplored = false;
     public bool IsExplored => this.isExplored;

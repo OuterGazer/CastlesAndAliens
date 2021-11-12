@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using TMPro;
 
 [ExecuteAlways]
@@ -46,9 +45,14 @@ public class CoordinateLabeler : MonoBehaviour
 
     private void DisplayCoordinates()
     {
-        this.coordinates.x = Mathf.RoundToInt(this.gameObject.transform.parent.position.z / EditorSnapSettings.move.z);
-        this.coordinates.y = Mathf.RoundToInt(this.gameObject.transform.parent.position.x / EditorSnapSettings.move.x);
-        this.coordinates.z = Mathf.RoundToInt(this.gameObject.transform.parent.position.y / EditorSnapSettings.move.y) - 1;
+        // Using UnityEditor.EditorSnapSettings prevents from creating a build and forces us to move this script into an Editor folder in the assets folder
+        // (or really any property/method from UnityEditor namespace)
+
+        if (this.gridManager == null) { return; }
+
+        this.coordinates.x = Mathf.RoundToInt(this.gameObject.transform.parent.position.z / this.gridManager.UnityGridSize); // UnityEditor.EditorSnapSettings.move.z
+        this.coordinates.y = Mathf.RoundToInt(this.gameObject.transform.parent.position.x / this.gridManager.UnityGridSize); // EditorSnapSettings.move.x
+        this.coordinates.z = Mathf.RoundToInt(this.gameObject.transform.parent.position.y / this.gridManager.UnityHeightSize) - 1; // EditorSnapSettings.move.y
 
         this.coordinateLabel.text = $"{this.coordinates.x}, {this.coordinates.y}\n{this.coordinates.z}";
     }

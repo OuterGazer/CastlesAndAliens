@@ -8,12 +8,29 @@ public class MouseInteraction : MonoBehaviour
 
     [SerializeField] bool isPlaceable = default;
     public bool IsPlaceable => this.isPlaceable;
+    [SerializeField] bool isRoadTile = default;
 
     private Bank bank;
+    private GridManager gridManager;
+    Vector3Int tileCoordinates = new Vector3Int();
+
+    private void Awake()
+    {
+        this.bank = GameObject.FindObjectOfType<Bank>();
+        this.gridManager = GameObject.FindObjectOfType<GridManager>();
+    }
 
     private void Start()
     {
-        this.bank = GameObject.FindObjectOfType<Bank>();
+        if(this.gridManager != null)
+        {
+            this.tileCoordinates = this.gridManager.GetCoordsFromPos(this.gameObject.transform.GetChild(0).position);
+
+            if (this.isPlaceable || (!this.isPlaceable && !this.isRoadTile))
+            {
+                this.gridManager.BlockNode(this.tileCoordinates);
+            }
+        }
     }
 
     private void OnMouseDown()
