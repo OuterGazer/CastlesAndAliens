@@ -173,25 +173,33 @@ public class Pathfinder : MonoBehaviour
         //PossibleDirections directionsForBFS = GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().PossibleRoadDirections;
 
         string[] directions = {"Right", "Left", "Forward", "Backward"};
-        
-        foreach(string item in directions)
+
+        string directionsForBFSString = directionsForBFS.ToString();
+
+        foreach (string item in directions)
         {
-            if (directionsForBFS.ToString().Contains(item))
+            if (String.IsNullOrWhiteSpace(directionsForBFSString)) { break; }
+
+            if (directionsForBFSString.Contains(item))
             {
                 // Here right = +z, left = -z, up = +x, down = -x
                 switch (item)
                 {
                     case "Right":
                         this.directions.Add(Vector3Int.right);
+                        directionsForBFSString.Replace("Right", "");
                         break;
                     case "Left":
                         this.directions.Add(Vector3Int.left);
+                        directionsForBFSString.Replace("Left", "");
                         break;
                     case "Forward":
                         this.directions.Add(Vector3Int.up);
+                        directionsForBFSString.Replace("Forward", "");
                         break;
                     case "Backward":
                         this.directions.Add(Vector3Int.down);
+                        directionsForBFSString.Replace("Backward", "");
                         break;
 
                 }
