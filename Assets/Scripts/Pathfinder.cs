@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Linq;
 using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
@@ -20,7 +22,8 @@ public class Pathfinder : MonoBehaviour
     Queue<Node> frontier = new Queue<Node>();
 
     // This array influences the path depending on the order of directions
-    Vector3Int[] directions = { Vector3Int.right, Vector3Int.left, Vector3Int.up, Vector3Int.down };
+    //Vector3Int[] directions; // = { Vector3Int.right, Vector3Int.left, Vector3Int.up, Vector3Int.down };
+    List<Vector3Int> directions = new List<Vector3Int>();
     Vector3Int[] height = { Vector3Int.back, 2 * Vector3Int.back, Vector3Int.forward, 2 * Vector3Int.forward };
 
 
@@ -45,9 +48,7 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> FindPath()
     {
-        this.gridManager.ResetNodes();
-        this.reached.Clear();
-        this.frontier.Clear();
+        this.gridManager.ResetNodes();        
 
         BreadthFirstSearch();
 
@@ -58,19 +59,21 @@ public class Pathfinder : MonoBehaviour
     {      
         List<Node> neighboursList = new List<Node>();
 
-        for(int i = 0; i < this.directions.Length; i++)
+        for(int i = 0; i < this.directions.Count; i++)
         {
             Vector3Int curNeighbourCoords = this.currentSearchNode.Coordinates + this.directions[i];
 
-            if (this.gameGrid.ContainsKey(curNeighbourCoords))
+            if (this.gameGrid.ContainsKey(curNeighbourCoords)) 
             {
-                if (GameObject.Find(curNeighbourCoords.ToString()) == null)
+                GameObject existingTile = GameObject.Find(curNeighbourCoords.ToString());
+
+                if (existingTile == null)
                 {
                     for (int j = 0; j < this.height.Length; j++)
                     {
                         curNeighbourCoords = curNeighbourCoords + this.height[j];
 
-                        if (GameObject.Find(curNeighbourCoords.ToString()) != null)
+                        if (existingTile != null)
                         {
                             break;
                         }
@@ -120,6 +123,9 @@ public class Pathfinder : MonoBehaviour
         //this.startNode.SetIsWalkable(true);
         //this.endNode.SetIsWalkable(true);
 
+        this.reached.Clear();
+        this.frontier.Clear();
+
         this.frontier.Enqueue(this.startNode);
         this.reached.Add(this.pathStart, this.startNode);
 
@@ -127,6 +133,8 @@ public class Pathfinder : MonoBehaviour
         {
             this.currentSearchNode = this.frontier.Dequeue();
             this.currentSearchNode.SetIsExplored(true);
+
+            AssignSearchDirections();
 
             if (ExploreNeighbours() == true)
                 break;
@@ -155,6 +163,43 @@ public class Pathfinder : MonoBehaviour
         path.Reverse();
 
         return path;
+    }
+
+    private void AssignSearchDirections()
+    {
+        GameObject currentTile = GameObject.Find(this.currentSearchNode.Coordinates.ToString());
+        Waypoint currentTileWaypoint = currentTile.GetComponent<Waypoint>();
+        PossibleDirections directionsForBFS = currentTileWaypoint.PossibleRoadDirections;
+        Debug.Log(directionsForBFS);
+
+        //PossibleDirections directionsForBFS = GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().PossibleRoadDirections;
+
+        string[] directions = {"Right", "Left", "Forward", "Backward"};
+        
+        foreach(string item in directions)
+        {
+            if (directionsForBFS.ToString().Contains(item))
+            {
+                // Here right = +z, left = -z, up = +x, down = -x
+                switch (item)
+                {
+                    case "Right":
+                        this.directions.Add(Vector3Int.right);
+                        break;
+                    case "Left":
+                        this.directions.Add(Vector3Int.left);
+                        break;
+                    case "Forward":
+                        this.directions.Add(Vector3Int.up);
+                        break;
+                    case "Backward":
+                        this.directions.Add(Vector3Int.down);
+                        break;
+
+                }
+            }
+        }
+
     }
 
     public bool WillBlockPath(Vector3Int tileCoords)
