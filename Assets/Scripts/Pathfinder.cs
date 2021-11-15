@@ -65,23 +65,20 @@ public class Pathfinder : MonoBehaviour
 
             if (this.gameGrid.ContainsKey(curNeighbourCoords)) 
             {
-                GameObject existingTile = GameObject.Find(curNeighbourCoords.ToString());
-
-                if (existingTile == null)
-                {
+                if (GameObject.Find(curNeighbourCoords.ToString()) == null)
+                {                    
                     for (int j = 0; j < this.height.Length; j++)
                     {
                         curNeighbourCoords = curNeighbourCoords + this.height[j];
 
-                        if (existingTile != null)
+                        if (GameObject.Find(curNeighbourCoords.ToString()) != null)
                         {
                             break;
                         }
 
                         curNeighbourCoords = curNeighbourCoords - this.height[j];
                     }
-                }                    
-
+                }
                 neighboursList.Add(this.gameGrid[curNeighbourCoords]);
 
                 Node lastNodeAdded = neighboursList[neighboursList.Count - 1];
@@ -167,10 +164,11 @@ public class Pathfinder : MonoBehaviour
 
     private void AssignSearchDirections()
     {
+        this.directions.Clear();
+
         GameObject currentTile = GameObject.Find(this.currentSearchNode.Coordinates.ToString());
         Waypoint currentTileWaypoint = currentTile.GetComponent<Waypoint>();
         PossibleDirections directionsForBFS = currentTileWaypoint.PossibleRoadDirections;
-        Debug.Log(directionsForBFS);
 
         //PossibleDirections directionsForBFS = GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().PossibleRoadDirections;
 

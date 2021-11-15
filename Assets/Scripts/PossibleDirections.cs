@@ -44,8 +44,8 @@ using System;
 
     RightLeftForward,
     RightLeftBackward,
+    RightForwardBackward,
     LeftForwardBackward,
-    ForwardBackwardRight,
 
-    ForwardBackwardRightLeft,
+    RightLeftForwardBackward,
 }
