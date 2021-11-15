@@ -12,14 +12,20 @@ public class TargetLocator : MonoBehaviour
     private float timeToNextShot = 0;
 
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
-
+    private DefenseTower defenseTower;
 
     private bool isTargetAcquired = false;
 
+    private void Awake()
+    {
+        this.defenseTower = this.gameObject.GetComponent<DefenseTower>();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (!this.defenseTower.CanShoot) { return; }
+
         FindClosestTarget();
 
         AimWeapon();

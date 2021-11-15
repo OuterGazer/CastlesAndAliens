@@ -7547,6 +7547,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Pool
       objectReference: {fileID: 0}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: spawnTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927388, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: m_RootOrder
       value: 4

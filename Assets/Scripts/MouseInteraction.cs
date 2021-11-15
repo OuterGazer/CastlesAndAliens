@@ -39,15 +39,29 @@ public class MouseInteraction : MonoBehaviour
     {
         if (this.isPlaceable && this.bank.CurrentBalance > 0) // if(this.gridManager[this.tileCoordinates].IsWalkable && !this.pathFinder.WillBlockPath(this.tileCoordinates))
         {
-            //Debug.Log(this.gameObject.transform.position);
-            Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 0.2f, this.gameObject.transform.position.z);
-            GameObject tower = Instantiate<GameObject>(this.basicTowerPrefab, placementPos, Quaternion.identity);
-            
-            this.isPlaceable = false;
-            //this.gridManager.BlockNode(this.tileCoordinates);
-            //this.pathfinder.NotifyReceivers(); // For dynamic changing of path
-
-            this.bank.Withdraw(tower.GetComponent<DefenseTower>().GoldCost);
+            this.StartCoroutine(BuildTower());
         }        
+    }
+
+    private IEnumerator BuildTower()
+    {
+        Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 0.2f, this.gameObject.transform.position.z);
+        
+        GameObject tower = Instantiate<GameObject>(this.basicTowerPrefab, placementPos, Quaternion.identity);
+        DefenseTower defenseTower = tower.GetComponent<DefenseTower>();
+        
+        tower.transform.GetChild(1).gameObject.SetActive(false);
+        defenseTower.CanShoot = false;
+
+        this.isPlaceable = false;
+        //this.gridManager.BlockNode(this.tileCoordinates);
+        //this.pathfinder.NotifyReceivers(); // For dynamic changing of path
+
+        this.bank.Withdraw(defenseTower.GoldCost);
+
+        yield return new WaitForSeconds(defenseTower.BuildTime);
+
+        tower.transform.GetChild(1).gameObject.SetActive(true);
+        defenseTower.CanShoot = true;
     }
 }
