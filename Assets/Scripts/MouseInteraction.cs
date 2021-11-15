@@ -45,6 +45,7 @@ public class MouseInteraction : MonoBehaviour
             
             this.isPlaceable = false;
             //this.gridManager.BlockNode(this.tileCoordinates);
+            //this.pathfinder.NotifyReceivers(); // For dynamic changing of path
 
             this.bank.Withdraw(tower.GetComponent<DefenseTower>().GoldCost);
         }        

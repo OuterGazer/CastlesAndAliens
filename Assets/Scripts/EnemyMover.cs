@@ -20,9 +20,9 @@ public class EnemyMover : MonoBehaviour
 
     void OnEnable()
     {
-        FindPath();
         ReturnToStart();
-        this.StartCoroutine(FollowPath());
+        FindPath(); //FindPath(true) // For dynamic pathfinding        
+        this.StartCoroutine(FollowPath()); // For dynamic pathfinding we need to erase this line
     }
 
     private void ReturnToStart()
@@ -31,27 +31,32 @@ public class EnemyMover : MonoBehaviour
         this.gameObject.transform.position = this.gridManager.GetPosFromCoords(this.pathFinder.PathStart);
     }
 
-    private void FindPath()
+    private void FindPath() // Change it to RecalculatePath(bool shouldPathBeReset) for dynamic changing of path
     {
+        // This is for dynamic pathinding
+        /*Vector3Int coordinates = new Vector3Int();
+        if (shouldPathBeReset)
+        {
+            coordinates = this.pathFinder.PathStart;
+        }
+        else
+        {
+            coordinates = this.gridManager.GetCoordsFromPos(this.gameObject.transform.position);
+        }*/
+
+        //StopAllCoroutines() // Necessary for dynamic Pathfinding
+
         this.path.Clear();
 
         this.path = this.pathFinder.FindPath();
 
-        /*GameObject waypoints = GameObject.FindWithTag("Path");
-
-        foreach(Transform item in waypoints.transform)
-        {
-            Waypoint waypoint = item.GetComponentInChildren<Waypoint>();
-
-            if(waypoint != null)
-                this.path.Add(waypoint);
-        }*/
+        //this.StartCoroutine(FollowPath()); //Necessary for dynamic pathfinding
     }
 
     private IEnumerator FollowPath()
     {
         //foreach (Waypoint item in path)
-        for(int i = 0; i < this.path.Count; i++)
+        for(int i = 1; i < this.path.Count; i++)
         {
             Vector3 startPos = this.gameObject.transform.position;
             //Vector3 finishPos = item.transform.position;

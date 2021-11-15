@@ -53,7 +53,19 @@ public class Pathfinder : MonoBehaviour
         BreadthFirstSearch();
 
         return CreatePath();
+
+        //return FindPath(this.pathStart) // For dynamic pathfinding. This should be the only line in the method
     }
+
+    // Overloaded method for dynamic pathfinding
+    /*public List<Node> FindPath(Vector3Int enemyCurCoords)
+    {
+        this.gridManager.ResetNodes();
+
+        BreadthFirstSearch(enemyCurCoords);
+
+        return CreatePath();
+    }*/
 
     private bool ExploreNeighbours()
     {      
@@ -115,18 +127,18 @@ public class Pathfinder : MonoBehaviour
         return false;
     }
 
-    private void BreadthFirstSearch()
+    private void BreadthFirstSearch() // private void BreadthFirstSearch(Vector3Int coordinates) // To calcualte dynamically from enemy current position
     {
         //this.startNode.SetIsWalkable(true);
         //this.endNode.SetIsWalkable(true);
 
         this.reached.Clear();
         this.frontier.Clear();
+        
+        this.frontier.Enqueue(this.startNode); // this.frontier.Enqueue(this.gameGrid[coordinates]); // for the dynamic pathfinding
+        this.reached.Add(this.pathStart, this.startNode); // this.reached.Add(coordinates, this.gameGrid[coordinates]); // for the dynamic pathfinding
 
-        this.frontier.Enqueue(this.startNode);
-        this.reached.Add(this.pathStart, this.startNode);
-
-        while(this.frontier.Count > 0)
+        while (this.frontier.Count > 0)
         {
             this.currentSearchNode = this.frontier.Dequeue();
             this.currentSearchNode.SetIsExplored(true);
@@ -228,5 +240,10 @@ public class Pathfinder : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void NotifyReceivers()
+    {
+        //this.BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
     }
 }
