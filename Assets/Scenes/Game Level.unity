@@ -157,6 +157,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &14308437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -436,6 +437,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &63441624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -567,6 +569,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &89429522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -828,6 +831,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &225516107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1093,6 +1097,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1 &282274575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,6 +1782,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &428721201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2139,6 +2145,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &490763335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2334,6 +2341,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &596516679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2413,63 +2421,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10048afd489202e429962bed674b3d38, type: 3}
---- !u!1001 &628441013
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
-      propertyPath: m_Name
-      value: tile_endRoundSpawn
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d20c6f9fca72be747ab6d3b351cb9912, type: 3}
 --- !u!1 &649053503 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ebb338f23cc3725499e1d4a5b111bba3, type: 3}
@@ -2504,6 +2455,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &689229952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3019,6 +2971,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1 &825376703
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3072,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1 &850223424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -3153,6 +3107,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1 &866498372 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -3187,6 +3142,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &890913204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3300,6 +3256,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &941787408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3688,120 +3645,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
   m_PrefabInstance: {fileID: 968259771}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &969571364
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
-      propertyPath: m_Name
-      value: tile_spawnRound
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0533b27e09504c94bb460a92e86523db, type: 3}
---- !u!1001 &977698021
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
-      propertyPath: m_Name
-      value: tile_spawn
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ef27849a268f0b441ba809631cf1144f, type: 3}
 --- !u!1 &983093179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -3836,6 +3679,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1 &992364022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -3870,6 +3714,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &996660261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4112,6 +3957,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &1037636448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4220,6 +4066,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1 &1077753907 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -4254,6 +4101,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1 &1077867534 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32c282bc2c04c1643bfc7cc1a78f0def, type: 3}
@@ -4288,6 +4136,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &1083237981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4401,6 +4250,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1 &1190620497 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -4435,6 +4285,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1230615556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4548,6 +4399,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1344981578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4656,6 +4508,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1383102101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5079,6 +4932,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &1476493167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5196,6 +5050,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &1517636166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5984,6 +5839,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1808107328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6244,6 +6100,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1840110035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6361,6 +6218,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1852910785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6634,6 +6492,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &1904433743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6800,63 +6659,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10048afd489202e429962bed674b3d38, type: 3}
---- !u!1001 &1940046726
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
-      propertyPath: m_Name
-      value: tile_endSpawn
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9bd43b0aa5593a04a9d1845d568789de, type: 3}
 --- !u!1 &1950302599 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1489e4450037fd04790e4f91842a7c7e, type: 3}
@@ -6891,6 +6693,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &1981338560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7073,6 +6876,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1001 &2022131689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7260,6 +7064,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1 &2074232851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -7294,6 +7099,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &2082318807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7560,6 +7366,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 0}
   isPlaceable: 0
   isRoadTile: 1
+  isRiverTile: 0
 --- !u!1 &2140359964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c44a001f845ff4d4e967d85d14904944, type: 3}
@@ -7594,6 +7401,7 @@ MonoBehaviour:
   basicTowerPrefab: {fileID: 635282821062413131, guid: f97a4f34ee11f834c926383c1bddf80e, type: 3}
   isPlaceable: 1
   isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1930201930280040327
 PrefabInstance:
   m_ObjectHideFlags: 0
