@@ -33,6 +33,9 @@ public class MouseInteraction : MonoBehaviour
             {
                 this.gridManager.BlockNode(this.tileCoordinates);
             }
+
+           /* if (this.isPlaceable)
+                Debug.Log("I'm placeable!");*/
         }
     }
 
