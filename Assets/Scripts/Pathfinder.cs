@@ -24,7 +24,7 @@ public class Pathfinder : MonoBehaviour
     // This array influences the path depending on the order of directions
     //Vector3Int[] directions; // = { Vector3Int.right, Vector3Int.left, Vector3Int.up, Vector3Int.down };
     List<Vector3Int> directions = new List<Vector3Int>();
-    Vector3Int[] height = { Vector3Int.back, 2 * Vector3Int.back, Vector3Int.forward, 2 * Vector3Int.forward };
+    Vector3Int[] height = { Vector3Int.forward, Vector3Int.back, 2 * Vector3Int.back, 2 * Vector3Int.forward };
 
 
     private void Awake()
