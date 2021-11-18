@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-//using System.Linq;
+using System.Linq;
 using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
@@ -20,6 +20,7 @@ public class Pathfinder : MonoBehaviour
 
     Dictionary<Vector3Int, Node> reached = new Dictionary<Vector3Int, Node>();
     Queue<Node> frontier = new Queue<Node>();
+    Dictionary<List<Node>, int> possiblePaths = new Dictionary<List<Node>, int>();
 
     // This array influences the path depending on the order of directions
     //Vector3Int[] directions; // = { Vector3Int.right, Vector3Int.left, Vector3Int.up, Vector3Int.down };
@@ -48,11 +49,22 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> FindPath()
     {
-        this.gridManager.ResetNodes();        
+        this.gridManager.ResetNodes();
+        this.possiblePaths.Clear();
 
         BreadthFirstSearch();
 
-        return CreatePath();
+        this.possiblePaths.OrderBy(x => x.Value);
+
+        List<Node> path = new List<Node>();
+
+        foreach(KeyValuePair<List<Node>, int> item in this.possiblePaths)
+        {
+            path = item.Key;
+            break;
+        }
+
+        return path;//return CreatePath();
 
         //return FindPath(this.pathStart) // For dynamic pathfinding. This should be the only line in the method
     }
@@ -105,7 +117,12 @@ public class Pathfinder : MonoBehaviour
                     this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
 
                     if (this.currentSearchNode.Coordinates == this.pathEnd)
-                        return true;
+                    {
+                        //return true;
+
+                        CreatePath();
+                    }
+                        
 
                     this.frontier.Enqueue(lastNodeAdded);
                 }
@@ -145,15 +162,18 @@ public class Pathfinder : MonoBehaviour
 
             AssignSearchDirections();
 
-            if (ExploreNeighbours() == true)
-                break;
+            ExploreNeighbours();
+
+            /*if (ExploreNeighbours() == true)
+                break;*/
         }
     }
 
-    private List<Node> CreatePath()
+    private void CreatePath() // private List<Node> CreatePath()
     {
         List<Node> path = new List<Node>();
         Node currentNode = this.endNode;
+        int pathDangerLevel = 0;
 
         path.Add(currentNode);
         currentNode.SetIsPath(true);
@@ -165,13 +185,18 @@ public class Pathfinder : MonoBehaviour
             if (currentNode == null)
                 break;
 
+            Waypoint curNodeWayp = GameObject.Find(currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
+            pathDangerLevel += curNodeWayp.DangerLevel;
+
             path.Add(currentNode);
             currentNode.SetIsPath(true);
         }
 
         path.Reverse();
 
-        return path;
+        this.possiblePaths.Add(path, pathDangerLevel);
+
+        //return path;
     }
 
     private void AssignSearchDirections()

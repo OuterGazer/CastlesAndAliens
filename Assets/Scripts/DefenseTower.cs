@@ -10,6 +10,19 @@ public class DefenseTower : MonoBehaviour
     [SerializeField] float buildTime = default;
     public float BuildTime => this.buildTime;
 
+    [SerializeField] int dangerLevel = default;
+    public int DangerLevel => this.dangerLevel;
+
+    private int dangerRange;
+
+    private List<Waypoint> affectedPathtiles;
+
+
+    private Rigidbody towerRB;
+    private TargetLocator targetLocator;
+    private LayerMask pathMask;
+
+
     private bool canShoot = false;
     public bool CanShoot
     {
@@ -17,15 +30,39 @@ public class DefenseTower : MonoBehaviour
         set { this.canShoot = value; }
     }
 
+    private void Awake()
+    {
+        this.towerRB = this.gameObject.GetComponent<Rigidbody>();
+
+        this.targetLocator = this.gameObject.GetComponent<TargetLocator>();
+        this.dangerRange = (int)this.targetLocator.Range;
+
+        this.pathMask = LayerMask.GetMask("Roads");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.affectedPathtiles = new List<Waypoint>();
+
+        Collider[] tilesToAffect = Physics.OverlapSphere(this.gameObject.transform.position, this.dangerRange, this.pathMask);
+
+        foreach(Collider item in tilesToAffect)
+        {
+            this.affectedPathtiles.Add(item.GetComponentInChildren<Waypoint>());
+        }
+
+        foreach(Waypoint item in this.affectedPathtiles)
+        {
+            item.IncreaseDangerLevel(this.dangerLevel);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        foreach (Waypoint item in this.affectedPathtiles)
+        {
+            item.DecreaseDangerLevel(this.dangerLevel);
+        }
     }
 }

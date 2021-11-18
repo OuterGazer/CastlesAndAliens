@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DefenseTower))]
 public class TargetLocator : MonoBehaviour
 {
     [SerializeField] Transform pedestal;
     [SerializeField] Transform weapon;
     [SerializeField] Transform bolt;
     [SerializeField] float range = default;
+    public float Range => this.range;
     [SerializeField] float shootingCooldown = default;
     private float timeToNextShot = 0;
 
