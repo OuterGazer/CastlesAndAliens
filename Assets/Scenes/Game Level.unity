@@ -202,6 +202,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (17)
@@ -259,6 +263,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -816,9 +824,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 0c1ec02914da896468a8dc5e00091d92, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 0c1ec02914da896468a8dc5e00091d92, type: 3}
       propertyPath: m_Name
       value: River Corner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2776062741953723395, guid: 0c1ec02914da896468a8dc5e00091d92, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3651764681876551082, guid: 0c1ec02914da896468a8dc5e00091d92, type: 3}
       propertyPath: m_Name
@@ -970,7 +986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathStart: {x: 11, y: 22, z: 0}
-  pathEnd: {x: 13, y: 8, z: 4}
+  pathEnd: {x: 14, y: 3, z: 4}
 --- !u!4 &67632080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
@@ -1662,6 +1678,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRiverTile
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2366,6 +2386,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (14)
@@ -2423,6 +2447,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -3717,6 +3745,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (11)
@@ -3774,6 +3806,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -4415,6 +4451,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (10)
@@ -4472,6 +4512,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -6514,6 +6558,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (12)
@@ -6571,6 +6619,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -7141,6 +7193,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
       propertyPath: m_Name
       value: River Straight Bridge (2)
@@ -10916,6 +10972,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRiverTile
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
 --- !u!4 &765493411 stripped
@@ -11272,6 +11332,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 448c8796c02ad1e48a82bd31d6d2cf13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8675700481012144115, guid: 448c8796c02ad1e48a82bd31d6d2cf13, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448c8796c02ad1e48a82bd31d6d2cf13, type: 3}
@@ -11713,6 +11777,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
       propertyPath: m_Name
       value: River Straight Bridge
@@ -12898,6 +12966,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
 --- !u!4 &906738487 stripped
@@ -13785,6 +13857,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (13)
@@ -13842,6 +13918,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -13914,6 +13994,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
       propertyPath: m_Name
       value: Road Straight Square Spawn (1)
@@ -15015,6 +15099,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -16144,6 +16232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8675700481012144115, guid: 448c8796c02ad1e48a82bd31d6d2cf13, type: 3}
+      propertyPath: isRiverTile
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448c8796c02ad1e48a82bd31d6d2cf13, type: 3}
 --- !u!4 &1154435579 stripped
@@ -16469,6 +16561,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
 --- !u!4 &1162331766 stripped
@@ -16483,6 +16579,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
       propertyPath: m_Name
       value: River Straight Bridge (4)
@@ -17446,6 +17546,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (16)
@@ -17503,6 +17607,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -18670,6 +18778,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
 --- !u!4 &1312049058 stripped
@@ -18928,6 +19040,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
       propertyPath: m_Name
       value: Road Straight Square Spawn (2)
@@ -20229,6 +20345,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (15)
@@ -20286,6 +20406,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -23283,6 +23407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
       propertyPath: m_Name
       value: River Straight Bridge (1)
@@ -25829,6 +25957,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: b6a4c5b9909dd3f44ab328f4594420d6, type: 3}
       propertyPath: m_Name
       value: River Straight Bridge (3)
@@ -26632,6 +26764,10 @@ PrefabInstance:
     - target: {fileID: 4152907214623105922, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRoadTile
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
@@ -28378,6 +28514,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7833403883880166522, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: isRiverTile
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
 --- !u!4 &1978882989 stripped
@@ -28842,7 +28982,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 347094998393691991, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
       propertyPath: possibleRoadDirections
-      value: 9
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
       propertyPath: m_Name

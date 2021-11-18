@@ -179,6 +179,13 @@ public class Pathfinder : MonoBehaviour
         this.directions.Clear();
 
         GameObject currentTile = GameObject.Find(this.currentSearchNode.Coordinates.ToString());
+
+        if(currentTile == null)
+        {
+            Debug.Log(this.currentSearchNode.Coordinates + " doesn't have a Waypoint script. Fix!");
+            return;
+        }
+
         Waypoint currentTileWaypoint = currentTile.GetComponent<Waypoint>();
         PossibleDirections directionsForBFS = currentTileWaypoint.PossibleRoadDirections;
 
