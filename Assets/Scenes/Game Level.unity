@@ -804,8 +804,8 @@ Transform:
   - {fileID: 1230874518}
   - {fileID: 1944883021}
   - {fileID: 273748823}
-  - {fileID: 361382601}
   - {fileID: 1889658586}
+  - {fileID: 361382601}
   m_Father: {fileID: 1349879101}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -969,8 +969,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd58bb3aa170648a7a8d2cc8ea97bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathStart: {x: 1, y: 1, z: 0}
-  pathEnd: {x: 1, y: 4, z: 0}
+  pathStart: {x: 11, y: 22, z: 0}
+  pathEnd: {x: 13, y: 8, z: 4}
 --- !u!4 &67632080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
@@ -1192,6 +1192,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: c70e35a2c04361b4db6f4c45a1c1a66f, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: c70e35a2c04361b4db6f4c45a1c1a66f, type: 3}
       propertyPath: m_Name
       value: Road Split
@@ -1880,6 +1884,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 2199869056635064848, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: isRoadTile
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (1)
@@ -4183,6 +4191,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
       propertyPath: m_Name
       value: Road 4 Cross (4)
@@ -4255,6 +4267,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 1420502609475829678, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2255399849212982903, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
       propertyPath: m_RootOrder
       value: 64
@@ -4551,6 +4567,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (42)
@@ -4693,6 +4713,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (72)
@@ -4909,6 +4933,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 2199869056635064848, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: isRoadTile
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (2)
@@ -5612,6 +5640,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (48)
@@ -5833,6 +5865,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (54)
@@ -6112,6 +6148,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (59)
@@ -6958,6 +6998,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (43)
@@ -7643,6 +7687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (55)
@@ -7879,6 +7927,10 @@ PrefabInstance:
     - target: {fileID: 6622984378874260873, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
       propertyPath: m_Name
       value: (16, 14, 3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896248984174413684, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8440435493760137374, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
       propertyPath: m_RootOrder
@@ -8144,6 +8196,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (69)
@@ -9296,6 +9352,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (64)
@@ -9681,6 +9741,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (70)
@@ -10088,6 +10152,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (46)
@@ -10236,6 +10304,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
       propertyPath: m_Name
       value: Road 4 Cross (5)
@@ -10595,6 +10667,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: (11, 18, 1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7896248984174413684, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8440435493760137374, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
       propertyPath: m_RootOrder
       value: 81
@@ -10924,6 +11000,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (68)
@@ -11500,6 +11580,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (56)
@@ -12270,6 +12354,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (52)
@@ -12342,6 +12430,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
       propertyPath: m_Name
       value: Road 4 Cross (3)
@@ -13163,6 +13255,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (45)
@@ -14076,6 +14172,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 1420502609475829678, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2255399849212982903, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
       propertyPath: m_RootOrder
       value: 69
@@ -14220,6 +14320,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (4)
@@ -14410,6 +14514,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
       propertyPath: m_Name
       value: Road 4 Cross (2)
@@ -14631,6 +14739,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (66)
@@ -14703,6 +14815,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (60)
@@ -15124,6 +15240,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (73)
@@ -16564,6 +16684,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (51)
@@ -16985,6 +17109,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 1420502609475829678, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2255399849212982903, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
       propertyPath: m_RootOrder
       value: 66
@@ -17114,6 +17242,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
       propertyPath: m_Name
       value: Road 4 Cross
@@ -18122,6 +18254,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (63)
@@ -18418,6 +18554,10 @@ PrefabInstance:
     - target: {fileID: 6622984378874260873, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
       propertyPath: m_Name
       value: (19, 9, 3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896248984174413684, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8440435493760137374, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
       propertyPath: m_RootOrder
@@ -19128,6 +19268,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (76)
@@ -20641,6 +20785,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (61)
@@ -21378,6 +21526,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199869056635064848, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: isRoadTile
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight
@@ -21607,6 +21763,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (75)
@@ -22579,6 +22739,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (62)
@@ -22723,6 +22887,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (77)
@@ -23187,6 +23355,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (57)
@@ -23875,6 +24047,10 @@ PrefabInstance:
     - target: {fileID: 6622984378874260873, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
       propertyPath: m_Name
       value: (11, 14, 3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896248984174413684, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8440435493760137374, guid: 6c9083baa1542ae4fb5eb54b5770a247, type: 3}
       propertyPath: m_RootOrder
@@ -24944,6 +25120,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (50)
@@ -25516,6 +25696,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (49)
@@ -26530,6 +26714,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
       propertyPath: m_Name
       value: Road 4 Cross (1)
@@ -28204,6 +28392,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (67)
@@ -28648,6 +28840,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 144280ade1350f640a43ee9f2de7ce1a, type: 3}
       propertyPath: m_Name
       value: Road Straight Square Spawn
@@ -28714,6 +28910,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 1420502609475829678, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2255399849212982903, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
       propertyPath: m_RootOrder
       value: 65
@@ -29793,6 +29993,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (58)
@@ -30193,7 +30397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927378, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: spawnTime
