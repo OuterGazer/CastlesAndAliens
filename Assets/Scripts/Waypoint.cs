@@ -9,6 +9,11 @@ public class Waypoint : MonoBehaviour
 
     private int dangerLevel = 0;
     public int DangerLevel => this.dangerLevel;
+
+
+    [SerializeField] bool shouldNeighboursBeLocked = true; // This is to prevent the 4 crossings near the castles from locking pathfinding into not repeating paths. This is necessary to be able to generate more than 2 different paths when enemies spawn.
+    public bool ShouldNeighboursBeLocked => this.shouldNeighboursBeLocked;
+
     
     public void IncreaseDangerLevel(int dangerModifier)
     {

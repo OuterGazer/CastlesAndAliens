@@ -65,7 +65,7 @@ public class Pathfinder : MonoBehaviour
         if (this.possiblePaths.Count < 1)
             return this.chosenPath;
 
-        var sortedPaths = this.possiblePaths.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);
+        IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths = this.possiblePaths.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);
         
         Debug.Log(this.possiblePaths.Count);
 
@@ -116,11 +116,11 @@ public class Pathfinder : MonoBehaviour
                 //Debug.Log("Start Node: " + startNode.IsWalkable);
                 //Debug.Log("End Node: " + endNode.IsWalkable);
 
-                if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.ShouldBeChosenAgain)//lastNodeAdded.IsWalkable)
+                if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.ShouldBeChosenAgain && lastNodeAdded.IsWalkable)
                 {
                     lastNodeAdded.SetConnectedTo(this.currentSearchNode);
 
-                    if (neighboursList.Count > 2)
+                    if ((this.directions.Count > 2) && GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().ShouldNeighboursBeLocked)
                         lastNodeAdded.SetHasBeenChosen(true);
 
                     this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
@@ -131,7 +131,7 @@ public class Pathfinder : MonoBehaviour
 
                         CreatePath();
 
-                        //return true;
+                        return true;
                     }
 
 
@@ -228,11 +228,16 @@ public class Pathfinder : MonoBehaviour
 
         path.Reverse();
 
-        //if(!possiblePaths.ContainsKey(path)) // I think the keys of collections are by hashID so even sae collections with same nodes will be different
+        //if(!possiblePaths.ContainsKey(path)) // I think the keys of collections are by hashID so even same collections with same nodes will be different
         this.possiblePaths.Add(path, pathDangerLevel);
 
+        Debug.Log(this.possiblePaths.Count);
+
         if(this.possiblePaths.Count < this.maxNumberOfPathsToCalculate)
+        {
+            Debug.Log("Creating new Path! + " + this.maxNumberOfPathsToCalculate);
             FindPath();
+        }
 
         //return path;
     }
