@@ -47,6 +47,7 @@ public class EnemyMover : MonoBehaviour
         //StopAllCoroutines() // Necessary for dynamic Pathfinding
 
         this.path.Clear();
+        this.pathFinder.ClearChosenPath();
 
         this.path = this.pathFinder.FindPath();
 

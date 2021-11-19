@@ -987,6 +987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathStart: {x: 11, y: 22, z: 0}
   pathEnd: {x: 14, y: 3, z: 4}
+  maxNumberOfPathsToCalculate: 2
 --- !u!4 &67632080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
@@ -30537,6 +30538,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927378, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: poolSize
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}

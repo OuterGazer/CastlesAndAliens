@@ -13,6 +13,7 @@ public class Waypoint : MonoBehaviour
     public void IncreaseDangerLevel(int dangerModifier)
     {
         this.dangerLevel += dangerModifier;
+        //Debug.Log($"I am {this.gameObject.name} and my danger level is {this.dangerLevel}!");
     }
 
     public void DecreaseDangerLevel(int dangerModifier)

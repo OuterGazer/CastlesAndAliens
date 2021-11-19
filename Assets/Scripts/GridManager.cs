@@ -60,6 +60,15 @@ public class GridManager : MonoBehaviour
             item.Value.SetConnectedTo(null);
             item.Value.SetIsExplored(false);
             item.Value.SetIsPath(false);
+            item.Value.SetHasBeenChosen(false);
+        }
+    }
+
+    public void ResetChosenNodesToBeElegibleAgain()
+    {
+        foreach (KeyValuePair<Vector3Int, Node> item in this.gameGrid)
+        {
+            item.Value.SetShouldBeChosenAgain(true);
         }
     }
 

@@ -37,6 +37,20 @@ public class Node
         this.connectedTo = connectedTo;
     }
 
+    private bool hasBeenChosen;
+    public bool HasBeenChosen => this.hasBeenChosen;
+    public void SetHasBeenChosen(bool isChosen)
+    {
+        this.hasBeenChosen = isChosen;
+    }
+
+    private bool shouldBeChosenAgain = true;
+    public bool ShouldBeChosenAgain => this.shouldBeChosenAgain;
+    public void SetShouldBeChosenAgain(bool isChosen)
+    {
+        this.shouldBeChosenAgain = isChosen;
+    }
+
 
     public Node(Vector3Int coordinates, bool isWalkable)
     {

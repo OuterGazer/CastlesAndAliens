@@ -13,14 +13,22 @@ public class Pathfinder : MonoBehaviour
     public Vector3Int PathStart => this.pathStart;
     [SerializeField] Vector3Int pathEnd;
     public Vector3Int PathEnd => this.pathEnd;
+    [SerializeField] private int maxNumberOfPathsToCalculate = default;
 
     private Node startNode;
     private Node endNode;
     private Node currentSearchNode;
 
-    Dictionary<Vector3Int, Node> reached = new Dictionary<Vector3Int, Node>();
-    Queue<Node> frontier = new Queue<Node>();
-    Dictionary<List<Node>, int> possiblePaths = new Dictionary<List<Node>, int>();
+    private Dictionary<Vector3Int, Node> reached = new Dictionary<Vector3Int, Node>();
+    private Queue<Node> frontier = new Queue<Node>();
+    private Dictionary<List<Node>, int> possiblePaths = new Dictionary<List<Node>, int>();
+    private List<Node> chosenPath = new List<Node>();
+    public void ClearChosenPath()
+    {
+        this.chosenPath.Clear();
+        this.gridManager.ResetChosenNodesToBeElegibleAgain();
+    }
+
 
     // This array influences the path depending on the order of directions
     //Vector3Int[] directions; // = { Vector3Int.right, Vector3Int.left, Vector3Int.up, Vector3Int.down };
@@ -50,21 +58,31 @@ public class Pathfinder : MonoBehaviour
     public List<Node> FindPath()
     {
         this.gridManager.ResetNodes();
-        this.possiblePaths.Clear();
+        //this.possiblePaths.Clear();
 
         BreadthFirstSearch();
 
-        this.possiblePaths.OrderBy(x => x.Value);
+        if (this.possiblePaths.Count < 1)
+            return this.chosenPath;
 
-        List<Node> path = new List<Node>();
+        var sortedPaths = this.possiblePaths.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);
+        
+        Debug.Log(this.possiblePaths.Count);
 
-        foreach(KeyValuePair<List<Node>, int> item in this.possiblePaths)
+        foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
-            path = item.Key;
+            foreach (Node n in item.Key)
+                Debug.Log(n.Coordinates);
+        }
+
+        foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
+        {
+            this.chosenPath = item.Key;
+            this.possiblePaths.Clear();
             break;
         }
 
-        return path;//return CreatePath();
+        return null;//return CreatePath();
 
         //return FindPath(this.pathStart) // For dynamic pathfinding. This should be the only line in the method
     }
@@ -87,22 +105,10 @@ public class Pathfinder : MonoBehaviour
         {
             Vector3Int curNeighbourCoords = this.currentSearchNode.Coordinates + this.directions[i];
 
-            if (this.gameGrid.ContainsKey(curNeighbourCoords)) 
+            if (this.gameGrid.ContainsKey(curNeighbourCoords))
             {
-                if (GameObject.Find(curNeighbourCoords.ToString()) == null)
-                {                    
-                    for (int j = 0; j < this.height.Length; j++)
-                    {
-                        curNeighbourCoords = curNeighbourCoords + this.height[j];
+                curNeighbourCoords = CheckNodesAboveOrBelow(curNeighbourCoords);
 
-                        if (GameObject.Find(curNeighbourCoords.ToString()) != null)
-                        {
-                            break;
-                        }
-
-                        curNeighbourCoords = curNeighbourCoords - this.height[j];
-                    }
-                }
                 neighboursList.Add(this.gameGrid[curNeighbourCoords]);
 
                 Node lastNodeAdded = neighboursList[neighboursList.Count - 1];
@@ -110,9 +116,12 @@ public class Pathfinder : MonoBehaviour
                 //Debug.Log("Start Node: " + startNode.IsWalkable);
                 //Debug.Log("End Node: " + endNode.IsWalkable);
 
-                if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.IsWalkable)
+                if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.ShouldBeChosenAgain)//lastNodeAdded.IsWalkable)
                 {
                     lastNodeAdded.SetConnectedTo(this.currentSearchNode);
+
+                    if (neighboursList.Count > 2)
+                        lastNodeAdded.SetHasBeenChosen(true);
 
                     this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
 
@@ -121,8 +130,10 @@ public class Pathfinder : MonoBehaviour
                         //return true;
 
                         CreatePath();
+
+                        //return true;
                     }
-                        
+
 
                     this.frontier.Enqueue(lastNodeAdded);
                 }
@@ -138,10 +149,30 @@ public class Pathfinder : MonoBehaviour
                     }
                 }*/
             }
-                
+
         }
 
         return false;
+    }
+
+    private Vector3Int CheckNodesAboveOrBelow(Vector3Int curNeighbourCoords)
+    {
+        if (GameObject.Find(curNeighbourCoords.ToString()) == null)
+        {
+            for (int j = 0; j < this.height.Length; j++)
+            {
+                curNeighbourCoords = curNeighbourCoords + this.height[j];
+
+                if (GameObject.Find(curNeighbourCoords.ToString()) != null)
+                {
+                    break;
+                }
+
+                curNeighbourCoords = curNeighbourCoords - this.height[j];
+            }
+        }
+
+        return curNeighbourCoords;
     }
 
     private void BreadthFirstSearch() // private void BreadthFirstSearch(Vector3Int coordinates) // To calcualte dynamically from enemy current position
@@ -190,11 +221,18 @@ public class Pathfinder : MonoBehaviour
 
             path.Add(currentNode);
             currentNode.SetIsPath(true);
+
+            if (currentNode.HasBeenChosen)
+                currentNode.SetShouldBeChosenAgain(false);
         }
 
         path.Reverse();
 
+        //if(!possiblePaths.ContainsKey(path)) // I think the keys of collections are by hashID so even sae collections with same nodes will be different
         this.possiblePaths.Add(path, pathDangerLevel);
+
+        if(this.possiblePaths.Count < this.maxNumberOfPathsToCalculate)
+            FindPath();
 
         //return path;
     }
@@ -249,6 +287,19 @@ public class Pathfinder : MonoBehaviour
                 }
             }
         }
+
+        // Knuth Shuffle Algorithm to randomly shuffle a collection
+        /*if(this.directions.Count > 2)
+        {
+            for(int i = 0; i < this.directions.Count; i++)
+            {
+                Vector3Int tmp = this.directions[i];
+                int r = UnityEngine.Random.Range(i, this.directions.Count);
+
+                this.directions[i] = this.directions[r];
+                this.directions[r] = tmp;
+            }
+        }*/
 
     }
 
