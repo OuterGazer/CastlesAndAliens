@@ -985,8 +985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd58bb3aa170648a7a8d2cc8ea97bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathStart: {x: 11, y: 22, z: 0}
-  pathEnd: {x: 14, y: 3, z: 4}
+  pathStart: {x: 21, y: 13, z: 4}
+  pathEnd: {x: 13, y: 8, z: 4}
   maxNumberOfPathsToCalculate: 5
 --- !u!4 &67632080 stripped
 Transform:
@@ -2057,6 +2057,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 46811882}
     m_Modifications:
+    - target: {fileID: 690652573104679113, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2087691889376722024, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: (13, 5, 4)
@@ -3534,6 +3538,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 1420502609475829678, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2255399849212982903, guid: 9dc85e5f8859f9942a1b83c055d087e1, type: 3}
       propertyPath: m_RootOrder
       value: 62
@@ -17801,6 +17809,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
   m_PrefabInstance: {fileID: 77673431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1231503016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5144420628963564240, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
+  m_PrefabInstance: {fileID: 1645882774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1231503021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231503016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4331701a072e0f24995ca70f8e441767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basicTowerPrefab: {fileID: 0}
+  isPlaceable: 0
+  isRoadTile: 0
+  isRiverTile: 0
 --- !u!1001 &1241887143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18753,6 +18782,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1625501926}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 2d62380faf749ce4cb12794deb1c2b95, type: 3}
       propertyPath: m_Name
       value: River Straight (6)
@@ -22345,6 +22378,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 46811882}
     m_Modifications:
+    - target: {fileID: 690652573104679113, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2087691889376722024, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
       propertyPath: m_Name
       value: (19, 7, 2)
@@ -24987,6 +25024,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 46811882}
     m_Modifications:
+    - target: {fileID: 690652573104679113, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2087691889376722024, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
       propertyPath: m_Name
       value: (6, 7, 0)

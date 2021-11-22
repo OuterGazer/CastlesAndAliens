@@ -9,20 +9,39 @@ public class EnemyMover : MonoBehaviour
     List<Node> path = new List<Node>();
     [Range(0f, 5f)] [SerializeField] float movementSpeed = default;
 
+    private int spawnCount = 0;
+
     private GridManager gridManager;
     private Pathfinder pathFinder;
+
+    private bool canCalculatePath = false;
+
 
     private void Awake()
     {
         this.gridManager = GameObject.FindObjectOfType<GridManager>();
         this.pathFinder = GameObject.FindObjectOfType<Pathfinder>();
+
+        this.canCalculatePath = false;
     }
 
     void OnEnable()
     {
+        CheckHowManyTimesEnemyInstanceHasSpawned();
+
+        if (!this.canCalculatePath) { return; }
+
         ReturnToStart();
         FindPath(); //FindPath(true) // For dynamic pathfinding        
         this.StartCoroutine(FollowPath()); // For dynamic pathfinding we need to erase this line
+    }
+
+    private void CheckHowManyTimesEnemyInstanceHasSpawned()
+    {
+        this.spawnCount++;
+
+        if (!this.canCalculatePath && this.spawnCount > 1)
+            this.canCalculatePath = true;
     }
 
     private void ReturnToStart()

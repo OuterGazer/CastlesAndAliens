@@ -128,7 +128,7 @@ public class Pathfinder : MonoBehaviour
                     if (this.currentSearchNode.Coordinates == this.pathEnd)
                     {
                         //return true;
-
+                        
                         CreatePath();
 
                         return true;
