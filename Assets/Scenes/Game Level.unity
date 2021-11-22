@@ -5276,6 +5276,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 46811882}
     m_Modifications:
+    - target: {fileID: 690652573104679113, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2087691889376722024, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
       propertyPath: m_Name
       value: (15, 9, 4)
@@ -10863,6 +10867,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: possibleRoadDirections
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (27)

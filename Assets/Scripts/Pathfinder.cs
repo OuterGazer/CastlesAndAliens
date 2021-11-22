@@ -57,6 +57,8 @@ public class Pathfinder : MonoBehaviour
 
     public List<Node> FindPath()
     {
+        //Debug.Log("Exploring new path...");
+
         this.gridManager.ResetNodes();
         //this.possiblePaths.Clear();
 
@@ -67,7 +69,7 @@ public class Pathfinder : MonoBehaviour
 
         IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths = this.possiblePaths.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);
         
-        Debug.Log(this.possiblePaths.Count);
+        Debug.Log("Paths created in total :" + this.possiblePaths.Count);
 
         foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
@@ -100,13 +102,16 @@ public class Pathfinder : MonoBehaviour
     private bool ExploreNeighbours()
     {      
         List<Node> neighboursList = new List<Node>();
+        //Debug.Log("current node..." + this.currentSearchNode.Coordinates);
 
-        for(int i = 0; i < this.directions.Count; i++)
+        for (int i = 0; i < this.directions.Count; i++)
         {
             Vector3Int curNeighbourCoords = this.currentSearchNode.Coordinates + this.directions[i];
 
             if (this.gameGrid.ContainsKey(curNeighbourCoords))
             {
+                //Debug.Log("Exploring node..." + curNeighbourCoords);
+
                 curNeighbourCoords = CheckNodesAboveOrBelow(curNeighbourCoords);
 
                 neighboursList.Add(this.gameGrid[curNeighbourCoords]);
@@ -118,24 +123,34 @@ public class Pathfinder : MonoBehaviour
 
                 if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.ShouldBeChosenAgain && lastNodeAdded.IsWalkable)
                 {
+                    //Debug.Log("Added new node to path...");
+
                     lastNodeAdded.SetConnectedTo(this.currentSearchNode);
+
+                    if (lastNodeAdded.Coordinates.Equals(this.pathEnd))
+                    {
+                        CreatePath();
+
+                        return true;
+                    }
 
                     if ((this.directions.Count > 2) && GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().ShouldNeighboursBeLocked)
                         lastNodeAdded.SetHasBeenChosen(true);
 
                     this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
 
-                    if (this.currentSearchNode.Coordinates == this.pathEnd)
+                    /*if (this.currentSearchNode.Coordinates.Equals(this.pathEnd))
                     {
                         //return true;
                         
                         CreatePath();
 
                         return true;
-                    }
+                    }*/
 
 
                     this.frontier.Enqueue(lastNodeAdded);
+                    //Debug.Log(lastNodeAdded.Coordinates);
                 }
 
                 /*foreach(Node item in neighboursList)
@@ -202,6 +217,8 @@ public class Pathfinder : MonoBehaviour
 
     private void CreatePath() // private List<Node> CreatePath()
     {
+        //Debug.Log("creating path...");
+
         List<Node> path = new List<Node>();
         Node currentNode = this.endNode;
         int pathDangerLevel = 0;
@@ -214,7 +231,11 @@ public class Pathfinder : MonoBehaviour
             currentNode = currentNode.ConnectedTo;
 
             if (currentNode == null)
+            {
+                //Debug.Log("finishing path!");
                 break;
+            }
+                
 
             Waypoint curNodeWayp = GameObject.Find(currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
             pathDangerLevel += curNodeWayp.DangerLevel;
@@ -231,11 +252,11 @@ public class Pathfinder : MonoBehaviour
         //if(!possiblePaths.ContainsKey(path)) // I think the keys of collections are by hashID so even same collections with same nodes will be different
         this.possiblePaths.Add(path, pathDangerLevel);
 
-        Debug.Log(this.possiblePaths.Count);
+        Debug.Log("Paths created thus far: " + this.possiblePaths.Count);
 
         if(this.possiblePaths.Count < this.maxNumberOfPathsToCalculate)
         {
-            Debug.Log("Creating new Path! + " + this.maxNumberOfPathsToCalculate);
+            //Debug.Log("Creating new Path! + " + this.maxNumberOfPathsToCalculate);
             FindPath();
         }
 
@@ -246,9 +267,10 @@ public class Pathfinder : MonoBehaviour
     {
         this.directions.Clear();
 
-        GameObject currentTile = GameObject.Find(this.currentSearchNode.Coordinates.ToString());
+        //GameObject currentTile = GameObject.Find(this.currentSearchNode.Coordinates.ToString());
+        GameObject currentTile = this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString());
 
-        if(currentTile == null)
+        if (currentTile == null)
         {
             Debug.Log(this.currentSearchNode.Coordinates + " doesn't have a Waypoint script. Fix!");
             return;

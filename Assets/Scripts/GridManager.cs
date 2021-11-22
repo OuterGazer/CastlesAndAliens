@@ -17,6 +17,9 @@ public class GridManager : MonoBehaviour
     {
         get { return this.gameGrid; }
     }
+
+    private List<GameObject> tileList = new List<GameObject>();
+    public List<GameObject> TileList => this.tileList;
     /*public Node GetNode(Vector3Int coordinates)
     {
         if (this.gameGrid.ContainsKey(coordinates))
@@ -48,6 +51,13 @@ public class GridManager : MonoBehaviour
                     Vector3Int curCoord = new Vector3Int(i, j, k);
 
                     this.gameGrid.Add(curCoord, new Node(curCoord, true));
+
+                    GameObject temp = GameObject.Find(curCoord.ToString());
+
+                    if (temp != null)
+                    {
+                        this.tileList.Add(temp);
+                    }
                 }
             }
         }
