@@ -54,13 +54,15 @@ public class GridManager : MonoBehaviour
 
                     GameObject temp = GameObject.Find(curCoord.ToString());
 
-                    if (temp != null)
+                    if ((temp != null) && temp.CompareTag("Path"))
                     {
                         this.tileList.Add(temp);
                     }
                 }
             }
         }
+
+        Debug.Log(this.tileList.Count + " is the list count");
     }
 
     public void ResetNodes()

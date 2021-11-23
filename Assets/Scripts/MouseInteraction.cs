@@ -9,6 +9,8 @@ public class MouseInteraction : MonoBehaviour
     [SerializeField] bool isPlaceable = default;
     public bool IsPlaceable => this.isPlaceable;
     [SerializeField] bool isRoadTile = default;
+    public bool IsRoadTile => this.isRoadTile;
+
     [SerializeField] bool isRiverTile = default;
 
     private Bank bank;

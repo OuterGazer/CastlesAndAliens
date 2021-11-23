@@ -71,11 +71,11 @@ public class Pathfinder : MonoBehaviour
         
         Debug.Log("Paths created in total :" + this.possiblePaths.Count);
 
-        foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
+        /*foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
             foreach (Node n in item.Key)
                 Debug.Log(n.Coordinates);
-        }
+        }*/
 
         foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
@@ -134,7 +134,8 @@ public class Pathfinder : MonoBehaviour
                         return true;
                     }
 
-                    if ((this.directions.Count > 2) && GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().ShouldNeighboursBeLocked)
+                    //if ((this.directions.Count > 2) && GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().ShouldNeighboursBeLocked)
+                    if ((this.directions.Count > 2) && this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().ShouldNeighboursBeLocked)
                         lastNodeAdded.SetHasBeenChosen(true);
 
                     this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
@@ -172,13 +173,15 @@ public class Pathfinder : MonoBehaviour
 
     private Vector3Int CheckNodesAboveOrBelow(Vector3Int curNeighbourCoords)
     {
-        if (GameObject.Find(curNeighbourCoords.ToString()) == null)
+        //if (GameObject.Find(curNeighbourCoords.ToString()) == null)
+        if (this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()) == null)
         {
             for (int j = 0; j < this.height.Length; j++)
             {
                 curNeighbourCoords = curNeighbourCoords + this.height[j];
 
-                if (GameObject.Find(curNeighbourCoords.ToString()) != null)
+                //if (GameObject.Find(curNeighbourCoords.ToString()) != null)
+                if(this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()) != null)
                 {
                     break;
                 }
@@ -237,7 +240,8 @@ public class Pathfinder : MonoBehaviour
             }
                 
 
-            Waypoint curNodeWayp = GameObject.Find(currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
+            //Waypoint curNodeWayp = GameObject.Find(currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
+            Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>();
             pathDangerLevel += curNodeWayp.DangerLevel;
 
             path.Add(currentNode);
@@ -285,14 +289,15 @@ public class Pathfinder : MonoBehaviour
 
         string directionsForBFSString = directionsForBFS.ToString();
 
-        foreach (string item in directions)
+        //foreach (string item in directions)
+        for(int i = 0; i < directions.Length; i++)
         {
             if (String.IsNullOrWhiteSpace(directionsForBFSString)) { break; }
 
-            if (directionsForBFSString.Contains(item))
+            if (directionsForBFSString.Contains(directions[i]))
             {
                 // Here right = +z, left = -z, up = +x, down = -x
-                switch (item)
+                switch (directions[i])
                 {
                     case "Right":
                         this.directions.Add(Vector3Int.right);
