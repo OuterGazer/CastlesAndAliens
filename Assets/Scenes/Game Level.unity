@@ -968,26 +968,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
   m_PrefabInstance: {fileID: 1851734498}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &66402342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3203919051917927378, guid: f26eea7190248414b97ef937b9be941e, type: 3}
-  m_PrefabInstance: {fileID: 3203919052576108692}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &66402343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66402342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70bd58bb3aa170648a7a8d2cc8ea97bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathStart: {x: 1, y: 13, z: 0}
-  pathEnd: {x: 14, y: 3, z: 4}
-  maxNumberOfPathsToCalculate: 5
 --- !u!4 &67632080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
@@ -30643,12 +30623,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: poolSize
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: spawnTime
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: 106e943d1bcdc884983a90752a09d2c3, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: 55c05b15ebd978447a781bbd12752ee4, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: a664969f22974ab44803dd928ab5275c, type: 3}
     - target: {fileID: 3203919051917927388, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -30754,5 +30750,9 @@ PrefabInstance:
       propertyPath: balanceText
       value: 
       objectReference: {fileID: 438771708}
+    - target: {fileID: 7015215112623094717, guid: 7e79993c0d437e540ab6115cc30f3dad, type: 3}
+      propertyPath: startingBalance
+      value: 1000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e79993c0d437e540ab6115cc30f3dad, type: 3}

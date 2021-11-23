@@ -6,7 +6,7 @@ public class ObjectPool : MonoBehaviour
 {
     [Range(0, 50)][SerializeField] int poolSize = default;
 
-    [SerializeField] Transform enemyPrefab;
+    [SerializeField] Transform[] enemyPrefabArray;
     [Range(0.1f, 30f)][SerializeField] float spawnTime = default;
 
     private Transform[] pool;
@@ -21,9 +21,13 @@ public class ObjectPool : MonoBehaviour
     {
         this.pool = new Transform[this.poolSize];
 
-        for(int i = 0; i < this.pool.Length; i++)
+        for (int i = 0; i < this.pool.Length; i++)
         {
-            this.pool[i] = GameObject.Instantiate<Transform>(this.enemyPrefab, this.gameObject.transform);
+            if(i < this.enemyPrefabArray.Length)
+                this.pool[i] = GameObject.Instantiate<Transform>(this.enemyPrefabArray[i], this.gameObject.transform);
+            else
+                this.pool[i] = GameObject.Instantiate<Transform>(this.enemyPrefabArray[i - this.enemyPrefabArray.Length], this.gameObject.transform);
+            
             this.pool[i].gameObject.SetActive(false);
         }
     }

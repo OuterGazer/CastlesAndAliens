@@ -10,6 +10,11 @@ public class EnemyMover : MonoBehaviour
     private List<Node> path = new List<Node>();
     [Range(0f, 5f)] [SerializeField] float movementSpeed = default;
 
+    [SerializeField] Vector3Int pathStart;
+    public Vector3Int PathStart => this.pathStart;
+    [SerializeField] Vector3Int pathEnd;
+    public Vector3Int PathEnd => this.pathEnd;
+
     private List<List<Node>> possiblePaths = new List<List<Node>>();
     private Dictionary<List<Node>, int> pathsWithDangerLevel = new Dictionary<List<Node>, int>();
 
@@ -24,7 +29,7 @@ public class EnemyMover : MonoBehaviour
     private void Awake()
     {
         this.gridManager = GameObject.FindObjectOfType<GridManager>();
-        this.pathFinder = GameObject.FindObjectOfType<Pathfinder>();
+        this.pathFinder = this.gameObject.GetComponent<Pathfinder>();
 
         this.canCalculatePath = false;
     }
@@ -57,7 +62,7 @@ public class EnemyMover : MonoBehaviour
     private void ReturnToStart()
     {
         //this.gameObject.transform.position = this.path[0].gameObject.transform.position;
-        this.gameObject.transform.position = this.gridManager.GetPosFromCoords(this.pathFinder.PathStart);
+        this.gameObject.transform.position = this.gridManager.GetPosFromCoords(this.pathStart);
     }
 
     private void FindPath() // Change it to RecalculatePath(bool shouldPathBeReset) for dynamic changing of path
@@ -78,7 +83,7 @@ public class EnemyMover : MonoBehaviour
         this.path.Clear();
         this.pathFinder.ClearChosenPath();
 
-        this.possiblePaths = this.pathFinder.FindPath();
+        this.possiblePaths = this.pathFinder.FindPath(this.pathStart, this.pathEnd);
 
         //this.path = this.pathFinder.FindPath(this.possiblePaths);
 

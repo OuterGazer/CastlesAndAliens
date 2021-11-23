@@ -9,10 +9,8 @@ public class Pathfinder : MonoBehaviour
     private GridManager gridManager;
     private Dictionary<Vector3Int, Node> gameGrid = new Dictionary<Vector3Int, Node>();
 
-    [SerializeField] Vector3Int pathStart;
-    public Vector3Int PathStart => this.pathStart;
-    [SerializeField] Vector3Int pathEnd;
-    public Vector3Int PathEnd => this.pathEnd;
+    private Vector3Int pathStart;
+    private Vector3Int pathEnd;
     [SerializeField] private int maxNumberOfPathsToCalculate = default;
 
     private Node startNode;
@@ -21,12 +19,12 @@ public class Pathfinder : MonoBehaviour
 
     private Dictionary<Vector3Int, Node> reached = new Dictionary<Vector3Int, Node>();
     private Queue<Node> frontier = new Queue<Node>();
-    private Dictionary<List<Node>, int> possiblePaths = new Dictionary<List<Node>, int>();
-    private List<Node> chosenPath = new List<Node>();
+    private List<List<Node>> possiblePaths = new List<List<Node>>();
     private List<List<Node>> pathsForEnemy = new List<List<Node>>();
     public void ClearChosenPath()
     {
-        this.chosenPath.Clear();
+        this.pathStart = Vector3Int.zero;
+        this.pathEnd = Vector3Int.zero;
         this.pathsForEnemy.Clear();
         this.gridManager.ResetChosenNodesToBeElegibleAgain();
     }
@@ -45,32 +43,28 @@ public class Pathfinder : MonoBehaviour
         if (this.gridManager != null)
         {
             this.gameGrid = this.gridManager.GameGrid;
-            this.startNode = this.gameGrid[this.pathStart];
-            this.endNode = this.gameGrid[this.pathEnd];            
+            //this.startNode = this.gameGrid[this.pathStart];
+            //this.endNode = this.gameGrid[this.pathEnd];            
         }
                     
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //FindPath();
-    }
-
-    //public List<Node> FindPath()
-    public List<List<Node>> FindPath()
+    public List<List<Node>> FindPath(Vector3Int pathStart, Vector3Int pathEnd)
     {
         //Debug.Log("Exploring new path...");
 
         this.gridManager.ResetNodes();
-        //this.possiblePaths.Clear();
+
+        if(this.pathStart == Vector3Int.zero)
+        {
+            this.pathStart = pathStart;
+            this.pathEnd = pathEnd;
+
+            this.startNode = this.gameGrid[this.pathStart];
+            this.endNode = this.gameGrid[this.pathEnd];
+        }
 
         BreadthFirstSearch();
-
-        /*if (this.possiblePaths.Count < 1)
-            return this.chosenPath;
-
-        IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths = this.possiblePaths.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);*/
 
         if (this.possiblePaths.Count < 1)
         {
@@ -78,7 +72,7 @@ public class Pathfinder : MonoBehaviour
         }
             
 
-        Debug.Log("Paths created in total :" + this.possiblePaths.Count);
+        //Debug.Log("Paths created in total :" + this.possiblePaths.Count);
 
         /*foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
@@ -86,16 +80,13 @@ public class Pathfinder : MonoBehaviour
                 Debug.Log(n.Coordinates);
         }*/
 
-        /*foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
-        {
-            this.chosenPath = item.Key;
-            this.possiblePaths.Clear();
-            break;
-        }*/
-
         if(this.pathsForEnemy.Count < 1)
         {
-            this.pathsForEnemy = this.possiblePaths.Keys.ToList<List<Node>>();
+            foreach(List<Node> item in this.possiblePaths)
+            {
+                this.pathsForEnemy.Add(item);
+            }
+            //this.pathsForEnemy = this.possiblePaths;
             this.possiblePaths.Clear();
         }
 
@@ -114,7 +105,7 @@ public class Pathfinder : MonoBehaviour
         return CreatePath();
     }*/
 
-    private bool ExploreNeighbours()
+    private void ExploreNeighbours()
     {      
         List<Node> neighboursList = new List<Node>();
         //Debug.Log("current node..." + this.currentSearchNode.Coordinates);
@@ -146,56 +137,35 @@ public class Pathfinder : MonoBehaviour
                     {
                         CreatePath();
 
-                        return true;
+                        return;
                     }
 
-                    //if ((this.directions.Count > 2) && GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().ShouldNeighboursBeLocked)
-                    if ((this.directions.Count > 2) && this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().ShouldNeighboursBeLocked)
+                    if ((this.directions.Count > 2) &&
+                        this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString())
+                                                 .GetComponent<Waypoint>().ShouldNeighboursBeLocked)
+                    {
                         lastNodeAdded.SetHasBeenChosen(true);
+                    }
+                            
 
                     this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
-
-                    /*if (this.currentSearchNode.Coordinates.Equals(this.pathEnd))
-                    {
-                        //return true;
-                        
-                        CreatePath();
-
-                        return true;
-                    }*/
-
 
                     this.frontier.Enqueue(lastNodeAdded);
                     //Debug.Log(lastNodeAdded.Coordinates);
                 }
-
-                /*foreach(Node item in neighboursList)
-                {
-                    if(!this.reached.ContainsKey(item.Coordinates) && item.IsWalkable)
-                    {
-                        item.SetConnectedTo(this.currentSearchNode);
-
-                        this.reached.Add(item.Coordinates, item);
-                        this.frontier.Enqueue(item);
-                    }
-                }*/
             }
 
         }
-
-        return false;
     }
 
     private Vector3Int CheckNodesAboveOrBelow(Vector3Int curNeighbourCoords)
     {
-        //if (GameObject.Find(curNeighbourCoords.ToString()) == null)
         if (this.gridManager.TileList.Find(x => x.name == curNeighbourCoords.ToString()) == null)
         {
             for (int j = 0; j < this.height.Length; j++)
             {
                 curNeighbourCoords = curNeighbourCoords + this.height[j];
 
-                //if (GameObject.Find(curNeighbourCoords.ToString()) != null)
                 if(this.gridManager.TileList.Find(x => x.name == curNeighbourCoords.ToString()) != null)
                 {
                     break;
@@ -210,9 +180,6 @@ public class Pathfinder : MonoBehaviour
 
     private void BreadthFirstSearch() // private void BreadthFirstSearch(Vector3Int coordinates) // To calcualte dynamically from enemy current position
     {
-        //this.startNode.SetIsWalkable(true);
-        //this.endNode.SetIsWalkable(true);
-
         this.reached.Clear();
         this.frontier.Clear();
         
@@ -227,9 +194,6 @@ public class Pathfinder : MonoBehaviour
             AssignSearchDirections();
 
             ExploreNeighbours();
-
-            /*if (ExploreNeighbours() == true)
-                break;*/
         }
     }
 
@@ -239,7 +203,6 @@ public class Pathfinder : MonoBehaviour
 
         List<Node> path = new List<Node>();
         Node currentNode = this.endNode;
-        int pathDangerLevel = 0;
 
         path.Add(currentNode);
         currentNode.SetIsPath(true);
@@ -253,11 +216,7 @@ public class Pathfinder : MonoBehaviour
                 //Debug.Log("finishing path!");
                 break;
             }
-                
 
-            //Waypoint curNodeWayp = GameObject.Find(currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
-            Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
-            pathDangerLevel += curNodeWayp.DangerLevel;
 
             path.Add(currentNode);
             currentNode.SetIsPath(true);
@@ -268,25 +227,21 @@ public class Pathfinder : MonoBehaviour
 
         path.Reverse();
 
-        //if(!possiblePaths.ContainsKey(path)) // I think the keys of collections are by hashID so even same collections with same nodes will be different
-        this.possiblePaths.Add(path, pathDangerLevel);
+        this.possiblePaths.Add(path);
 
         Debug.Log("Paths created thus far: " + this.possiblePaths.Count);
 
         if(this.possiblePaths.Count < this.maxNumberOfPathsToCalculate)
         {
             //Debug.Log("Creating new Path! + " + this.maxNumberOfPathsToCalculate);
-            FindPath();
+            FindPath(this.pathStart, this.pathEnd);
         }
-
-        //return path;
     }
 
     private void AssignSearchDirections()
     {
         this.directions.Clear();
 
-        //GameObject currentTile = GameObject.Find(this.currentSearchNode.Coordinates.ToString());
         GameObject currentTile = this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString());
 
         if (currentTile == null)
@@ -298,13 +253,10 @@ public class Pathfinder : MonoBehaviour
         Waypoint currentTileWaypoint = currentTile.GetComponent<Waypoint>();
         PossibleDirections directionsForBFS = currentTileWaypoint.PossibleRoadDirections;
 
-        //PossibleDirections directionsForBFS = GameObject.Find(this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>().PossibleRoadDirections;
-
         string[] directions = {"Right", "Left", "Forward", "Backward"};
 
         string directionsForBFSString = directionsForBFS.ToString();
 
-        //foreach (string item in directions)
         for(int i = 0; i < directions.Length; i++)
         {
             if (String.IsNullOrWhiteSpace(directionsForBFSString)) { break; }
