@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
     //[SerializeField] List<Waypoint> path = new List<Waypoint>();
-    List<Node> path = new List<Node>();
+    private List<Node> path = new List<Node>();
     [Range(0f, 5f)] [SerializeField] float movementSpeed = default;
+
+    private List<List<Node>> possiblePaths = new List<List<Node>>();
+    private Dictionary<List<Node>, int> pathsWithDangerLevel = new Dictionary<List<Node>, int>();
 
     private int spawnCount = 0;
 
@@ -29,10 +33,16 @@ public class EnemyMover : MonoBehaviour
     {
         CheckHowManyTimesEnemyInstanceHasSpawned();
 
-        if (!this.canCalculatePath) { return; }
+        if (!this.canCalculatePath)
+        {
+            FindPath();
+            return; 
+        }
 
         ReturnToStart();
-        FindPath(); //FindPath(true) // For dynamic pathfinding        
+        Debug.Log("This enemy has these many paths available: " + this.possiblePaths.Count);
+        AssignPath();
+        //FindPath(); //FindPath(true) // For dynamic pathfinding        
         this.StartCoroutine(FollowPath()); // For dynamic pathfinding we need to erase this line
     }
 
@@ -68,9 +78,38 @@ public class EnemyMover : MonoBehaviour
         this.path.Clear();
         this.pathFinder.ClearChosenPath();
 
-        this.path = this.pathFinder.FindPath();
+        this.possiblePaths = this.pathFinder.FindPath();
+
+        //this.path = this.pathFinder.FindPath(this.possiblePaths);
 
         //this.StartCoroutine(FollowPath()); //Necessary for dynamic pathfinding
+    }
+
+    private void AssignPath()
+    {
+        int pathDangerLevel = 0;
+
+        foreach(List<Node> item in this.possiblePaths)
+        {
+            pathDangerLevel = 0;
+
+            foreach(Node tile in item)
+            {
+                Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == tile.Coordinates.ToString()).GetComponent<Waypoint>();
+                pathDangerLevel += curNodeWayp.DangerLevel;
+            }
+
+            this.pathsWithDangerLevel.Add(item, pathDangerLevel);
+        }
+
+        IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths = this.pathsWithDangerLevel.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);
+
+        foreach(KeyValuePair<List<Node>, int> item in sortedPaths)
+        {
+            this.path = item.Key;
+            pathsWithDangerLevel.Clear();
+            break;
+        }
     }
 
     private IEnumerator FollowPath()

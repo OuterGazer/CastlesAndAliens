@@ -62,7 +62,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        Debug.Log(this.tileList.Count + " is the list count");
+        //Debug.Log(this.tileList.Count + " is the list count");
     }
 
     public void ResetNodes()

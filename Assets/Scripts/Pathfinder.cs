@@ -23,9 +23,11 @@ public class Pathfinder : MonoBehaviour
     private Queue<Node> frontier = new Queue<Node>();
     private Dictionary<List<Node>, int> possiblePaths = new Dictionary<List<Node>, int>();
     private List<Node> chosenPath = new List<Node>();
+    private List<List<Node>> pathsForEnemy = new List<List<Node>>();
     public void ClearChosenPath()
     {
         this.chosenPath.Clear();
+        this.pathsForEnemy.Clear();
         this.gridManager.ResetChosenNodesToBeElegibleAgain();
     }
 
@@ -55,7 +57,8 @@ public class Pathfinder : MonoBehaviour
         //FindPath();
     }
 
-    public List<Node> FindPath()
+    //public List<Node> FindPath()
+    public List<List<Node>> FindPath()
     {
         //Debug.Log("Exploring new path...");
 
@@ -64,11 +67,17 @@ public class Pathfinder : MonoBehaviour
 
         BreadthFirstSearch();
 
-        if (this.possiblePaths.Count < 1)
+        /*if (this.possiblePaths.Count < 1)
             return this.chosenPath;
 
-        IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths = this.possiblePaths.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);
-        
+        IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths = this.possiblePaths.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);*/
+
+        if (this.possiblePaths.Count < 1)
+        {
+            return this.pathsForEnemy;
+        }
+            
+
         Debug.Log("Paths created in total :" + this.possiblePaths.Count);
 
         /*foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
@@ -77,11 +86,17 @@ public class Pathfinder : MonoBehaviour
                 Debug.Log(n.Coordinates);
         }*/
 
-        foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
+        /*foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
             this.chosenPath = item.Key;
             this.possiblePaths.Clear();
             break;
+        }*/
+
+        if(this.pathsForEnemy.Count < 1)
+        {
+            this.pathsForEnemy = this.possiblePaths.Keys.ToList<List<Node>>();
+            this.possiblePaths.Clear();
         }
 
         return null;//return CreatePath();
@@ -174,14 +189,14 @@ public class Pathfinder : MonoBehaviour
     private Vector3Int CheckNodesAboveOrBelow(Vector3Int curNeighbourCoords)
     {
         //if (GameObject.Find(curNeighbourCoords.ToString()) == null)
-        if (this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()) == null)
+        if (this.gridManager.TileList.Find(x => x.name == curNeighbourCoords.ToString()) == null)
         {
             for (int j = 0; j < this.height.Length; j++)
             {
                 curNeighbourCoords = curNeighbourCoords + this.height[j];
 
                 //if (GameObject.Find(curNeighbourCoords.ToString()) != null)
-                if(this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()) != null)
+                if(this.gridManager.TileList.Find(x => x.name == curNeighbourCoords.ToString()) != null)
                 {
                     break;
                 }
@@ -241,7 +256,7 @@ public class Pathfinder : MonoBehaviour
                 
 
             //Waypoint curNodeWayp = GameObject.Find(currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
-            Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString()).GetComponent<Waypoint>();
+            Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == currentNode.Coordinates.ToString()).GetComponent<Waypoint>();
             pathDangerLevel += curNodeWayp.DangerLevel;
 
             path.Add(currentNode);
@@ -335,7 +350,7 @@ public class Pathfinder : MonoBehaviour
 
     }
 
-    public bool WillBlockPath(Vector3Int tileCoords)
+    /*public bool WillBlockPath(Vector3Int tileCoords)
     {
         if (this.gameGrid.ContainsKey(tileCoords))
         {
@@ -360,5 +375,5 @@ public class Pathfinder : MonoBehaviour
     public void NotifyReceivers()
     {
         //this.BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
-    }
+    }*/
 }

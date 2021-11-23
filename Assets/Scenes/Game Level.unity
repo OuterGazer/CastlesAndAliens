@@ -985,8 +985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70bd58bb3aa170648a7a8d2cc8ea97bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathStart: {x: 21, y: 13, z: 4}
-  pathEnd: {x: 13, y: 8, z: 4}
+  pathStart: {x: 1, y: 13, z: 0}
+  pathEnd: {x: 14, y: 3, z: 4}
   maxNumberOfPathsToCalculate: 5
 --- !u!4 &67632080 stripped
 Transform:
@@ -2064,6 +2064,10 @@ PrefabInstance:
     - target: {fileID: 2087691889376722024, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: (13, 5, 4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087691889376722024, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: m_TagString
+      value: Path
       objectReference: {fileID: 0}
     - target: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_RootOrder
@@ -25039,6 +25043,10 @@ PrefabInstance:
     - target: {fileID: 2087691889376722024, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
       propertyPath: m_Name
       value: (6, 7, 0)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087691889376722024, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
+      propertyPath: m_TagString
+      value: Path
       objectReference: {fileID: 0}
     - target: {fileID: 3419488108671910210, guid: 4da278ce45ce4f6488d07689aa4ab2fd, type: 3}
       propertyPath: m_RootOrder
