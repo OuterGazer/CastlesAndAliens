@@ -49,7 +49,7 @@ public class Pathfinder : MonoBehaviour
                     
     }
 
-    public List<List<Node>> FindPath(Vector3Int pathStart, Vector3Int pathEnd)
+    public List<List<Node>> FindPath(Vector3Int pathStart, Vector3Int pathEnd, bool isKamikaze)
     {
         //Debug.Log("Exploring new path...");
 
@@ -64,7 +64,7 @@ public class Pathfinder : MonoBehaviour
             this.endNode = this.gameGrid[this.pathEnd];
         }
 
-        BreadthFirstSearch();
+        BreadthFirstSearch(isKamikaze);
 
         if (this.possiblePaths.Count < 1)
         {
@@ -86,7 +86,7 @@ public class Pathfinder : MonoBehaviour
             {
                 this.pathsForEnemy.Add(item);
             }
-            //this.pathsForEnemy = this.possiblePaths;
+
             this.possiblePaths.Clear();
         }
 
@@ -105,7 +105,7 @@ public class Pathfinder : MonoBehaviour
         return CreatePath();
     }*/
 
-    private void ExploreNeighbours()
+    private void ExploreNeighbours(bool isKamikaze)
     {      
         List<Node> neighboursList = new List<Node>();
         //Debug.Log("current node..." + this.currentSearchNode.Coordinates);
@@ -135,7 +135,7 @@ public class Pathfinder : MonoBehaviour
 
                     if (lastNodeAdded.Coordinates.Equals(this.pathEnd))
                     {
-                        CreatePath();
+                        CreatePath(isKamikaze);
 
                         return;
                     }
@@ -178,7 +178,7 @@ public class Pathfinder : MonoBehaviour
         return curNeighbourCoords;
     }
 
-    private void BreadthFirstSearch() // private void BreadthFirstSearch(Vector3Int coordinates) // To calcualte dynamically from enemy current position
+    private void BreadthFirstSearch(bool isKamikaze) // private void BreadthFirstSearch(Vector3Int coordinates) // To calcualte dynamically from enemy current position
     {
         this.reached.Clear();
         this.frontier.Clear();
@@ -189,15 +189,22 @@ public class Pathfinder : MonoBehaviour
         while (this.frontier.Count > 0)
         {
             this.currentSearchNode = this.frontier.Dequeue();
+
+            GameObject currentPathTile = this.gridManager.TileList.Find(x => x.name == this.currentSearchNode.Coordinates.ToString());
+            bool isRiverTile = currentPathTile.transform.parent.gameObject.GetComponentInChildren<MouseInteraction>().IsRiverTile;
+
+            if (isKamikaze && isRiverTile)
+                continue;
+
             this.currentSearchNode.SetIsExplored(true);
 
             AssignSearchDirections();
 
-            ExploreNeighbours();
+            ExploreNeighbours(isKamikaze);
         }
     }
 
-    private void CreatePath() // private List<Node> CreatePath()
+    private void CreatePath(bool isKamikaze) // private List<Node> CreatePath()
     {
         //Debug.Log("creating path...");
 
@@ -217,7 +224,6 @@ public class Pathfinder : MonoBehaviour
                 break;
             }
 
-
             path.Add(currentNode);
             currentNode.SetIsPath(true);
 
@@ -234,7 +240,7 @@ public class Pathfinder : MonoBehaviour
         if(this.possiblePaths.Count < this.maxNumberOfPathsToCalculate)
         {
             //Debug.Log("Creating new Path! + " + this.maxNumberOfPathsToCalculate);
-            FindPath(this.pathStart, this.pathEnd);
+            FindPath(this.pathStart, this.pathEnd, isKamikaze);
         }
     }
 

@@ -16,6 +16,7 @@ public class EnemyMover : MonoBehaviour
     public Vector3Int PathEnd => this.pathEnd;
 
     private List<List<Node>> possiblePaths = new List<List<Node>>();
+    private List<List<Node>> possibleReversePaths = new List<List<Node>>();
     private Dictionary<List<Node>, int> pathsWithDangerLevel = new Dictionary<List<Node>, int>();
 
     private int spawnCount = 0;
@@ -24,6 +25,8 @@ public class EnemyMover : MonoBehaviour
     private Pathfinder pathFinder;
 
     private bool canCalculatePath = false;
+    private bool isKamikaze = false;
+    private bool isReturning = false;
 
 
     private void Awake()
@@ -32,6 +35,7 @@ public class EnemyMover : MonoBehaviour
         this.pathFinder = this.gameObject.GetComponent<Pathfinder>();
 
         this.canCalculatePath = false;
+        this.isKamikaze = this.gameObject.CompareTag("Kamikaze");
     }
 
     void OnEnable()
@@ -83,7 +87,23 @@ public class EnemyMover : MonoBehaviour
         this.path.Clear();
         this.pathFinder.ClearChosenPath();
 
-        this.possiblePaths = this.pathFinder.FindPath(this.pathStart, this.pathEnd);
+        this.possiblePaths = this.pathFinder.FindPath(this.pathStart, this.pathEnd, this.isKamikaze);
+
+        // Kamikaze enemies will continuously go back and forth between spawn point and target point until destroyed
+        if (this.isKamikaze)
+        {
+            /*foreach(List<Node> item in this.possiblePaths)
+            {
+                this.possibleReversePaths.Add(item);
+            }*/
+
+            this.possiblePaths.CopyTo(this.possibleReversePaths.ToArray());
+
+            foreach(List<Node> item in this.possibleReversePaths)
+            {
+                item.Reverse();
+            }
+        }
 
         //this.path = this.pathFinder.FindPath(this.possiblePaths);
 
@@ -94,26 +114,48 @@ public class EnemyMover : MonoBehaviour
     {
         int pathDangerLevel = 0;
 
-        foreach(List<Node> item in this.possiblePaths)
+        if (!this.isReturning)
+        {
+            ChooseCorrectPath(this.possiblePaths, pathDangerLevel);
+        }
+        else
+        {
+            ChooseCorrectPath(this.possibleReversePaths, pathDangerLevel);
+        }
+        
+
+        IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths;
+
+        if (!this.isKamikaze)
+        {
+            sortedPaths = this.pathsWithDangerLevel.OrderBy(x => x.Value).ThenBy(x => x.Key.Count); // Regular enemies avoid danger
+        }
+        else
+        {
+            sortedPaths = this.pathsWithDangerLevel.OrderByDescending(x => x.Value).ThenBy(x => x.Key.Count); // Kamikazes will prioritize paths with most danger
+        }        
+
+        foreach(KeyValuePair<List<Node>, int> item in sortedPaths)
+        {
+            this.path = item.Key;
+            this.pathsWithDangerLevel.Clear();
+            break;
+        }
+    }
+
+    private void ChooseCorrectPath(List<List<Node>> pathList, int pathDangerLevel)
+    {
+        foreach (List<Node> item in pathList)
         {
             pathDangerLevel = 0;
 
-            foreach(Node tile in item)
+            foreach (Node tile in item)
             {
                 Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == tile.Coordinates.ToString()).GetComponent<Waypoint>();
                 pathDangerLevel += curNodeWayp.DangerLevel;
             }
 
             this.pathsWithDangerLevel.Add(item, pathDangerLevel);
-        }
-
-        IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths = this.pathsWithDangerLevel.OrderBy(x => x.Value).ThenBy(x => x.Key.Count);
-
-        foreach(KeyValuePair<List<Node>, int> item in sortedPaths)
-        {
-            this.path = item.Key;
-            pathsWithDangerLevel.Clear();
-            break;
         }
     }
 
@@ -148,7 +190,17 @@ public class EnemyMover : MonoBehaviour
 
     private void FinishPath()
     {
-        this.gameObject.GetComponent<Enemy>().StealGold();
-        this.gameObject.SetActive(false);
+        if (!this.isKamikaze)
+        {
+            this.gameObject.GetComponent<Enemy>().StealGold();
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.isReturning = !this.isReturning;
+            AssignPath();
+            this.StartCoroutine(FollowPath());
+        }
+        
     }
 }

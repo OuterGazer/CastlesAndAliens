@@ -21,7 +21,16 @@ public class ObjectPool : MonoBehaviour
     {
         this.pool = new Transform[this.poolSize];
 
+        // This loop is for testing purposes with single enemies, erase!
         for (int i = 0; i < this.pool.Length; i++)
+        {
+            this.pool[i] = GameObject.Instantiate<Transform>(this.enemyPrefabArray[0], this.gameObject.transform);
+            
+            this.pool[i].gameObject.SetActive(false);
+        }
+
+        // This is the real loop to use
+        /*for (int i = 0; i < this.pool.Length; i++)
         {
             if(i < this.enemyPrefabArray.Length)
                 this.pool[i] = GameObject.Instantiate<Transform>(this.enemyPrefabArray[i], this.gameObject.transform);
@@ -29,7 +38,7 @@ public class ObjectPool : MonoBehaviour
                 this.pool[i] = GameObject.Instantiate<Transform>(this.enemyPrefabArray[i - this.enemyPrefabArray.Length], this.gameObject.transform);
             
             this.pool[i].gameObject.SetActive(false);
-        }
+        }*/
     }
 
     // Start is called before the first frame update

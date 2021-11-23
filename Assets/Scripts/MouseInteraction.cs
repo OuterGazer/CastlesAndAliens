@@ -12,6 +12,7 @@ public class MouseInteraction : MonoBehaviour
     public bool IsRoadTile => this.isRoadTile;
 
     [SerializeField] bool isRiverTile = default;
+    public bool IsRiverTile => this.isRiverTile;
 
     private Bank bank;
     private GridManager gridManager;

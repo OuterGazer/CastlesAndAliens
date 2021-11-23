@@ -8,6 +8,8 @@ TagManager:
   - Path
   - Tower Base
   - Tower Weapon
+  - Basic Enemy
+  - Kamikaze
   layers:
   - Default
   - TransparentFX
