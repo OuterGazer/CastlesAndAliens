@@ -8,6 +8,7 @@ public class TargetLocator : MonoBehaviour
     [SerializeField] Transform pedestal;
     [SerializeField] Transform weapon;
     [SerializeField] Transform bolt;
+    private Transform shootingBolt;
     [SerializeField] float range = default;
     public float Range => this.range;
     [SerializeField] float shootingCooldown = default;
@@ -23,6 +24,9 @@ public class TargetLocator : MonoBehaviour
     {
         this.defenseTower = this.gameObject.GetComponent<DefenseTower>();
         this.enemyMask = LayerMask.GetMask("Enemy");
+
+        this.shootingBolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
+        this.shootingBolt.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -130,6 +134,8 @@ public class TargetLocator : MonoBehaviour
 
         if(this.timeToNextShot <= 0)
         {
+            // TODO: set shooting with enabling and disabling a bolt with this.shootingBolt
+
             Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
 
             bolt.SetParent(null);

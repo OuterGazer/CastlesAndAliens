@@ -23,6 +23,8 @@ public class MouseInteraction : MonoBehaviour
     //private PathFinder pathFinder;
     Vector3Int tileCoordinates = new Vector3Int();
 
+    Coroutine buildTower;
+
     private void Awake()
     {
         this.bank = GameObject.FindObjectOfType<Bank>();
@@ -50,7 +52,7 @@ public class MouseInteraction : MonoBehaviour
     {
         if (this.isPlaceable && this.bank.CurrentBalance > 0) // if(this.gridManager[this.tileCoordinates].IsWalkable && !this.pathFinder.WillBlockPath(this.tileCoordinates))
         {
-            this.StartCoroutine(BuildTower());
+            this.buildTower = this.StartCoroutine(BuildTower());
         }        
     }
 
@@ -73,9 +75,10 @@ public class MouseInteraction : MonoBehaviour
 
         yield return new WaitForSeconds(defenseTower.BuildTime);
 
-        if (tower == null) { this.StopAllCoroutines(); }
-
-        tower.transform.GetChild(1).gameObject.SetActive(true);
-        defenseTower.CanShoot = true;
+        if (defenseTower != null)
+        {
+            tower.transform.GetChild(1).gameObject.SetActive(true);
+            defenseTower.CanShoot = true;
+        }        
     }
 }
