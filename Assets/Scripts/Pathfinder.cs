@@ -227,6 +227,17 @@ public class Pathfinder : MonoBehaviour
             path.Add(currentNode);
             currentNode.SetIsPath(true);
 
+            Waypoint curTile = this.gridManager.TileList.Find(x => x.name == currentNode.Coordinates.ToString())
+                                                 .GetComponent<Waypoint>();
+
+            if (curTile.HasLockingCounter) // Lock certain paths if they have been used twice
+            {
+                curTile.LockingCounter++;
+
+                if (curTile.LockingCounter > 2)
+                    currentNode.SetShouldBeChosenAgain(false);
+            }
+
             if (currentNode.HasBeenChosen)
                 currentNode.SetShouldBeChosenAgain(false);
         }

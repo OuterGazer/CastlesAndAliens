@@ -4380,6 +4380,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610773899}
     m_Modifications:
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: hasLockingCounter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 347094998393691991, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
+      propertyPath: shouldNeighboursBeLocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2729730247406334743, guid: 77f5ad49131dffb4a9a91d61b83f2eee, type: 3}
       propertyPath: m_Name
       value: Road Straight (29)
@@ -30636,7 +30644,7 @@ PrefabInstance:
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabArray.Array.data[0]
       value: 
-      objectReference: {fileID: 7004775153819084567, guid: 29c30091d2a3e634cadca59cb8c28bc6, type: 3}
+      objectReference: {fileID: 7004775153819084567, guid: 106e943d1bcdc884983a90752a09d2c3, type: 3}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabArray.Array.data[1]
       value: 

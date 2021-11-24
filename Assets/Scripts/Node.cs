@@ -8,6 +8,7 @@ public class Node
     [SerializeField] private Vector3Int coordinates;
     public Vector3Int Coordinates => this.coordinates;
 
+
     [SerializeField] private bool isWalkable;
     public bool IsWalkable => this.isWalkable;
     public void SetIsWalkable(bool isWalkable)
