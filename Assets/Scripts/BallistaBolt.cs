@@ -8,9 +8,15 @@ public class BallistaBolt : MonoBehaviour
 
     private Rigidbody boltRB;
     private TargetLocator shotOrigin;
+    private TargetLocatorAlien shotOriginAlien;
     public void SetShotOrigin(TargetLocator origin)
     {
         this.shotOrigin = origin;
+    }
+
+    public void SetShotOrigin(TargetLocatorAlien origin)
+    {
+        this.shotOriginAlien = origin;
     }
 
     private bool canShoot = false;
@@ -34,13 +40,20 @@ public class BallistaBolt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        GameObject.Destroy(this.gameObject);
+        if((other.gameObject.CompareTag("Tower Base") && (this.gameObject.CompareTag("Kamikaze") || this.gameObject.CompareTag("Basic Enemy"))) ||
+           (this.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))))
+        {
+            GameObject.Destroy(this.gameObject);
+        }
+        
     }
 
     private void OnDestroy()
     {
         if (this.shotOrigin != null)
             this.shotOrigin.SendMessage("ChargeNextBolt");
+
+        if (this.shotOriginAlien != null)
+            this.shotOriginAlien.SendMessage("ChargeNextBolt");
     }
 }
