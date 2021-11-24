@@ -52,7 +52,7 @@ public class MouseInteraction : MonoBehaviour
 
     private IEnumerator BuildTower()
     {
-        Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 0.2f, this.gameObject.transform.position.z);
+        Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 0.5f, this.gameObject.transform.position.z);
         
         GameObject tower = Instantiate<GameObject>(this.basicTowerPrefab, placementPos, Quaternion.identity);
         DefenseTower defenseTower = tower.GetComponent<DefenseTower>();

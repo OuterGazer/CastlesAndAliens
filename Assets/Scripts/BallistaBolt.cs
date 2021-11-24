@@ -41,7 +41,8 @@ public class BallistaBolt : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if((other.gameObject.CompareTag("Tower Base") && (this.gameObject.CompareTag("Kamikaze") || this.gameObject.CompareTag("Basic Enemy"))) ||
-           (this.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))))
+           (other.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
+           other.gameObject.CompareTag("Ground"))
         {
             GameObject.Destroy(this.gameObject);
         }

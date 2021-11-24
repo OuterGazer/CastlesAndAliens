@@ -10,6 +10,7 @@ TagManager:
   - Tower Weapon
   - Basic Enemy
   - Kamikaze
+  - Ground
   layers:
   - Default
   - TransparentFX
