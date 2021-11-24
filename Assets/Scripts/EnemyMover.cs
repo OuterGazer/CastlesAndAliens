@@ -16,7 +16,6 @@ public class EnemyMover : MonoBehaviour
     public Vector3Int PathEnd => this.pathEnd;
 
     private List<List<Node>> possiblePaths = new List<List<Node>>();
-    private List<List<Node>> possibleReversePaths = new List<List<Node>>();
     private Dictionary<List<Node>, int> pathsWithDangerLevel = new Dictionary<List<Node>, int>();
 
     private int spawnCount = 0;
@@ -27,6 +26,7 @@ public class EnemyMover : MonoBehaviour
     private bool canCalculatePath = false;
     private bool isKamikaze = false;
     private bool isReturning = false;
+    private bool arePathsReversed = false;
 
 
     private void Awake()
@@ -47,6 +47,9 @@ public class EnemyMover : MonoBehaviour
             FindPath();
             return; 
         }
+
+        if (this.isReturning)
+            this.isReturning = false;
 
         ReturnToStart();
         Debug.Log("This enemy has these many paths available: " + this.possiblePaths.Count);
@@ -89,22 +92,6 @@ public class EnemyMover : MonoBehaviour
 
         this.possiblePaths = this.pathFinder.FindPath(this.pathStart, this.pathEnd, this.isKamikaze);
 
-        // Kamikaze enemies will continuously go back and forth between spawn point and target point until destroyed
-        if (this.isKamikaze)
-        {
-            /*foreach(List<Node> item in this.possiblePaths)
-            {
-                this.possibleReversePaths.Add(item);
-            }*/
-
-            this.possiblePaths.CopyTo(this.possibleReversePaths.ToArray());
-
-            foreach(List<Node> item in this.possibleReversePaths)
-            {
-                item.Reverse();
-            }
-        }
-
         //this.path = this.pathFinder.FindPath(this.possiblePaths);
 
         //this.StartCoroutine(FollowPath()); //Necessary for dynamic pathfinding
@@ -114,15 +101,9 @@ public class EnemyMover : MonoBehaviour
     {
         int pathDangerLevel = 0;
 
-        if (!this.isReturning)
-        {
-            ChooseCorrectPath(this.possiblePaths, pathDangerLevel);
-        }
-        else
-        {
-            ChooseCorrectPath(this.possibleReversePaths, pathDangerLevel);
-        }
-        
+        AdjustPathIfIsKamikaze();
+
+        ChooseCorrectPath(this.possiblePaths, pathDangerLevel);
 
         IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths;
 
@@ -133,13 +114,41 @@ public class EnemyMover : MonoBehaviour
         else
         {
             sortedPaths = this.pathsWithDangerLevel.OrderByDescending(x => x.Value).ThenBy(x => x.Key.Count); // Kamikazes will prioritize paths with most danger
-        }        
+        }
 
-        foreach(KeyValuePair<List<Node>, int> item in sortedPaths)
+        foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
             this.path = item.Key;
             this.pathsWithDangerLevel.Clear();
             break;
+        }
+    }
+
+    private void AdjustPathIfIsKamikaze()
+    {
+        if (this.isKamikaze)
+        {
+            if (!this.isReturning)
+            {
+                if (this.arePathsReversed)
+                {
+                    foreach (List<Node> item in this.possiblePaths)
+                    {
+                        item.Reverse();
+                    }
+
+                    this.arePathsReversed = false;
+                }
+            }
+            else
+            {
+                foreach (List<Node> item in this.possiblePaths)
+                {
+                    item.Reverse();
+                }
+
+                this.arePathsReversed = true;
+            }
         }
     }
 
