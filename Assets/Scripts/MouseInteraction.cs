@@ -8,6 +8,10 @@ public class MouseInteraction : MonoBehaviour
 
     [SerializeField] bool isPlaceable = default;
     public bool IsPlaceable => this.isPlaceable;
+    public void SetIsPlaceable(bool isPlaceable)
+    {
+        this.isPlaceable = isPlaceable;
+    }
     [SerializeField] bool isRoadTile = default;
     public bool IsRoadTile => this.isRoadTile;
 
@@ -59,6 +63,7 @@ public class MouseInteraction : MonoBehaviour
         
         tower.transform.GetChild(1).gameObject.SetActive(false);
         defenseTower.CanShoot = false;
+        defenseTower.SetTileUnderneath(this);
 
         this.isPlaceable = false;
         //this.gridManager.BlockNode(this.tileCoordinates);
@@ -67,6 +72,8 @@ public class MouseInteraction : MonoBehaviour
         this.bank.Withdraw(defenseTower.GoldCost);
 
         yield return new WaitForSeconds(defenseTower.BuildTime);
+
+        if (tower == null) { this.StopAllCoroutines(); }
 
         tower.transform.GetChild(1).gameObject.SetActive(true);
         defenseTower.CanShoot = true;

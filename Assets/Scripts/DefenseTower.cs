@@ -20,15 +20,16 @@ public class DefenseTower : MonoBehaviour
 
     private Rigidbody towerRB;
     private TargetLocator targetLocator;
-    private TargetLocatorAlien originAlien;
+    private List<TargetLocatorAlien> originAlien = new List<TargetLocatorAlien>();
     private LayerMask pathMask;
+    private MouseInteraction tileUnderneath;
 
     private bool hasBeenTargeted = false;
     public bool HasBeenTargeted => this.hasBeenTargeted;
     public void SetHasBeenTargeted(TargetLocatorAlien originAlien)
     {
         this.hasBeenTargeted = true;
-        this.originAlien = originAlien;
+        this.originAlien.Add(originAlien);
     }
 
     private bool canShoot = false;
@@ -47,7 +48,7 @@ public class DefenseTower : MonoBehaviour
 
         this.pathMask = LayerMask.GetMask("Roads");
 
-        this.originAlien = default;
+        //this.originAlien = default;
     }
 
     // Start is called before the first frame update
@@ -68,8 +69,15 @@ public class DefenseTower : MonoBehaviour
         }
     }
 
+    public void SetTileUnderneath(MouseInteraction tileUnderneath)
+    {
+        this.tileUnderneath = tileUnderneath;
+    }
+
     private void OnDestroy()
     {
+        this.tileUnderneath.SetIsPlaceable(true);
+
         foreach (Waypoint item in this.affectedPathtiles)
         {
             item.DecreaseDangerLevel(this.dangerLevel);
@@ -78,7 +86,11 @@ public class DefenseTower : MonoBehaviour
         if (this.hasBeenTargeted)
         {
             this.hasBeenTargeted = false;
-            this.originAlien.ClearTarget();
+            foreach(TargetLocatorAlien item in this.originAlien)
+            {
+                item.ClearTarget();
+            }
+            
         }
     }
 }

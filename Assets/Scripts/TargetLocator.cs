@@ -15,12 +15,14 @@ public class TargetLocator : MonoBehaviour
 
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
     private DefenseTower defenseTower;
+    private LayerMask enemyMask;
 
     private bool isTargetAcquired = false;
 
     private void Awake()
     {
         this.defenseTower = this.gameObject.GetComponent<DefenseTower>();
+        this.enemyMask = LayerMask.GetMask("Enemy");
     }
 
     // Update is called once per frame
@@ -39,9 +41,16 @@ public class TargetLocator : MonoBehaviour
     {
         if (this.isTargetAcquired) { return; }
 
-        Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+        //Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+        Collider[] enemyColliders = Physics.OverlapSphere(this.gameObject.transform.position, this.range, this.enemyMask);
 
-        if (enemies.Length == 0) { return; }
+        if (enemyColliders.Length == 0) { return; }
+
+        Enemy[] enemies = new Enemy[enemyColliders.Length];
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i] = enemyColliders[i].GetComponentInParent<Enemy>();
+        }        
 
         Enemy enemyToAim = default;
 

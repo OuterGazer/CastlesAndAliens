@@ -52,9 +52,9 @@ public class BallistaBolt : MonoBehaviour
     private void OnDestroy()
     {
         if (this.shotOrigin != null)
-            this.shotOrigin.SendMessage("ChargeNextBolt");
+            this.shotOrigin.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
 
         if (this.shotOriginAlien != null)
-            this.shotOriginAlien.SendMessage("ChargeNextBolt");
+            this.shotOriginAlien.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
     }
 }

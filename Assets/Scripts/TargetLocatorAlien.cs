@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(DefenseTower))]
+[RequireComponent(typeof(Enemy))]
 public class TargetLocatorAlien : MonoBehaviour
 {
     [SerializeField] Transform pedestal;
@@ -14,12 +14,13 @@ public class TargetLocatorAlien : MonoBehaviour
     private float timeToNextShot = 0;
 
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
+    private LayerMask towerMask;
 
     private bool isTargetAcquired = false;
 
     private void Awake()
     {
-        
+        this.towerMask = LayerMask.GetMask("DefenseTower");
     }
 
     // Update is called once per frame
@@ -36,11 +37,17 @@ public class TargetLocatorAlien : MonoBehaviour
     {
         if (this.isTargetAcquired) { return; }
 
-        // TODO: find closest target through overlapsphere instead of finding every enemy in the scene
+        //DefenseTower[] enemies = GameObject.FindObjectsOfType<DefenseTower>();
 
-        DefenseTower[] enemies = GameObject.FindObjectsOfType<DefenseTower>();
+        Collider[] enemyColliders = Physics.OverlapSphere(this.gameObject.transform.position, this.range, this.towerMask);
 
-        if (enemies.Length == 0) { return; }
+        if (enemyColliders.Length == 0) { return; }
+
+        DefenseTower[] enemies = new DefenseTower[enemyColliders.Length];
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i] = enemyColliders[i].GetComponentInParent<DefenseTower>();
+        }
 
         DefenseTower enemyToAim = default;
 
@@ -161,5 +168,11 @@ public class TargetLocatorAlien : MonoBehaviour
     {
         this.isTargetAcquired = false;
         this.target = default;
+    }
+
+    private void OnDisable()
+    {
+        if (!this.bolt.gameObject.activeSelf)
+            this.bolt.gameObject.SetActive(true);
     }
 }

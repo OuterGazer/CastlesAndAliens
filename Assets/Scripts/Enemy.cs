@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int goldPenalty = default;
 
 
-    private TargetLocator originTower;
+    private List<TargetLocator> originTower = new List<TargetLocator>();
     private Bank bank;
 
     private bool hasBeenTargeted = false;
@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public void SetHasBeenTargeted(TargetLocator originTower)
     {
         this.hasBeenTargeted = true;
-        this.originTower = originTower;
+        this.originTower.Add(originTower);
     }
 
     private void Start()
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     // OnEnable is called every time the object is enabled
     void OnEnable()
     {
-        this.originTower = default;
+        this.originTower.Clear();
     }
 
     public void RewardGold()
@@ -47,7 +47,11 @@ public class Enemy : MonoBehaviour
         if (this.hasBeenTargeted)
         {
             this.hasBeenTargeted = false;
-            this.originTower.ClearTarget();
+            foreach(TargetLocator item in this.originTower)
+            {
+                item.ClearTarget();
+            }
+            
         }            
     }
 }
