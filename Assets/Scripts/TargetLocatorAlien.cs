@@ -123,6 +123,7 @@ public class TargetLocatorAlien : MonoBehaviour
             Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
 
             bolt.SetParent(null);
+            SetCorrectBoltScale(bolt);
 
             bolt.GetComponent<BallistaBolt>().ShootBolt();
             bolt.GetComponent<BallistaBolt>().SetShotOrigin(this);
@@ -131,6 +132,17 @@ public class TargetLocatorAlien : MonoBehaviour
 
             this.timeToNextShot = this.shootingCooldown;
         }
+    }
+
+    private void SetCorrectBoltScale(Transform bolt)
+    {
+        Vector3 tempScale1 = this.gameObject.transform.GetChild(0).localScale;
+        Vector3 tempScale2 = this.gameObject.transform.GetChild(0).GetChild(0).localScale;
+        Vector3 tempScale3 = bolt.transform.localScale;
+        //bolt.transform.localScale = new Vector3(0.395f, 0.395f, 0.1975f);
+        bolt.transform.localScale = new Vector3(tempScale1.x * tempScale2.x * tempScale3.x,
+                                                tempScale1.y * tempScale2.y * tempScale3.y,
+                                                tempScale1.z * tempScale2.z * tempScale3.z);
     }
 
     public void ChargeNextBolt()
