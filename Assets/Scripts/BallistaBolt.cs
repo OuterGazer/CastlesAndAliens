@@ -52,6 +52,8 @@ public class BallistaBolt : MonoBehaviour
 
     private void OnDisable()
     {
+        this.canShoot = false;
+
         if (this.shotOrigin != null)
             this.shotOrigin.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
 

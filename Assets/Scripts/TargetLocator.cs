@@ -11,8 +11,12 @@ public class TargetLocator : MonoBehaviour
     private Transform shootingBolt;
     [SerializeField] float range = default;
     public float Range => this.range;
+    [SerializeField] float closeRangeLimit = default;
+    public float CloseRangeLimit => this.closeRangeLimit;
     [SerializeField] float shootingCooldown = default;
     private float timeToNextShot = 0;
+
+    private string towerName;
 
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
     private DefenseTower defenseTower;
@@ -27,6 +31,8 @@ public class TargetLocator : MonoBehaviour
 
         this.shootingBolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
         this.shootingBolt.gameObject.SetActive(false);
+
+        this.towerName = this.gameObject.name;
     }
 
     // Update is called once per frame
@@ -64,16 +70,20 @@ public class TargetLocator : MonoBehaviour
         {
             float distanceToCurrentEnemy = (enemies[i].transform.position - this.gameObject.transform.position).sqrMagnitude;
 
-            if (distanceToCurrentEnemy < distanceToClosestEnemy)
+            if ((distanceToCurrentEnemy < distanceToClosestEnemy) &&
+                distanceToCurrentEnemy > (this.closeRangeLimit * this.closeRangeLimit))
             {
                 distanceToClosestEnemy = distanceToCurrentEnemy;
                 enemyToAim = enemies[i];
             }
         }
 
-        this.isTargetAcquired = true;
-        enemyToAim.SetHasBeenTargeted(this);
-        this.target = enemyToAim.transform;
+        if(enemyToAim != null)
+        {
+            this.isTargetAcquired = true;
+            enemyToAim.SetHasBeenTargeted(this);
+            this.target = enemyToAim.transform;
+        }        
     }
 
     private void AimWeapon()
@@ -84,6 +94,9 @@ public class TargetLocator : MonoBehaviour
         if (!this.isTargetAcquired) { return; }
 
         AimToEnemy(this.pedestal, Vector3.up);
+
+        if(this.towerName.Equals("Catapult Tower(Clone)")) { return; }
+
         AimToEnemy(this.weapon, this.weapon.right);
     }
     
@@ -137,11 +150,21 @@ public class TargetLocator : MonoBehaviour
             //Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
             SetShootingBoltToStandard();
 
-            this.shootingBolt.SetParent(null);
+            if(!this.towerName.Equals("Catapult Tower(Clone)"))
+            {
+                this.shootingBolt.SetParent(null);
 
-            BallistaBolt bolt = this.shootingBolt.GetComponent<BallistaBolt>();
-            bolt.ShootBolt();
-            bolt.SetShotOrigin(this);
+                BallistaBolt bolt = this.shootingBolt.GetComponent<BallistaBolt>();
+                bolt.ShootBolt();
+                bolt.SetShotOrigin(this);
+            }
+            else
+            {
+                CatapultRock rock = this.shootingBolt.GetComponent<CatapultRock>();
+                rock.ShootRock();
+                rock.SetShotOrigin(this);
+            }
+            
 
             this.bolt.gameObject.SetActive(false);
 

@@ -23,7 +23,6 @@ public class MouseInteraction : MonoBehaviour
     //private PathFinder pathFinder;
     Vector3Int tileCoordinates = new Vector3Int();
 
-    Coroutine buildTower;
 
     private void Awake()
     {
@@ -52,7 +51,7 @@ public class MouseInteraction : MonoBehaviour
     {
         if (this.isPlaceable && this.bank.CurrentBalance > 0) // if(this.gridManager[this.tileCoordinates].IsWalkable && !this.pathFinder.WillBlockPath(this.tileCoordinates))
         {
-            this.buildTower = this.StartCoroutine(BuildTower());
+            this.StartCoroutine(BuildTower());
         }        
     }
 
@@ -63,7 +62,6 @@ public class MouseInteraction : MonoBehaviour
         GameObject tower = Instantiate<GameObject>(this.basicTowerPrefab, placementPos, Quaternion.identity);
         DefenseTower defenseTower = tower.GetComponent<DefenseTower>();
         
-        tower.transform.GetChild(1).gameObject.SetActive(false);
         defenseTower.CanShoot = false;
         defenseTower.SetTileUnderneath(this);
 
@@ -73,12 +71,56 @@ public class MouseInteraction : MonoBehaviour
 
         this.bank.Withdraw(defenseTower.GoldCost);
 
+        //tower.transform.GetChild(1).gameObject.SetActive(false);
+        foreach (Transform item in defenseTower.FinishedTower)
+        {
+            item.gameObject.SetActive(false);
+        }
+
+        defenseTower.Phase1.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(defenseTower.BuildTime);
 
-        if (defenseTower != null)
+        defenseTower.Phase1.gameObject.SetActive(false);
+        defenseTower.Phase2.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(defenseTower.BuildTime);
+
+        defenseTower.Phase3.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(defenseTower.BuildTime);
+
+        defenseTower.Phase2.gameObject.SetActive(false);
+        defenseTower.Phase4.gameObject.SetActive(true);
+
+        if (defenseTower.Phase5 != null)
+        {
+            yield return new WaitForSeconds(defenseTower.BuildTime);
+
+            defenseTower.Phase5.gameObject.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(defenseTower.BuildTime);
+
+        defenseTower.Phase3.gameObject.SetActive(false);
+        defenseTower.Phase4.gameObject.SetActive(false);
+
+        if (defenseTower.Phase5 != null)
+        {
+            defenseTower.Phase5.gameObject.SetActive(false);
+        }
+
+        foreach (Transform item in defenseTower.FinishedTower)
+        {
+            item.gameObject.SetActive(true);
+        }
+
+        defenseTower.CanShoot = true;
+
+        /*if (defenseTower != null)
         {
             tower.transform.GetChild(1).gameObject.SetActive(true);
             defenseTower.CanShoot = true;
-        }        
+        }*/
     }
 }

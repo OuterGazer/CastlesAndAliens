@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class DefenseTower : MonoBehaviour
 {
+    [Header("Building Parts")]
+    [SerializeField] Transform[] finishedTower;
+    public Transform[] FinishedTower => this.finishedTower;
+    [SerializeField] Transform phase1;
+    public Transform Phase1 => this.phase1;
+    [SerializeField] Transform phase2;
+    public Transform Phase2 => this.phase2;
+    [SerializeField] Transform phase3;
+    public Transform Phase3 => this.phase3;
+    [SerializeField] Transform phase4;
+    public Transform Phase4 => this.phase4;
+    [SerializeField] Transform phase5;
+    public Transform Phase5 => this.phase5;
+
+    [Header("Tower Settings")]
     [SerializeField] int goldCost = default;
     public int GoldCost => this.goldCost;
 
@@ -73,6 +88,8 @@ public class DefenseTower : MonoBehaviour
     {
         this.tileUnderneath = tileUnderneath;
     }
+
+
 
     private void OnDestroy()
     {
