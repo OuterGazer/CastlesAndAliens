@@ -134,19 +134,27 @@ public class TargetLocator : MonoBehaviour
 
         if(this.timeToNextShot <= 0)
         {
-            // TODO: set shooting with enabling and disabling a bolt with this.shootingBolt
+            //Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
+            SetShootingBoltToStandard();
 
-            Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
+            this.shootingBolt.SetParent(null);
 
-            bolt.SetParent(null);
-
-            bolt.GetComponent<BallistaBolt>().ShootBolt();
-            bolt.GetComponent<BallistaBolt>().SetShotOrigin(this);
+            BallistaBolt bolt = this.shootingBolt.GetComponent<BallistaBolt>();
+            bolt.ShootBolt();
+            bolt.SetShotOrigin(this);
 
             this.bolt.gameObject.SetActive(false);
 
             this.timeToNextShot = this.shootingCooldown;
         }
+    }
+
+    private void SetShootingBoltToStandard()
+    {
+        this.shootingBolt.gameObject.SetActive(true);
+        this.shootingBolt.SetParent(this.weapon);
+        this.shootingBolt.position = this.bolt.position;
+        this.shootingBolt.rotation = this.bolt.rotation;
     }
 
     public void ChargeNextBolt()
@@ -165,5 +173,11 @@ public class TargetLocator : MonoBehaviour
     {
         this.isTargetAcquired = false;
         this.target = default;
+    }
+
+    private void OnDestroy()
+    {
+        if(this.shootingBolt != null)
+            GameObject.Destroy(this.shootingBolt.gameObject);
     }
 }

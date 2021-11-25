@@ -8,6 +8,7 @@ public class TargetLocatorAlien : MonoBehaviour
     [SerializeField] Transform pedestal;
     [SerializeField] Transform weapon;
     [SerializeField] Transform bolt;
+    private Transform shootingBolt;
     [SerializeField] float range = default;
     public float Range => this.range;
     [SerializeField] float shootingCooldown = default;
@@ -21,6 +22,10 @@ public class TargetLocatorAlien : MonoBehaviour
     private void Awake()
     {
         this.towerMask = LayerMask.GetMask("DefenseTower");
+
+        this.shootingBolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
+        SetCorrectBoltScale(this.shootingBolt, true);
+        this.shootingBolt.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -127,13 +132,15 @@ public class TargetLocatorAlien : MonoBehaviour
 
         if(this.timeToNextShot <= 0)
         {
-            Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
+            //Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
+            SetShootingBoltToStandard();
 
-            bolt.SetParent(null);
-            SetCorrectBoltScale(bolt);
+            this.shootingBolt.SetParent(null);
+            SetCorrectBoltScale(this.shootingBolt, true);
 
-            bolt.GetComponent<BallistaBolt>().ShootBolt();
-            bolt.GetComponent<BallistaBolt>().SetShotOrigin(this);
+            BallistaBolt bolt = this.shootingBolt.GetComponent<BallistaBolt>();
+            bolt.ShootBolt();
+            bolt.SetShotOrigin(this);
 
             this.bolt.gameObject.SetActive(false);
 
@@ -141,15 +148,37 @@ public class TargetLocatorAlien : MonoBehaviour
         }
     }
 
-    private void SetCorrectBoltScale(Transform bolt)
+    private void SetShootingBoltToStandard()
+    {
+        this.shootingBolt.gameObject.SetActive(true);
+        SetCorrectBoltScale(this.shootingBolt, false);
+
+        this.shootingBolt.SetParent(this.weapon);
+        
+        this.shootingBolt.position = this.bolt.position;
+        this.shootingBolt.rotation = this.bolt.rotation;
+    }
+
+    private void SetCorrectBoltScale(Transform bolt, bool mustDecreaseSize)
     {
         Vector3 tempScale1 = this.gameObject.transform.GetChild(0).localScale;
         Vector3 tempScale2 = this.gameObject.transform.GetChild(0).GetChild(0).localScale;
         Vector3 tempScale3 = bolt.transform.localScale;
         //bolt.transform.localScale = new Vector3(0.395f, 0.395f, 0.1975f);
-        bolt.transform.localScale = new Vector3(tempScale1.x * tempScale2.x * tempScale3.x,
+
+        if (mustDecreaseSize)
+        {
+            bolt.transform.localScale = new Vector3(tempScale1.x * tempScale2.x * tempScale3.x,
                                                 tempScale1.y * tempScale2.y * tempScale3.y,
                                                 tempScale1.z * tempScale2.z * tempScale3.z);
+        }
+        else
+        {
+            bolt.transform.localScale = new Vector3(tempScale3.x / tempScale2.x / tempScale1.x,
+                                                tempScale3.y / tempScale2.y / tempScale1.y,
+                                                tempScale3.z / tempScale2.z / tempScale1.z);
+        }
+        
     }
 
     public void ChargeNextBolt()

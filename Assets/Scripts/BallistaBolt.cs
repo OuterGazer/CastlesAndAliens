@@ -26,7 +26,7 @@ public class BallistaBolt : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         this.boltRB = this.gameObject.GetComponent<Rigidbody>();
     }
@@ -44,12 +44,13 @@ public class BallistaBolt : MonoBehaviour
            (other.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
            other.gameObject.CompareTag("Ground"))
         {
-            GameObject.Destroy(this.gameObject);
+            //GameObject.Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
         
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (this.shotOrigin != null)
             this.shotOrigin.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
