@@ -412,6 +412,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (7)
@@ -1516,6 +1520,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (79)
@@ -4133,6 +4141,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (74)
@@ -11272,6 +11284,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (11)
@@ -16460,6 +16476,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (9)
@@ -20688,6 +20708,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (55)
@@ -21424,6 +21448,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (10)
@@ -24735,6 +24763,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (58)
@@ -25615,6 +25647,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: basicTowerPrefab
+      value: 
+      objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (233)
@@ -30612,6 +30648,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 1930201930382600316, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -130.00009
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930201930382600316, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 403.6475
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930201930382600316, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 33.99994
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
 --- !u!1001 &3203919052576108692
@@ -30639,16 +30687,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabArray.Array.size
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabArray.Array.data[0]
       value: 
-      objectReference: {fileID: 7004775153819084567, guid: 29c30091d2a3e634cadca59cb8c28bc6, type: 3}
+      objectReference: {fileID: 7004775153819084567, guid: 106e943d1bcdc884983a90752a09d2c3, type: 3}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabArray.Array.data[1]
       value: 
-      objectReference: {fileID: 7004775153819084567, guid: 29c30091d2a3e634cadca59cb8c28bc6, type: 3}
+      objectReference: {fileID: 7004775153819084567, guid: 3249216e65a71fb49a4c2331fcda818f, type: 3}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabArray.Array.data[2]
       value: 
@@ -30656,7 +30704,35 @@ PrefabInstance:
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabArray.Array.data[3]
       value: 
-      objectReference: {fileID: 7004775153819084567, guid: 29c30091d2a3e634cadca59cb8c28bc6, type: 3}
+      objectReference: {fileID: 7004775153819084567, guid: 60e9eda751c3e584fafc8e82eb35af22, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: 3618af01f005ab548babd5b622265e26, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[5]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: 74493fdad1aa86447857c46b1904de74, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[6]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: 74493fdad1aa86447857c46b1904de74, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[7]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: 78e6c71b82140694db342ae604740f03, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[8]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: 2469f272d76fdd94e9e041f3d381e96c, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[9]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: cf2259bb74e9c804d90cd72dbe4f7d6e, type: 3}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyPrefabArray.Array.data[10]
+      value: 
+      objectReference: {fileID: 7004775153819084567, guid: cf2259bb74e9c804d90cd72dbe4f7d6e, type: 3}
     - target: {fileID: 3203919051917927388, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: m_RootOrder
       value: 4
