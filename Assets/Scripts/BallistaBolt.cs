@@ -6,7 +6,10 @@ public class BallistaBolt : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = default;
 
+    [SerializeField] private float blastRadius = default;
+
     private Rigidbody boltRB;
+    private LayerMask enemyMask;
     private TargetLocator shotOrigin;
     private TargetLocatorAlien shotOriginAlien;
     public void SetShotOrigin(TargetLocator origin)
@@ -29,6 +32,8 @@ public class BallistaBolt : MonoBehaviour
     void Awake()
     {
         this.boltRB = this.gameObject.GetComponent<Rigidbody>();
+
+        this.enemyMask = LayerMask.GetMask("Enemy");
     }
 
     void FixedUpdate()
@@ -44,7 +49,19 @@ public class BallistaBolt : MonoBehaviour
            (other.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
            other.gameObject.CompareTag("Ground"))
         {
-            //GameObject.Destroy(this.gameObject);
+            if(this.gameObject.name.Equals("Cannon Ball(Clone)"))
+            {
+                Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
+
+                if (enemies.Length > 0)
+                {
+                    foreach (Collider item in enemies)
+                    {
+                        item.GetComponentInParent<EnemyHealth>().ProcessDamage();
+                    }
+                }
+            }
+
             this.gameObject.SetActive(false);
         }
         

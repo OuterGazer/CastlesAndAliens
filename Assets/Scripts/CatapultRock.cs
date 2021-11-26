@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CatapultRock : MonoBehaviour
 {
+    [SerializeField] private float blastRadius = default;
     [SerializeField] private float throwForce = default;
     [SerializeField] private float throwSpeed = default;
     [SerializeField] private float recoilSpeed = default;
@@ -18,6 +19,7 @@ public class CatapultRock : MonoBehaviour
     {
         this.shotOrigin = origin;
     }
+    private LayerMask enemyMask;
 
     private bool canShoot = false;
     private bool canThrowRock = false;
@@ -34,6 +36,8 @@ public class CatapultRock : MonoBehaviour
     void Awake()
     {
         this.rockRB = this.gameObject.GetComponent<Rigidbody>();
+
+        this.enemyMask = LayerMask.GetMask("Enemy");
     }
 
     private void Update()
@@ -88,7 +92,16 @@ public class CatapultRock : MonoBehaviour
            (other.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
            other.gameObject.CompareTag("Ground"))
         {
-            //GameObject.Destroy(this.gameObject);
+            Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
+
+            if (enemies.Length > 0)
+            {
+                foreach (Collider item in enemies)
+                {
+                    item.GetComponentInParent<EnemyHealth>().ProcessDamage();
+                }
+            }            
+
             this.gameObject.SetActive(false);
         }
         

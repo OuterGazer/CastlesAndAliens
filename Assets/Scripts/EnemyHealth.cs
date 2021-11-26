@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void ProcessDamage()
+    public void ProcessDamage()
     {
         this.currentHitPoints -= 1;
 
