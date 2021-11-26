@@ -21,6 +21,7 @@ public class TargetLocator : MonoBehaviour
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
     private DefenseTower defenseTower;
     private LayerMask enemyMask;
+    private CatapultRock currentInstance;
 
     private bool isTargetAcquired = false;
 
@@ -33,6 +34,7 @@ public class TargetLocator : MonoBehaviour
         this.shootingBolt.gameObject.SetActive(false);
 
         this.towerName = this.gameObject.name;
+        this.currentInstance = this.shootingBolt.GetComponent<CatapultRock>();
     }
 
     // Update is called once per frame
@@ -92,6 +94,8 @@ public class TargetLocator : MonoBehaviour
         LookAtVertical();*/
 
         if (!this.isTargetAcquired) { return; }
+
+        if (this.towerName.Equals("Catapult Tower(Clone)") && this.currentInstance.IsRecoiling) { return; }
 
         AimToEnemy(this.pedestal, Vector3.up);
 
@@ -161,6 +165,7 @@ public class TargetLocator : MonoBehaviour
             else
             {
                 CatapultRock rock = this.shootingBolt.GetComponent<CatapultRock>();
+                this.currentInstance = rock;
                 rock.ShootRock();
                 rock.SetShotOrigin(this);
             }

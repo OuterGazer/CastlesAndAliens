@@ -21,10 +21,13 @@ public class CatapultRock : MonoBehaviour
 
     private bool canShoot = false;
     private bool canThrowRock = false;
+    private bool isRecoiling = false;
+    public bool IsRecoiling => this.isRecoiling;
 
     public void ShootRock()
     {
-        this.canShoot = true;        
+        this.canShoot = true;
+        this.isRecoiling = true;
     }
 
     // Start is called before the first frame update
@@ -37,7 +40,9 @@ public class CatapultRock : MonoBehaviour
     {
         if (this.canShoot)
         {
-            this.catapult.Rotate(Vector3.right, this.throwSpeed * Time.deltaTime);
+            ActivateCatapult(this.maxAngle, this.throwSpeed);
+
+            //this.catapult.Rotate(Vector3.right, this.throwSpeed * Time.deltaTime);
 
             if (this.catapult.localRotation.eulerAngles.x >= this.maxAngle)
                 this.canThrowRock = true;
@@ -53,13 +58,28 @@ public class CatapultRock : MonoBehaviour
                 this.rockRB.AddRelativeForce(Vector3.forward * this.throwForce, ForceMode.Impulse);
                 this.canThrowRock = false;
                 this.canShoot = false;
-            }            
+            }
         }
         else
         {
-            if(this.catapult.localRotation.eulerAngles.x > this.minAngle)
+            //if (this.catapult.localRotation.eulerAngles.x - this.minAngle <= 1f) { this.isRecoiling = false; return; }
+
+            ActivateCatapult(this.minAngle, this.recoilSpeed);
+
+            /*if (this.catapult.localRotation.eulerAngles.x >= this.minAngle)
                 this.catapult.Rotate(-Vector3.right, this.recoilSpeed * Time.deltaTime);
+            else
+                this.catapult.localRotation = Quaternion.Euler(this.minAngle, this.catapult.localRotation.eulerAngles.y, this.catapult.localRotation.eulerAngles.z);*/
         }
+    }
+
+    private void ActivateCatapult(float targetAngle, float rotSpeed)
+    {
+        Vector3 curRot = new Vector3(targetAngle, this.catapult.localRotation.eulerAngles.y,
+                                     this.catapult.localRotation.eulerAngles.z);
+
+        Quaternion rotToApply = Quaternion.RotateTowards(this.catapult.localRotation, Quaternion.Euler(curRot), rotSpeed * Time.deltaTime);
+        this.catapult.localRotation = rotToApply;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,6 +98,7 @@ public class CatapultRock : MonoBehaviour
     {
         this.rockRB.isKinematic = true;
         this.rockRB.useGravity = false;
+        this.isRecoiling = false;
 
         if (this.shotOrigin != null)
             this.shotOrigin.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
