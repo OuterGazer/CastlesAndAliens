@@ -38,6 +38,6 @@ public class Bank : MonoBehaviour
 
     private void UpdateBalanceDisplay()
     {
-        this.balanceText.text = $"Gold: {this.currentBalance}";
+        this.balanceText.text = $"Available Gold: {this.currentBalance}";
     }
 }
