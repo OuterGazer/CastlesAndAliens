@@ -27,8 +27,7 @@ public class ColorButtons : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateButtonColor()
     {
         this.sourceColor = this.sourceImage.color;
 
@@ -36,6 +35,5 @@ public class ColorButtons : MonoBehaviour
             this.image.color = this.sourceColor;
         else
             this.sprite.color = this.sourceColor;
-
     }
 }
