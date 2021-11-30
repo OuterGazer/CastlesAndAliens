@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MouseInteraction : MonoBehaviour
 {
-    [SerializeField] GameObject basicTowerPrefab;
+    //[SerializeField] GameObject basicTowerPrefab;
+    private GameObject towerPrefab;
 
     [SerializeField] bool isPlaceable = default;
     public bool IsPlaceable => this.isPlaceable;
@@ -26,9 +27,17 @@ public class MouseInteraction : MonoBehaviour
 
     private void Awake()
     {
+        Messenger<GameObject>.AddListener("SetTowerType", SetTowerType);
+
         this.bank = GameObject.FindObjectOfType<Bank>();
         this.gridManager = GameObject.FindObjectOfType<GridManager>();
         //this.pathFinder = GameObject.FindObjectOfType<PathFinder>();
+    }
+
+    private void SetTowerType(GameObject towerType)
+    {
+        //if(this.isPlaceable)
+            this.towerPrefab = towerType;
     }
 
     private void Start()
@@ -49,6 +58,8 @@ public class MouseInteraction : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (this.towerPrefab == null) { return; }
+
         if (this.isPlaceable && this.bank.CurrentBalance > 0) // if(this.gridManager[this.tileCoordinates].IsWalkable && !this.pathFinder.WillBlockPath(this.tileCoordinates))
         {
             this.StartCoroutine(BuildTower());
@@ -59,7 +70,7 @@ public class MouseInteraction : MonoBehaviour
     {
         Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 0.5f, this.gameObject.transform.position.z);
         
-        GameObject tower = Instantiate<GameObject>(this.basicTowerPrefab, placementPos, Quaternion.identity);
+        GameObject tower = Instantiate<GameObject>(this.towerPrefab, placementPos, Quaternion.identity);
         DefenseTower defenseTower = tower.GetComponent<DefenseTower>();
         
         defenseTower.CanShoot = false;
@@ -122,5 +133,10 @@ public class MouseInteraction : MonoBehaviour
             tower.transform.GetChild(1).gameObject.SetActive(true);
             defenseTower.CanShoot = true;
         }*/
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<GameObject>.RemoveListener("SetTowerType", SetTowerType);
     }
 }
