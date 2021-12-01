@@ -30,6 +30,11 @@ public class ObjectPool : MonoBehaviour
 
         FindPaths();
 
+        foreach(KeyValuePair<string, List<List<Node>>> item in this.fullPathsCollection)
+        {
+            Debug.Log(item.Key + " " + item.Value[0][0].Coordinates);
+        }
+
         PopulatePools();
     }
 
@@ -55,7 +60,7 @@ public class ObjectPool : MonoBehaviour
                 this.pathfinder.ClearChosenPath();
                 List<List<Node>> tempNormal = this.pathfinder.FindPath(this.pathStarts[i], this.pathEnds[j], false);
 
-                this.fullPathsCollection.Add(this.pathType.Dequeue(), tempNormal);                               
+                this.fullPathsCollection.Add(this.pathType.Dequeue(), tempNormal);
             }
 
             this.pathfinder.ClearChosenPath();
@@ -67,12 +72,12 @@ public class ObjectPool : MonoBehaviour
 
     private void PopulatePools()
     {
-        FillPoolWithEnemies(out this.poolLeft, this.enemyPrefabs);
-        FillPoolWithEnemies(out this.poolCenter, this.enemyPrefabs);
-        FillPoolWithEnemies(out this.poolRight, this.enemyPrefabs);
+        FillPoolWithEnemies(out this.poolLeft);
+        FillPoolWithEnemies(out this.poolCenter);
+        FillPoolWithEnemies(out this.poolRight);
     }
 
-    private void FillPoolWithEnemies(out Transform[] pool, Transform[] EnemyPrefabs)
+    private void FillPoolWithEnemies(out Transform[] pool)
     {
         pool = new Transform[this.poolSize];
 
@@ -80,7 +85,7 @@ public class ObjectPool : MonoBehaviour
 
         for (int i = 1; i <= pool.Length; i++)
         {
-            pool[i-1] = GameObject.Instantiate<Transform>(EnemyPrefabs[enemyTypeCounter], this.gameObject.transform);
+            pool[i-1] = GameObject.Instantiate<Transform>(this.enemyPrefabs[enemyTypeCounter], this.gameObject.transform);
 
             AssignPathsListToEnemy(pool[i-1]);
 
@@ -115,9 +120,9 @@ public class ObjectPool : MonoBehaviour
 
     private void FindProperPathsList(Transform enemy, EnemyMover enemyPaths, string forRed, string forNormal, string forKamikaze)
     {
-        if (enemy.name.Contains("Red"))
+        if (enemy.gameObject.name.Contains("Red"))
             enemyPaths.FindPath(this.fullPathsCollection[forRed]);
-        else if (enemy.name.Contains("Normal"))
+        else if (enemy.gameObject.name.Contains("Normal"))
             enemyPaths.FindPath(this.fullPathsCollection[forNormal]);
         else
             enemyPaths.FindPath(this.fullPathsCollection[forKamikaze]);

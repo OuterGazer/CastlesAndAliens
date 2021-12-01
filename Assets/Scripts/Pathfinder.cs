@@ -55,14 +55,14 @@ public class Pathfinder : MonoBehaviour
 
         this.gridManager.ResetNodes();
 
-        if(this.pathStart == Vector3Int.zero)
-        {
+        //if(this.pathStart == Vector3Int.zero)
+        //{
             this.pathStart = pathStart;
             this.pathEnd = pathEnd;
 
             this.startNode = this.gameGrid[this.pathStart];
             this.endNode = this.gameGrid[this.pathEnd];
-        }
+        //}
 
         BreadthFirstSearch(isKamikaze);
 
@@ -74,9 +74,9 @@ public class Pathfinder : MonoBehaviour
 
         //Debug.Log("Paths created in total :" + this.possiblePaths.Count);
 
-        /*foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
+        /*foreach (List<Node> item in this.possiblePaths)
         {
-            foreach (Node n in item.Key)
+            foreach (Node n in item)
                 Debug.Log(n.Coordinates);
         }*/
 
