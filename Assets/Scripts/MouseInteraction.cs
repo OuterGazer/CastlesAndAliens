@@ -6,6 +6,7 @@ public class MouseInteraction : MonoBehaviour
 {
     //[SerializeField] GameObject basicTowerPrefab;
     private GameObject towerPrefab;
+    private GameObject previewPrefab;
 
     [SerializeField] bool isPlaceable = default;
     public bool IsPlaceable => this.isPlaceable;
@@ -28,6 +29,7 @@ public class MouseInteraction : MonoBehaviour
     private void Awake()
     {
         Messenger<GameObject>.AddListener("SetTowerType", SetTowerType);
+        Messenger<GameObject>.AddListener("SetPreviewType", SetPreviewType);
 
         this.bank = GameObject.FindObjectOfType<Bank>();
         this.gridManager = GameObject.FindObjectOfType<GridManager>();
@@ -36,8 +38,15 @@ public class MouseInteraction : MonoBehaviour
 
     private void SetTowerType(GameObject towerType)
     {
-        //if(this.isPlaceable)
-            this.towerPrefab = towerType;
+       this.towerPrefab = towerType;
+    }
+    private void SetPreviewType(GameObject previewType)
+    {
+        if (this.previewPrefab != null)
+            GameObject.Destroy(this.previewPrefab);
+
+        this.previewPrefab = Instantiate<GameObject>(previewType);
+        this.previewPrefab.SetActive(false);
     }
 
     private void Start()
@@ -68,6 +77,9 @@ public class MouseInteraction : MonoBehaviour
 
     private IEnumerator BuildTower()
     {
+        if (this.previewPrefab.activeSelf)
+            this.previewPrefab.SetActive(false);
+
         Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 0.5f, this.gameObject.transform.position.z);
         
         GameObject tower = Instantiate<GameObject>(this.towerPrefab, placementPos, Quaternion.identity);
@@ -138,5 +150,24 @@ public class MouseInteraction : MonoBehaviour
     private void OnDestroy()
     {
         Messenger<GameObject>.RemoveListener("SetTowerType", SetTowerType);
+        Messenger<GameObject>.RemoveListener("SetPreviewType", SetPreviewType);
+    }
+
+    public void OnMouseEnter()
+    {
+        if ((this.previewPrefab == null) || !this.isPlaceable) { return; }
+
+        Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1.1f, this.gameObject.transform.position.z);
+
+        this.previewPrefab.SetActive(true);
+
+        this.previewPrefab.transform.position = placementPos;
+    }
+
+    public void OnMouseExit()
+    {
+        if (this.previewPrefab == null) { return; }
+
+        this.previewPrefab.SetActive(false);
     }
 }

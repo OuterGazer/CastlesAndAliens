@@ -9,6 +9,7 @@ public class TowerMenuInteraction : MonoBehaviour
     [SerializeField] Image[] towerButtons;
     [SerializeField] TextMeshProUGUI[] towerTexts;
     [SerializeField] GameObject[] towerPrefabs;
+    [SerializeField] GameObject[] previewPrefabs;
     private Color selectedColor = Color.white;
     private Color unselectedColor = Color.grey;
     private Color hoverOverColor = new Color32(192, 192, 192, 255);
@@ -70,6 +71,7 @@ public class TowerMenuInteraction : MonoBehaviour
                 {
                     this.isButtonActivated[i] = true;
                     Messenger<GameObject>.Broadcast("SetTowerType", this.towerPrefabs[i]);
+                    Messenger<GameObject>.Broadcast("SetPreviewType", this.previewPrefabs[i]);
                 }
                     
             }
