@@ -13,9 +13,8 @@ public class ObjectPool : MonoBehaviour
     [Range(0, 50)][SerializeField] int poolSize = default;
     private int poolCounter = 0;
 
-    [SerializeField] Transform[] enemyPrefabsLeft;
-    [SerializeField] Transform[] enemyPrefabsCenter;
-    [SerializeField] Transform[] enemyPrefabsRight;
+    [SerializeField] Transform[] enemyPrefabs;
+    [SerializeField] int numberOfEachType = default;
     [Range(0.1f, 30f)][SerializeField] float spawnTime = default;
 
     private Transform[] poolLeft;
@@ -56,34 +55,39 @@ public class ObjectPool : MonoBehaviour
                 this.pathfinder.ClearChosenPath();
                 List<List<Node>> tempNormal = this.pathfinder.FindPath(this.pathStarts[i], this.pathEnds[j], false);
 
-                this.fullPathsCollection.Add(this.pathType.Dequeue(), tempNormal);               
+                this.fullPathsCollection.Add(this.pathType.Dequeue(), tempNormal);                               
             }
 
             this.pathfinder.ClearChosenPath();
             List<List<Node>> tempKamikaze = this.pathfinder.FindPath(this.pathStarts[i], this.pathEnds[1], true);
 
-            this.fullPathsCollection.Add(this.pathType.Dequeue(), tempKamikaze);           
+            this.fullPathsCollection.Add(this.pathType.Dequeue(), tempKamikaze);
         }
     }
 
     private void PopulatePools()
     {
-        FillPoolWithEnemies(this.poolLeft, this.enemyPrefabsLeft);
-        FillPoolWithEnemies(this.poolCenter, this.enemyPrefabsCenter);
-        FillPoolWithEnemies(this.poolRight, this.enemyPrefabsRight);
+        FillPoolWithEnemies(out this.poolLeft, this.enemyPrefabs);
+        FillPoolWithEnemies(out this.poolCenter, this.enemyPrefabs);
+        FillPoolWithEnemies(out this.poolRight, this.enemyPrefabs);
     }
 
-    private void FillPoolWithEnemies(Transform[] pool, Transform[] EnemyPrefabs)
+    private void FillPoolWithEnemies(out Transform[] pool, Transform[] EnemyPrefabs)
     {
         pool = new Transform[this.poolSize];
 
-        for (int i = 0; i < pool.Length; i++)
+        int enemyTypeCounter = 0;
+
+        for (int i = 1; i <= pool.Length; i++)
         {
-            pool[i] = GameObject.Instantiate<Transform>(EnemyPrefabs[i], this.gameObject.transform);
+            pool[i-1] = GameObject.Instantiate<Transform>(EnemyPrefabs[enemyTypeCounter], this.gameObject.transform);
 
-            AssignPathsListToEnemy(pool[i]);
+            AssignPathsListToEnemy(pool[i-1]);
 
-            pool[i].gameObject.SetActive(false);
+            pool[i-1].gameObject.SetActive(false);
+
+            if (i % this.numberOfEachType == 0)
+                enemyTypeCounter++;
         }
 
         this.poolCounter++;
@@ -126,16 +130,16 @@ public class ObjectPool : MonoBehaviour
 
         while (Application.isPlaying)
         {
-            for(int i = 0; i < this.poolLeft.Length; i++)
+            for(int i = 0; i < this.poolCenter.Length; i++)
             {
-                if (!poolLeft[i].gameObject.activeInHierarchy)
+                if (!this.poolCenter[i].gameObject.activeInHierarchy)
                 {
-                    poolLeft[i].gameObject.SetActive(true);
+                    this.poolCenter[i].gameObject.SetActive(true);
 
                     yield return timeBetweenEnemies;
                 }
 
-                if (i == this.poolLeft.Length)
+                if (i == this.poolCenter.Length)
                     i = 0;
 
                 yield return null;

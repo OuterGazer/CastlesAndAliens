@@ -15,9 +15,10 @@ public class EnemyMover : MonoBehaviour
 
     private int spawnCount = 0;
 
+
     private GridManager gridManager;
 
-    private bool canCalculatePath = false;
+
     private bool isKamikaze = false;
     private bool isReturning = false;
     private bool arePathsReversed = false;
@@ -32,6 +33,8 @@ public class EnemyMover : MonoBehaviour
 
     void OnEnable()
     {
+        if(this.spawnCount < 1) { this.spawnCount++; return; }
+
         if (this.isReturning)
             this.isReturning = false;
 
