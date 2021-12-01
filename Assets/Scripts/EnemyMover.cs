@@ -10,18 +10,12 @@ public class EnemyMover : MonoBehaviour
     private List<Node> path = new List<Node>();
     [Range(0f, 5f)] [SerializeField] float movementSpeed = default;
 
-    [SerializeField] Vector3Int pathStart;
-    public Vector3Int PathStart => this.pathStart;
-    [SerializeField] Vector3Int pathEnd;
-    public Vector3Int PathEnd => this.pathEnd;
-
     private List<List<Node>> possiblePaths = new List<List<Node>>();
     private Dictionary<List<Node>, int> pathsWithDangerLevel = new Dictionary<List<Node>, int>();
 
     private int spawnCount = 0;
 
     private GridManager gridManager;
-    private Pathfinder pathFinder;
 
     private bool canCalculatePath = false;
     private bool isKamikaze = false;
@@ -32,48 +26,32 @@ public class EnemyMover : MonoBehaviour
     private void Awake()
     {
         this.gridManager = GameObject.FindObjectOfType<GridManager>();
-        this.pathFinder = this.gameObject.GetComponent<Pathfinder>();
 
-        this.canCalculatePath = false;
         this.isKamikaze = this.gameObject.CompareTag("Kamikaze");
     }
 
     void OnEnable()
     {
-        CheckHowManyTimesEnemyInstanceHasSpawned();
-
-        if (!this.canCalculatePath)
-        {
-            FindPath();
-            return; 
-        }
-
         if (this.isReturning)
             this.isReturning = false;
 
-        ReturnToStart();
-        Debug.Log("This enemy has these many paths available: " + this.possiblePaths.Count);
         AssignPath();
+        ReturnToStart();
+
         //FindPath(); //FindPath(true) // For dynamic pathfinding        
         this.StartCoroutine(FollowPath()); // For dynamic pathfinding we need to erase this line
-    }
-
-    private void CheckHowManyTimesEnemyInstanceHasSpawned()
-    {
-        this.spawnCount++;
-
-        if (!this.canCalculatePath && this.spawnCount > 1)
-            this.canCalculatePath = true;
     }
 
     private void ReturnToStart()
     {
         //this.gameObject.transform.position = this.path[0].gameObject.transform.position;
-        this.gameObject.transform.position = this.gridManager.GetPosFromCoords(this.pathStart);
+        this.gameObject.transform.position = this.gridManager.GetPosFromCoords(this.path[0].Coordinates);
     }
 
-    private void FindPath() // Change it to RecalculatePath(bool shouldPathBeReset) for dynamic changing of path
+    public void FindPath(List<List<Node>> pathsList) // Change it to RecalculatePath(bool shouldPathBeReset) for dynamic changing of path
     {
+        this.possiblePaths = pathsList;
+
         // This is for dynamic pathinding
         /*Vector3Int coordinates = new Vector3Int();
         if (shouldPathBeReset)
@@ -85,12 +63,7 @@ public class EnemyMover : MonoBehaviour
             coordinates = this.gridManager.GetCoordsFromPos(this.gameObject.transform.position);
         }*/
 
-        //StopAllCoroutines() // Necessary for dynamic Pathfinding
-
-        this.path.Clear();
-        this.pathFinder.ClearChosenPath();
-
-        this.possiblePaths = this.pathFinder.FindPath(this.pathStart, this.pathEnd, this.isKamikaze);
+        //StopAllCoroutines() // Necessary for dynamic Pathfinding        
 
         //this.path = this.pathFinder.FindPath(this.possiblePaths);
 
@@ -99,6 +72,7 @@ public class EnemyMover : MonoBehaviour
 
     private void AssignPath()
     {
+        this.path.Clear();
         int pathDangerLevel = 0;
 
         AdjustPathIfIsKamikaze();
