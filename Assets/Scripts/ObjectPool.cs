@@ -7,7 +7,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] Vector3Int[] pathStarts;
     [SerializeField] Vector3Int[] pathEnds;
 
-    private Dictionary<string, List<List<Node>>> fullPathsCollection = new Dictionary<string, List<List<Node>>>();
+    private Dictionary<string, List<List<Node>>> fullPathsCollection;
     private Queue<string> pathType = new Queue<string>(); 
 
     [Range(0, 50)][SerializeField] int poolSize = default;
@@ -20,25 +20,29 @@ public class ObjectPool : MonoBehaviour
     private Transform[] poolLeft;
     private Transform[] poolCenter;
     private Transform[] poolRight;
+
+    private List<Transform[]> poolsList = new List<Transform[]>();
+
     private Pathfinder pathfinder;
 
     private void Awake()
     {
         this.pathfinder = this.gameObject.GetComponent<Pathfinder>();
 
-        AddPathTypes();
+        this.poolsList.Add(this.poolLeft);
+        this.poolsList.Add(this.poolCenter);
+        this.poolsList.Add(this.poolRight);
+
+        //AddPathTypes();
+
+        PopulatePools();
 
         FindPaths();
 
-        foreach(KeyValuePair<string, List<List<Node>>> item in this.fullPathsCollection)
-        {
-            Debug.Log(item.Key + " " + item.Value[0][0].Coordinates);
-        }
-
-        PopulatePools();
+        //AssignPaths();
     }
 
-    private void AddPathTypes()
+    /*private void AddPathTypes()
     {
         this.pathType.Enqueue("RedLeft");
         this.pathType.Enqueue("LeftNormal");
@@ -49,26 +53,7 @@ public class ObjectPool : MonoBehaviour
         this.pathType.Enqueue("RedRight");
         this.pathType.Enqueue("RightNormal");
         this.pathType.Enqueue("RightKamikaze");
-    }
-
-    private void FindPaths()
-    {
-        for(int i = 0; i < this.pathStarts.Length; i++)
-        {
-            for (int j = 0; j < this.pathEnds.Length; j++)
-            {
-                this.pathfinder.ClearChosenPath();
-                List<List<Node>> tempNormal = this.pathfinder.FindPath(this.pathStarts[i], this.pathEnds[j], false);
-
-                this.fullPathsCollection.Add(this.pathType.Dequeue(), tempNormal);
-            }
-
-            this.pathfinder.ClearChosenPath();
-            List<List<Node>> tempKamikaze = this.pathfinder.FindPath(this.pathStarts[i], this.pathEnds[1], true);
-
-            this.fullPathsCollection.Add(this.pathType.Dequeue(), tempKamikaze);
-        }
-    }
+    }*/
 
     private void PopulatePools()
     {
@@ -85,11 +70,114 @@ public class ObjectPool : MonoBehaviour
 
         for (int i = 1; i <= pool.Length; i++)
         {
-            pool[i-1] = GameObject.Instantiate<Transform>(this.enemyPrefabs[enemyTypeCounter], this.gameObject.transform);
+            pool[i - 1] = GameObject.Instantiate<Transform>(this.enemyPrefabs[enemyTypeCounter], this.gameObject.transform);
 
-            AssignPathsListToEnemy(pool[i-1]);
+            //AssignPathsListToEnemy(pool[i-1]);
 
-            pool[i-1].gameObject.SetActive(false);
+            pool[i - 1].gameObject.SetActive(false);
+
+            if (i % this.numberOfEachType == 0)
+                enemyTypeCounter++;
+        }
+
+        this.poolCounter++;
+    }
+
+    private void FindPaths()
+    {
+        this.fullPathsCollection = new Dictionary<string, List<List<Node>>>();
+
+        int poolCounter;
+
+        for (int i = 0; i < this.pathStarts.Length; i++)
+        {
+            poolCounter = 0;
+
+            for (int j = 0; j < this.pathEnds.Length; j++)
+            {
+                this.pathfinder.ClearChosenPath();
+                List<List<Node>> tempNormal = new List<List<Node>>();
+                tempNormal = this.pathfinder.FindPath(this.pathStarts[i], this.pathEnds[j], false);
+
+                AssignPaths(tempNormal, i, poolCounter);
+                poolCounter++;
+                //this.fullPathsCollection.Add(this.pathType.Dequeue(), tempNormal);
+            }
+
+            this.pathfinder.ClearChosenPath();
+            List<List<Node>> tempKamikaze = new List<List<Node>>();
+            tempKamikaze = this.pathfinder.FindPath(this.pathStarts[i], this.pathEnds[1], true);
+
+            AssignPaths(tempKamikaze, i, poolCounter);
+            //this.fullPathsCollection.Add(this.pathType.Dequeue(), tempKamikaze);
+        }        
+    }
+
+    private void AssignPaths(List<List<Node>> pathsList, int spawnIndex, int poolCounter)
+    {
+        switch (spawnIndex)
+        {
+            case 0:
+                FindRightEnemyPoolAndAssignPaths(pathsList, this.poolLeft, poolCounter);                
+                break;
+
+            case 1:
+                FindRightEnemyPoolAndAssignPaths(pathsList, this.poolCenter, poolCounter);
+                break;
+
+            case 2:
+                FindRightEnemyPoolAndAssignPaths(pathsList, this.poolRight, poolCounter);
+                break;
+        }
+    }
+
+    private void FindRightEnemyPoolAndAssignPaths(List<List<Node>> pathsList, Transform[] enemyPool, int poolCounter)
+    {
+        switch (poolCounter)
+        {
+            case 0:
+                for (int i = 0; i < 15; i++)
+                {
+                    EnemyMover enemy = enemyPool[i].gameObject.GetComponent<EnemyMover>();
+                    enemy.FindPath(pathsList);
+                }
+                break;
+
+            case 1:
+                for (int i = 15; i < 30; i++)
+                {
+                    EnemyMover enemy = enemyPool[i].gameObject.GetComponent<EnemyMover>();
+                    enemy.FindPath(pathsList);
+                }
+                break;
+
+            case 2:
+                for (int i = 30; i < 45; i++)
+                {
+                    EnemyMover enemy = enemyPool[i].gameObject.GetComponent<EnemyMover>();
+                    enemy.FindPath(pathsList);
+                }
+                break;
+
+        }
+    }
+
+    /*private void AssignPaths()
+    {
+        AssignPathsToEnemyPool(this.poolLeft);
+        AssignPathsToEnemyPool(this.poolCenter);
+        AssignPathsToEnemyPool(this.poolRight);        
+    }
+
+    private void AssignPathsToEnemyPool(Transform[] enemyPool)
+    {
+        int enemyTypeCounter = 0;
+
+        this.poolCounter = 0;
+
+        for (int i = 1; i <= enemyPool.Length; i++)
+        {
+            AssignPathsListToEnemy(enemyPool[i-1]);
 
             if (i % this.numberOfEachType == 0)
                 enemyTypeCounter++;
@@ -126,7 +214,7 @@ public class ObjectPool : MonoBehaviour
             enemyPaths.FindPath(this.fullPathsCollection[forNormal]);
         else
             enemyPaths.FindPath(this.fullPathsCollection[forKamikaze]);
-    }
+    }*/
 
     // Start is called before the first frame update
     private IEnumerator Start()
@@ -135,7 +223,7 @@ public class ObjectPool : MonoBehaviour
 
         while (Application.isPlaying)
         {
-            for(int i = 0; i < this.poolCenter.Length; i++)
+            for(int i = 44; i < this.poolCenter.Length; i++)
             {
                 if (!this.poolCenter[i].gameObject.activeInHierarchy)
                 {
@@ -145,7 +233,7 @@ public class ObjectPool : MonoBehaviour
                 }
 
                 if (i == this.poolCenter.Length)
-                    i = 0;
+                    i = 44;
 
                 yield return null;
             }

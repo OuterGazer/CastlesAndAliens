@@ -10,7 +10,7 @@ public class EnemyMover : MonoBehaviour
     private List<Node> path = new List<Node>();
     [Range(0f, 5f)] [SerializeField] float movementSpeed = default;
 
-    private List<List<Node>> possiblePaths = new List<List<Node>>();
+    private List<List<Node>> possiblePaths;// = new List<List<Node>>();
     private Dictionary<List<Node>, int> pathsWithDangerLevel = new Dictionary<List<Node>, int>();
 
     private int spawnCount = 0;
@@ -39,6 +39,7 @@ public class EnemyMover : MonoBehaviour
             this.isReturning = false;
 
         AssignPath();
+
         ReturnToStart();
 
         //FindPath(); //FindPath(true) // For dynamic pathfinding        
@@ -53,7 +54,28 @@ public class EnemyMover : MonoBehaviour
 
     public void FindPath(List<List<Node>> pathsList) // Change it to RecalculatePath(bool shouldPathBeReset) for dynamic changing of path
     {
-        this.possiblePaths = pathsList;
+        if (!this.gameObject.CompareTag("Kamikaze"))
+        {
+            this.possiblePaths = new List<List<Node>>(pathsList);
+        }
+        else
+        {
+            this.possiblePaths = new List<List<Node>>();
+
+            foreach(List<Node> item in pathsList)
+            {
+                List<Node> tempList = new List<Node>();
+
+                foreach(Node n in item)
+                {
+                    Node tempNode = new Node(n.Coordinates, n.IsWalkable);
+                    tempList.Add(tempNode);
+                }
+
+                this.possiblePaths.Add(tempList);
+            }
+        }
+       
 
         // This is for dynamic pathinding
         /*Vector3Int coordinates = new Vector3Int();
@@ -76,11 +98,10 @@ public class EnemyMover : MonoBehaviour
     private void AssignPath()
     {
         this.path.Clear();
-        int pathDangerLevel = 0;
 
         AdjustPathIfIsKamikaze();
 
-        ChooseCorrectPath(this.possiblePaths, pathDangerLevel);
+        ChooseCorrectPath();
 
         IOrderedEnumerable<KeyValuePair<List<Node>, int>> sortedPaths;
 
@@ -129,14 +150,15 @@ public class EnemyMover : MonoBehaviour
         }
     }
 
-    private void ChooseCorrectPath(List<List<Node>> pathList, int pathDangerLevel)
+    private void ChooseCorrectPath()
     {
-        foreach (List<Node> item in pathList)
+        foreach (List<Node> item in this.possiblePaths)
         {
-            pathDangerLevel = 0;
+            int pathDangerLevel = 0;
 
             foreach (Node tile in item)
             {
+                //Debug.Log(tile.Coordinates);
                 Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == tile.Coordinates.ToString()).GetComponent<Waypoint>();
                 pathDangerLevel += curNodeWayp.DangerLevel;
             }
@@ -153,6 +175,7 @@ public class EnemyMover : MonoBehaviour
             Vector3 startPos = this.gameObject.transform.position;
             //Vector3 finishPos = item.transform.position;
             Vector3 finishPos = this.gridManager.GetPosFromCoords(this.path[i].Coordinates);
+            Debug.Log(this.path[i].Coordinates);
             float travelPercent = 0f;
 
             this.gameObject.transform.LookAt(finishPos);
@@ -183,6 +206,7 @@ public class EnemyMover : MonoBehaviour
         }
         else
         {
+            //this.gameObject.SetActive(false);
             this.isReturning = !this.isReturning;
             AssignPath();
             this.StartCoroutine(FollowPath());
