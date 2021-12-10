@@ -13,9 +13,16 @@ public class Enemy : MonoBehaviour
 
     private bool hasBeenTargeted = false;
     public bool HasBeenTargeted => this.hasBeenTargeted;
-    public void SetHasBeenTargeted(TargetLocator originTower)
+    public void SetHasBeenTargeted(TargetLocator originTower, bool isInRange)
     {
-        this.hasBeenTargeted = true;
+        this.hasBeenTargeted = isInRange;
+
+        if (!isInRange)
+        {
+            this.originTower.Remove(originTower);
+            return;
+        }
+
         this.originTower.Add(originTower);
     }
 
@@ -28,6 +35,8 @@ public class Enemy : MonoBehaviour
     void OnEnable()
     {
         this.originTower.Clear();
+
+        //this.gameObject.GetComponentInChildren<MeshCollider>().enabled = true;
     }
 
     public void RewardGold()
@@ -52,6 +61,8 @@ public class Enemy : MonoBehaviour
                 item.ClearTarget();
             }
             
-        }            
+        }
+
+        //this.gameObject.GetComponentInChildren<MeshCollider>().enabled = false;
     }
 }

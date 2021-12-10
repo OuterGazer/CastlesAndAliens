@@ -18,7 +18,7 @@ public class TargetLocator : MonoBehaviour
 
     private string towerName;
 
-    [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
+    Transform target;
     private DefenseTower defenseTower;
     private LayerMask enemyMask;
     private CatapultRock currentInstance;
@@ -44,6 +44,8 @@ public class TargetLocator : MonoBehaviour
 
         FindClosestTarget();
 
+        CheckIfTargetIsInRange();
+
         AimWeapon();
 
         ShootWeapon();
@@ -56,7 +58,7 @@ public class TargetLocator : MonoBehaviour
         //Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
         Collider[] enemyColliders = Physics.OverlapSphere(this.gameObject.transform.position, this.range, this.enemyMask);
 
-        if (enemyColliders.Length == 0) { return; }
+        if (enemyColliders.Length == 0) { ClearTarget(); return; }
 
         Enemy[] enemies = new Enemy[enemyColliders.Length];
         for(int i = 0; i < enemies.Length; i++)
@@ -83,9 +85,23 @@ public class TargetLocator : MonoBehaviour
         if(enemyToAim != null)
         {
             this.isTargetAcquired = true;
-            enemyToAim.SetHasBeenTargeted(this);
+            enemyToAim.SetHasBeenTargeted(this, true);
             this.target = enemyToAim.transform;
         }        
+    }
+
+    private void CheckIfTargetIsInRange()
+    {
+        if (!this.isTargetAcquired) { return; }
+
+        float distanceToCurrentEnemy = (this.target.transform.position - this.gameObject.transform.position).sqrMagnitude;
+
+        if ((distanceToCurrentEnemy > (this.range * this.range)) ||
+            (distanceToCurrentEnemy < (this.closeRangeLimit * this.closeRangeLimit)))
+        {
+            this.target.gameObject.GetComponent<Enemy>().SetHasBeenTargeted(this, false);
+            ClearTarget();
+        }
     }
 
     private void AimWeapon()

@@ -51,18 +51,13 @@ public class Pathfinder : MonoBehaviour
 
     public List<List<Node>> FindPath(Vector3Int pathStart, Vector3Int pathEnd, bool isKamikaze)
     {
-        //Debug.Log("Exploring new path...");
-
         this.gridManager.ResetNodes();
 
-        //if(this.pathStart == Vector3Int.zero)
-        //{
-            this.pathStart = pathStart;
-            this.pathEnd = pathEnd;
+        this.pathStart = pathStart;
+        this.pathEnd = pathEnd;
 
-            this.startNode = this.gameGrid[this.pathStart];
-            this.endNode = this.gameGrid[this.pathEnd];
-        //}
+        this.startNode = this.gameGrid[this.pathStart];
+        this.endNode = this.gameGrid[this.pathEnd];
 
         BreadthFirstSearch(isKamikaze);
 
@@ -70,15 +65,6 @@ public class Pathfinder : MonoBehaviour
         {
             return this.pathsForEnemy;
         }
-            
-
-        //Debug.Log("Paths created in total :" + this.possiblePaths.Count);
-
-        /*foreach (List<Node> item in this.possiblePaths)
-        {
-            foreach (Node n in item)
-                Debug.Log(n.Coordinates);
-        }*/
 
         if(this.pathsForEnemy.Count < 1)
         {
@@ -108,7 +94,6 @@ public class Pathfinder : MonoBehaviour
     private void ExploreNeighbours(bool isKamikaze)
     {      
         List<Node> neighboursList = new List<Node>();
-        //Debug.Log("current node..." + this.currentSearchNode.Coordinates);
 
         for (int i = 0; i < this.directions.Count; i++)
         {
@@ -116,21 +101,14 @@ public class Pathfinder : MonoBehaviour
 
             if (this.gameGrid.ContainsKey(curNeighbourCoords))
             {
-                //Debug.Log("Exploring node..." + curNeighbourCoords);
-
                 curNeighbourCoords = CheckNodesAboveOrBelow(curNeighbourCoords);
 
                 neighboursList.Add(this.gameGrid[curNeighbourCoords]);
 
                 Node lastNodeAdded = neighboursList[neighboursList.Count - 1];
 
-                //Debug.Log("Start Node: " + startNode.IsWalkable);
-                //Debug.Log("End Node: " + endNode.IsWalkable);
-
                 if (!this.reached.ContainsKey(curNeighbourCoords) && lastNodeAdded.ShouldBeChosenAgain && lastNodeAdded.IsWalkable)
                 {
-                    //Debug.Log("Added new node to path...");
-
                     lastNodeAdded.SetConnectedTo(this.currentSearchNode);
 
                     if (lastNodeAdded.Coordinates.Equals(this.pathEnd))
@@ -151,7 +129,6 @@ public class Pathfinder : MonoBehaviour
                     this.reached.Add(lastNodeAdded.Coordinates, lastNodeAdded);
 
                     this.frontier.Enqueue(lastNodeAdded);
-                    //Debug.Log(lastNodeAdded.Coordinates);
                 }
             }
 
@@ -206,8 +183,6 @@ public class Pathfinder : MonoBehaviour
 
     private void CreatePath(bool isKamikaze) // private List<Node> CreatePath()
     {
-        //Debug.Log("creating path...");
-
         List<Node> path = new List<Node>();
         Node currentNode = this.endNode;
 
@@ -220,7 +195,6 @@ public class Pathfinder : MonoBehaviour
 
             if (currentNode == null)
             {
-                //Debug.Log("finishing path!");
                 break;
             }
 
@@ -246,11 +220,8 @@ public class Pathfinder : MonoBehaviour
 
         this.possiblePaths.Add(path);
 
-        Debug.Log("Paths created thus far: " + this.possiblePaths.Count);
-
         if(this.possiblePaths.Count < this.maxNumberOfPathsToCalculate)
         {
-            //Debug.Log("Creating new Path! + " + this.maxNumberOfPathsToCalculate);
             FindPath(this.pathStart, this.pathEnd, isKamikaze);
         }
     }
