@@ -75,7 +75,7 @@ public class EnemyMover : MonoBehaviour
                 this.possiblePaths.Add(tempList);
             }
         }
-       
+
 
         // This is for dynamic pathinding
         /*Vector3Int coordinates = new Vector3Int();
@@ -116,7 +116,14 @@ public class EnemyMover : MonoBehaviour
 
         foreach (KeyValuePair<List<Node>, int> item in sortedPaths)
         {
-            this.path = item.Key;
+            List<Node> chosenPath = new List<Node>();
+
+            foreach(Node n in item.Key)
+            {
+                chosenPath.Add(new Node(n.Coordinates, n.IsWalkable));
+                this.path = chosenPath;
+            }
+
             this.pathsWithDangerLevel.Clear();
             break;
         }
@@ -158,7 +165,6 @@ public class EnemyMover : MonoBehaviour
 
             foreach (Node tile in item)
             {
-                //Debug.Log(tile.Coordinates);
                 Waypoint curNodeWayp = this.gridManager.TileList.Find(x => x.name == tile.Coordinates.ToString()).GetComponent<Waypoint>();
                 pathDangerLevel += curNodeWayp.DangerLevel;
             }
@@ -175,7 +181,7 @@ public class EnemyMover : MonoBehaviour
             Vector3 startPos = this.gameObject.transform.position;
             //Vector3 finishPos = item.transform.position;
             Vector3 finishPos = this.gridManager.GetPosFromCoords(this.path[i].Coordinates);
-            Debug.Log(this.path[i].Coordinates);
+            //Debug.Log(this.path[i].Coordinates);
             float travelPercent = 0f;
 
             this.gameObject.transform.LookAt(finishPos);
@@ -206,7 +212,6 @@ public class EnemyMover : MonoBehaviour
         }
         else
         {
-            //this.gameObject.SetActive(false);
             this.isReturning = !this.isReturning;
             AssignPath();
             this.StartCoroutine(FollowPath());
