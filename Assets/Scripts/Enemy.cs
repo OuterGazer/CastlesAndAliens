@@ -15,15 +15,16 @@ public class Enemy : MonoBehaviour
     public bool HasBeenTargeted => this.hasBeenTargeted;
     public void SetHasBeenTargeted(TargetLocator originTower, bool isInRange)
     {
-        this.hasBeenTargeted = isInRange;
-
         if (!isInRange)
         {
             this.originTower.Remove(originTower);
             return;
         }
-
-        this.originTower.Add(originTower);
+        else
+        {
+            this.hasBeenTargeted = true;
+            this.originTower.Add(originTower);
+        }
     }
 
     private void Start()

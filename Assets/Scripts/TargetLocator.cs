@@ -37,6 +37,11 @@ public class TargetLocator : MonoBehaviour
         this.currentInstance = this.shootingBolt.GetComponent<CatapultRock>();
     }
 
+    private void Start()
+    {
+        ClearTarget();
+    }
+
     // Update is called once per frame
     void Update()
     {
