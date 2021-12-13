@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db6e9b98384ef44083314df56e6e20f, type: 3}
   m_Name: Wave 1
   m_EditorClassIdentifier: 
-  enemies: []
+  enemiesFromLeft: 0
+  enemiesFromCenter: 3
+  enemiesFromRight: 0
   spawnTime: 0
   canSpawnEnemiesFromMoreThanOnePoint: 0

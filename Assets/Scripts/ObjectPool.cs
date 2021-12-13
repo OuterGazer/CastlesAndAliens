@@ -13,6 +13,8 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] int numberOfEachType = default;
     [Range(0.1f, 30f)][SerializeField] float spawnTime = default;
 
+    [SerializeField] EnemyWave[] enemyWaves;
+
     private Transform[] poolLeft;
     private Transform[] poolCenter;
     private Transform[] poolRight;
