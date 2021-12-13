@@ -9,6 +9,12 @@
 #!/[Aa]ssets/[Tt]imelines
 !/[Aa]ssets/[Ss]cripts/**/*.cs
 !/[Aa]ssets/[Ss]cripts/**/*.cs.meta
+!/[Aa]ssets/[Ss]cripts/[Ww]aves/
+
+#Both these lines aren't working and I don't know why
+#!/[Aa]ssets/[Ss]cripts/[Ww]aves/**/*.asset
+#!/[Aa]ssets/[Ss]cripts/[Ww]aves/**/*.asset.meta
+
 !/[Aa]ssets/[Ss]cenes/**/*.unity
 !/[Aa]ssets/[Ss]cenes/**/*.unity.meta
 #!/[Aa]ssets/[Tt]errains/**/*.asset
@@ -86,7 +92,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 #My project specific ignore list
-Assets/Terrains/Cliff.terrainlayer
-Assets/Terrains/Cliff.terrainlayer.meta
-Skies Over Norville Valley.mp4
-2021-09-17_11-11-19.mkv
+#Assets/Terrains/Cliff.terrainlayer
+#Assets/Terrains/Cliff.terrainlayer.meta
+#Skies Over Norville Valley.mp4
+#2021-09-17_11-11-19.mkv
