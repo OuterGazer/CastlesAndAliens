@@ -2,6 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum EnemyType
+{
+    LeftBasicRed,
+    LeftMediumRed,
+    LeftFastRed,
+    LeftBasicNormal,
+    LeftMediumNormal,
+    LeftFastNormal,
+    LeftBalista,
+    LeftCannon,
+    LeftMissile,
+    CenterBasicRed,
+    CenterMediumRed,
+    CenterFastRed,
+    CenterBasicNormal,
+    CenterMediumNormal,
+    CenterFastNormal,
+    CenterBalista,
+    CenterCannon,
+    CenterMissile,
+    RightBasicRed,
+    RightMediumRed,
+    RightFastRed,
+    RightBasicNormal,
+    RightMediumNormal,
+    RightFastNormal,
+    RightBalista,
+    RightCannon,
+    RightMissile,
+}
+
 [CreateAssetMenuAttribute(menuName = "Enemy Wave")]
 public class EnemyWave : ScriptableObject
 {
@@ -12,30 +44,22 @@ public class EnemyWave : ScriptableObject
     // TODO: the spawn time between single enemies
     // TODO: if enemies spawning from a new spawn point must wait till all enemies from a previous spawn point have spawned, or they can spawn at the same time.
 
-    [SerializeField] int enemiesFromLeft = default;
-    [SerializeField] int enemiesFromCenter = default;
-    [SerializeField] int enemiesFromRight = default;
-
-    [SerializeField] Dictionary<string, int> enemies;
+    [SerializeField] List<EnemyType> waveEnemyList;
 
     [SerializeField] float spawnTime = default;
 
-    [SerializeField] bool canSpawnEnemiesFromMoreThanOnePoint = false;
+    public List<EnemyType> GetEnemies()
+    {
+        return this.waveEnemyList;
+    }
 
     public int GetTotalAmountOfEnemies()
     {
-        int totalAmountOfEnemies = this.enemiesFromLeft + this.enemiesFromCenter + this.enemiesFromRight;
-
-        return totalAmountOfEnemies;
+        return this.waveEnemyList.Count;
     }
 
     public float GetSpawnTime()
     {
         return this.spawnTime;
-    }
-
-    public bool GetCanSpawnAtTheSameTime()
-    {
-        return this.canSpawnEnemiesFromMoreThanOnePoint;
     }
 }

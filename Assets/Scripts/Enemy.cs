@@ -64,6 +64,6 @@ public class Enemy : MonoBehaviour
             
         }
 
-        //this.gameObject.GetComponentInChildren<MeshCollider>().enabled = false;
+        GameObject.FindObjectOfType<ObjectPool>().CurEnemyCount--;
     }
 }

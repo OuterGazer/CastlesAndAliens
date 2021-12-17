@@ -11,9 +11,14 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] Transform[] enemyPrefabs;
     [SerializeField] int numberOfEachType = default;
-    [Range(0.1f, 30f)][SerializeField] float spawnTime = default;
 
     [SerializeField] EnemyWave[] enemyWaves;
+    private int curEnemyCount = 0;
+    public int CurEnemyCount
+    {
+        get { return this.curEnemyCount; }
+        set { this.curEnemyCount = value; }
+    }
 
     private Transform[] poolLeft;
     private Transform[] poolCenter;
@@ -140,24 +145,115 @@ public class ObjectPool : MonoBehaviour
     // Start is called before the first frame update
     private IEnumerator Start()
     {
-        WaitForSeconds timeBetweenEnemies = new WaitForSeconds(this.spawnTime);
-
-        while (Application.isPlaying)
+        for(int i = 0; i < this.enemyWaves.Length; i++)
         {
-            for(int i = 0; i < this.poolCenter.Length; i++)
-            {
-                if (!this.poolCenter[i].gameObject.activeInHierarchy)
-                {
-                    this.poolCenter[i].gameObject.SetActive(true);
+            List<EnemyType> currentWave = this.enemyWaves[i].GetEnemies();
+            float spawnTime = this.enemyWaves[i].GetSpawnTime();
 
-                    yield return timeBetweenEnemies;
+            this.curEnemyCount = 0;
+
+            for (int j = 0; j < currentWave.Count; j++)
+            {
+                string enemyType = currentWave[j].ToString();
+
+                switch (enemyType)
+                {
+                    case string k when k.Contains("Left"):
+                        ChooseEnemy(0, enemyType);
+                        break;
+
+                    case string k when k.Contains("Center"):
+                        ChooseEnemy(1, enemyType);
+                        break;
+
+                    case string k when k.Contains("Right"):
+                        ChooseEnemy(2, enemyType);
+                        break;
                 }
 
-                if (i == this.poolCenter.Length)
-                    i = 0;
+                this.curEnemyCount++;
 
-                yield return null;
+                yield return new WaitForSeconds(spawnTime);
             }
+
+            yield return new WaitUntil(() => this.curEnemyCount < 1);
         }
+    }
+
+    private void ChooseEnemy(int spawnPoint, string enemyType)
+    {
+        switch (enemyType)
+        {
+            case string k when k.Contains("BasicRed"):
+                SpawnEnemy(spawnPoint, 0);
+                break;
+
+            case string k when k.Contains("MediumRed"):
+                SpawnEnemy(spawnPoint, 5);
+                break;
+
+            case string k when k.Contains("FastRed"):
+                SpawnEnemy(spawnPoint, 10);
+                break;
+
+            case string k when k.Contains("BasicNormal"):
+                SpawnEnemy(spawnPoint, 15);
+                break;
+
+            case string k when k.Contains("MediumNormal"):
+                SpawnEnemy(spawnPoint, 20);
+                break;
+
+            case string k when k.Contains("FastNormal"):
+                SpawnEnemy(spawnPoint, 25);
+                break;
+
+            case string k when k.Contains("Balista"):
+                SpawnEnemy(spawnPoint, 30);
+                break;
+
+            case string k when k.Contains("Cannon"):
+                SpawnEnemy(spawnPoint, 35);
+                break;
+
+            case string k when k.Contains("Missile"):
+                SpawnEnemy(spawnPoint, 40);
+                break;
+        }
+    }
+
+    private void SpawnEnemy(int spawnPoint, int arrayPosition)
+    {
+        bool exitLoop = false;
+
+        switch (spawnPoint)
+        {
+            case 0:
+                LoopThroughInactiveEnemiesInPool(ref arrayPosition, ref exitLoop, this.poolLeft);
+                break;
+
+            case 1:
+                LoopThroughInactiveEnemiesInPool(ref arrayPosition, ref exitLoop, this.poolCenter);
+                break;
+
+            case 2:
+                LoopThroughInactiveEnemiesInPool(ref arrayPosition, ref exitLoop, this.poolRight);
+                break;
+        }
+    }
+
+    private void LoopThroughInactiveEnemiesInPool(ref int arrayPosition, ref bool exitLoop, Transform[] enemyPool)
+    {
+        do
+        {
+            if (!enemyPool[arrayPosition].gameObject.activeInHierarchy)
+            {
+                enemyPool[arrayPosition].gameObject.SetActive(true);
+                exitLoop = true;
+            }
+
+            arrayPosition++;
+
+        } while (!exitLoop);
     }
 }
