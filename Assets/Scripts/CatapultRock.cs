@@ -98,7 +98,7 @@ public class CatapultRock : MonoBehaviour
             {
                 foreach (Collider item in enemies)
                 {
-                    item.GetComponentInParent<EnemyHealth>().ProcessDamage();
+                    item.GetComponentInParent<EnemyHealth>().ProcessDamage(2);
                 }
             }            
 

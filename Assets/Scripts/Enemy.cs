@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
             
         }
 
-        GameObject.FindObjectOfType<ObjectPool>().CurEnemyCount--;
+        if(GameObject.FindObjectOfType<ObjectPool>() != null)
+            GameObject.FindObjectOfType<ObjectPool>().CurEnemyCount--;
     }
 }

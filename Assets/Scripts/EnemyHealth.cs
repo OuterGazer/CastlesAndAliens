@@ -9,6 +9,10 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int healthIncreaseAfterDeath = default;
     private int currentHitPoints = 0;
 
+    [SerializeField] int balistaTowerDamage = default;
+    [SerializeField] int cannonTowerDamage = default;
+    [SerializeField] int catapultTowerDamage = default;
+
     private void OnEnable()
     {
         this.currentHitPoints = maxHitPoints;
@@ -18,13 +22,26 @@ public class EnemyHealth : MonoBehaviour
     {
         if(other.CompareTag("Player Weapon"))
         {
-            ProcessDamage();
+            switch (other.name)
+            {
+                case string name when name.Contains("arrow"):
+                    ProcessDamage(this.balistaTowerDamage);
+                    break;
+
+                case string name when name.Contains("Cannon"):
+                    ProcessDamage(this.cannonTowerDamage);
+                    break;
+
+                case string name when name.Contains("rocket"):
+                    ProcessDamage(this.catapultTowerDamage);
+                    break;
+            }
         }
     }
 
-    public void ProcessDamage()
+    public void ProcessDamage(int inDamage)
     {
-        this.currentHitPoints -= 1;
+        this.currentHitPoints -= inDamage;
 
         if(this.currentHitPoints <= 0)
         {

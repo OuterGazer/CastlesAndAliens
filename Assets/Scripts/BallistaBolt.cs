@@ -49,7 +49,7 @@ public class BallistaBolt : MonoBehaviour
            (other.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
            other.gameObject.CompareTag("Ground"))
         {
-            if(this.gameObject.name.Equals("Cannon Ball(Clone)"))
+            if(this.gameObject.name.Contains("Cannon"))
             {
                 Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
 
@@ -57,7 +57,7 @@ public class BallistaBolt : MonoBehaviour
                 {
                     foreach (Collider item in enemies)
                     {
-                        item.GetComponentInParent<EnemyHealth>().ProcessDamage();
+                        item.GetComponentInParent<EnemyHealth>().ProcessDamage(1);
                     }
                 }
             }

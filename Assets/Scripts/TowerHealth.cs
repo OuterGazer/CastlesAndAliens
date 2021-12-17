@@ -8,6 +8,10 @@ public class TowerHealth : MonoBehaviour
     [SerializeField] int maxHitPoints = default;
     private int currentHitPoints = 0;
 
+    [SerializeField] int balistaEnemyDamage = default;
+    [SerializeField] int cannonEnemyDamage = default;
+    [SerializeField] int missileEnemyDamage = default;
+
     private void Start()
     {
         this.currentHitPoints = maxHitPoints;
@@ -17,13 +21,26 @@ public class TowerHealth : MonoBehaviour
     {
         if(other.CompareTag("Kamikaze"))
         {
-            ProcessDamage();
+            switch (other.name)
+            {
+                case string name when name.Contains("arrow"):
+                    ProcessDamage(this.balistaEnemyDamage);
+                    break;
+
+                case string name when name.Contains("Cannon"):
+                    ProcessDamage(this.cannonEnemyDamage);
+                    break;
+
+                case string name when name.Contains("rocket"):
+                    ProcessDamage(this.missileEnemyDamage);
+                    break;
+            }
         }
     }
 
-    private void ProcessDamage()
+    private void ProcessDamage(int inDamage)
     {
-        this.currentHitPoints -= 1;
+        this.currentHitPoints -= inDamage;
 
         if(this.currentHitPoints <= 0)
         {
