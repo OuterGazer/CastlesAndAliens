@@ -28,14 +28,17 @@ public class LifeBar : MonoBehaviour
 
     private void ChangePosOnRot()
     {
-        if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 90.0f) ||
-            Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 270.0f))
+        if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 270.0f))
         {
             this.gameObject.transform.localPosition = new Vector3(0.0f, 0.971f, -0.316f);
         }
         else if(Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 180.0f))
         {
             this.gameObject.transform.localPosition = new Vector3(-0.316f, 0.971f, 0.0f);
+        }
+        else if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 90.0f))
+        {
+            this.gameObject.transform.localPosition = new Vector3(0.176f, 0.74f, 0.129f);
         }
         else
         {
@@ -61,8 +64,7 @@ public class LifeBar : MonoBehaviour
                                                                        45.7f - this.parentTransform.localRotation.eulerAngles.y,
                                                                        2.80f);
 
-            if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 90.0f) ||
-                Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 270.0f))
+            if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 270.0f))
                 AdjustPosOnRamps(0.0f, 1.0f, -0.272f);
             else if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 180.0f))
             {
@@ -70,6 +72,14 @@ public class LifeBar : MonoBehaviour
                                                                        45.7f - this.parentTransform.localRotation.eulerAngles.y,
                                                                        -2.80f);
                 AdjustPosOnRamps(-0.346f, 1.0f, 0.043f);
+            }
+            else if(Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 90.0f))
+            {
+                this.gameObject.transform.localRotation = Quaternion.Euler(-43.5f,
+                                                                       45.7f - this.parentTransform.localRotation.eulerAngles.y,
+                                                                       -2.80f);
+
+                AdjustPosOnRamps(this.gameObject.transform.localPosition.x, this.gameObject.transform.localPosition.y, this.gameObject.transform.localPosition.z);
             }
             else
                 AdjustPosOnRamps(0.0f, 0.541f, -0.316f);
@@ -80,8 +90,7 @@ public class LifeBar : MonoBehaviour
                                                                        45.7f - this.parentTransform.localRotation.eulerAngles.y,
                                                                        -2.80f);
 
-            if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 90.0f) ||
-                Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 270.0f))
+            if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 270.0f))
                 AdjustPosOnRamps(0.0f, 0.935f, -0.37f);
             else if (Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 180.0f))
             {
@@ -90,7 +99,14 @@ public class LifeBar : MonoBehaviour
                                                                        45.7f - this.parentTransform.localRotation.eulerAngles.y,
                                                                        2.80f);
             }
-                
+            else if(Mathf.Approximately(this.parentTransform.localRotation.eulerAngles.y, 90.0f))
+            {
+                this.gameObject.transform.localRotation = Quaternion.Euler(-43.5f,
+                                                                       45.7f - this.parentTransform.localRotation.eulerAngles.y,
+                                                                       2.80f);
+
+                AdjustPosOnRamps(this.gameObject.transform.localPosition.x, this.gameObject.transform.localPosition.y, this.gameObject.transform.localPosition.z);
+            }                
             else
                 AdjustPosOnRamps(0.0f, 0.541f, -0.272f);
         }
