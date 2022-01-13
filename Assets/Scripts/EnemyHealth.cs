@@ -13,9 +13,15 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int cannonTowerDamage = default;
     [SerializeField] int catapultTowerDamage = default;
 
+    [SerializeField] private Transform lifeBar;
+
     private void OnEnable()
     {
         this.currentHitPoints = maxHitPoints;
+
+        this.lifeBar.transform.localScale = new Vector3(0.45f,
+                                                        this.lifeBar.transform.localScale.y,
+                                                        this.lifeBar.transform.localScale.z);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
                     ProcessDamage(this.cannonTowerDamage);
                     break;
 
-                case string name when name.Contains("rocket"):
+                case string name when name.Contains("Catapult"):
                     ProcessDamage(this.catapultTowerDamage);
                     break;
             }
@@ -49,5 +55,11 @@ public class EnemyHealth : MonoBehaviour
             this.maxHitPoints += this.healthIncreaseAfterDeath;
             this.gameObject.SetActive(false);
         }
+
+        float subtractLifeBar = (this.currentHitPoints * 0.45f) / this.maxHitPoints;
+
+        this.lifeBar.transform.localScale = new Vector3(subtractLifeBar,
+                                                        this.lifeBar.transform.localScale.y,
+                                                        this.lifeBar.transform.localScale.z);
     }
 }
