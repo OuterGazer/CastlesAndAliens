@@ -30682,7 +30682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyWaves.Array.size
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabs.Array.size
@@ -30748,6 +30748,10 @@ PrefabInstance:
       propertyPath: enemyWaves.Array.data[14]
       value: 
       objectReference: {fileID: 11400000, guid: 1cc2ef31e34d8b6499ac944cad3471ee, type: 2}
+    - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
+      propertyPath: enemyWaves.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: 01c9c22b85fd5cb459bd0b602a7f8bf6, type: 2}
     - target: {fileID: 3203919051917927379, guid: f26eea7190248414b97ef937b9be941e, type: 3}
       propertyPath: enemyPrefabs.Array.data[0]
       value: 
