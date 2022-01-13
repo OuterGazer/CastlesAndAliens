@@ -28,7 +28,7 @@ public class BallistaBolt : MonoBehaviour
         this.canShoot = true;
     }
 
-    // Start is called before the first frame update
+
     void Awake()
     {
         this.boltRB = this.gameObject.GetComponent<Rigidbody>();
@@ -63,8 +63,7 @@ public class BallistaBolt : MonoBehaviour
             }
 
             this.gameObject.SetActive(false);
-        }
-        
+        }        
     }
 
     private void OnDisable()
