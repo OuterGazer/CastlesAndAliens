@@ -38,10 +38,14 @@ public class MouseInteraction : MonoBehaviour
 
     private void SetTowerType(GameObject towerType)
     {
-       this.towerPrefab = towerType;
+        if (!this.isPlaceable) { return; }
+
+        this.towerPrefab = towerType;
     }
     private void SetPreviewType(GameObject previewType)
     {
+        if (!this.isPlaceable) { return; }
+
         if (this.previewPrefab != null)
             GameObject.Destroy(this.previewPrefab);
 
