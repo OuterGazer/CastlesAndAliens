@@ -47,6 +47,8 @@ public class TargetLocator : MonoBehaviour
     {
         if (!this.defenseTower.CanShoot) { return; }
 
+        this.timeToNextShot -= Time.deltaTime;
+
         FindClosestTarget();
 
         CheckIfTargetIsInRange();
@@ -167,8 +169,6 @@ public class TargetLocator : MonoBehaviour
         float distanceToEnemySqr = (this.target.transform.position - this.gameObject.transform.position).sqrMagnitude;
 
         if (distanceToEnemySqr > (this.range * this.range)) { ClearTarget(); return; }
-
-        this.timeToNextShot -= Time.deltaTime;
 
         if(this.timeToNextShot <= 0)
         {

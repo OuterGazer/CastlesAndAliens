@@ -43,6 +43,8 @@ public class TargetLocatorAlien : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.timeToNextShot -= Time.deltaTime;
+
         FindClosestTarget();
 
         AimWeapon();
@@ -138,9 +140,7 @@ public class TargetLocatorAlien : MonoBehaviour
 
         float distanceToEnemySqr = (this.target.transform.position - this.gameObject.transform.position).sqrMagnitude;
 
-        if (distanceToEnemySqr > (this.range * this.range)) { ClearTarget(); return; }
-
-        this.timeToNextShot -= Time.deltaTime;
+        if (distanceToEnemySqr > (this.range * this.range)) { ClearTarget(); return; }       
 
         if(this.timeToNextShot <= 0)
         {

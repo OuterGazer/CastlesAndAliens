@@ -12,6 +12,8 @@ public class TowerHealth : MonoBehaviour
     [SerializeField] int cannonEnemyDamage = default;
     [SerializeField] int missileEnemyDamage = default;
 
+    [SerializeField] private Transform lifeBar;
+
     private void Start()
     {
         this.currentHitPoints = maxHitPoints;
@@ -46,5 +48,11 @@ public class TowerHealth : MonoBehaviour
         {
             GameObject.Destroy(this.gameObject);
         }
+
+        float subtractLifeBar = (this.currentHitPoints * 1.20f) / this.maxHitPoints;
+
+        this.lifeBar.transform.localScale = new Vector3(subtractLifeBar,
+                                                        this.lifeBar.transform.localScale.y,
+                                                        this.lifeBar.transform.localScale.z);
     }
 }
