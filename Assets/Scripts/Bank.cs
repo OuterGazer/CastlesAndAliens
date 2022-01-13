@@ -31,8 +31,9 @@ public class Bank : MonoBehaviour
 
         if (this.currentBalance < 0)
         {
+            this.currentBalance = 0;
             this.balanceText.text = "Gold: 0";
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

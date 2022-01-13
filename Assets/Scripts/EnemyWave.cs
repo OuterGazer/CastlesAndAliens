@@ -37,13 +37,6 @@ public enum EnemyType
 [CreateAssetMenuAttribute(menuName = "Enemy Wave")]
 public class EnemyWave : ScriptableObject
 {
-    // TODO: how many enemies per spawn point
-    // TODO: What enemy type(s)
-    // TODO: how many of what enemy type (within the alloted max)
-    // TODO: the order in which they spawn
-    // TODO: the spawn time between single enemies
-    // TODO: if enemies spawning from a new spawn point must wait till all enemies from a previous spawn point have spawned, or they can spawn at the same time.
-
     [SerializeField] List<EnemyType> waveEnemyList;
 
     [SerializeField] float spawnTime = default;
