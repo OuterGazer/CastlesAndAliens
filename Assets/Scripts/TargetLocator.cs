@@ -213,7 +213,7 @@ public class TargetLocator : MonoBehaviour
 
     private IEnumerator LoadBolt()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(this.shootingCooldown - 0.5f);
 
         this.bolt.gameObject.SetActive(true);
     }
