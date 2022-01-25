@@ -101,16 +101,19 @@ public class TowerMenuInteraction : MonoBehaviour
 
     public void OnClick(Image towerType)
     {
-        SetColor(towerType, this.selectedColor, false);
+        if(!Mathf.Approximately(Time.timeScale, 0))
+            SetColor(towerType, this.selectedColor, false);
     }
 
     public void OnPointerEnter(Image towerType)
     {
-        SetHoverOverColor(towerType, this.hoverOverColor);
+        if (!Mathf.Approximately(Time.timeScale, 0))
+            SetHoverOverColor(towerType, this.hoverOverColor);
     }    
 
     public void OnPointerExit(Image towerType)
     {
-        SetHoverOverColor(towerType, this.unselectedColor);
+        if (!Mathf.Approximately(Time.timeScale, 0))
+            SetHoverOverColor(towerType, this.unselectedColor);
     }
 }

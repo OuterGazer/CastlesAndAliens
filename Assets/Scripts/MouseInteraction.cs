@@ -71,7 +71,7 @@ public class MouseInteraction : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (this.towerPrefab == null) { return; }
+        if (this.towerPrefab == null || Mathf.Approximately(Time.timeScale, 0)) { return; }
 
         if (this.isPlaceable && this.bank.CurrentBalance > 0) // if(this.gridManager[this.tileCoordinates].IsWalkable && !this.pathFinder.WillBlockPath(this.tileCoordinates))
         {
@@ -159,7 +159,7 @@ public class MouseInteraction : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if ((this.previewPrefab == null) || !this.isPlaceable) { return; }
+        if ((this.previewPrefab == null) || !this.isPlaceable || Mathf.Approximately(Time.timeScale, 0)) { return; }
 
         Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 1.1f, this.gameObject.transform.position.z);
 
@@ -170,7 +170,7 @@ public class MouseInteraction : MonoBehaviour
 
     public void OnMouseExit()
     {
-        if (this.previewPrefab == null) { return; }
+        if (this.previewPrefab == null || Mathf.Approximately(Time.timeScale, 0)) { return; }
 
         this.previewPrefab.SetActive(false);
     }
