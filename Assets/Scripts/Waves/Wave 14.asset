@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wave 14
   m_EditorClassIdentifier: 
   waveEnemyList: 060000000100000000000000
-  spawnTime: 3
+  spawnTime: 2
