@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ButtonBehaviour : MonoBehaviour
 {
     private float currentTimeScale;
 
     [SerializeField] Sprite blockedButton;
+    [SerializeField] GameObject speedButton;
+    [SerializeField] TextMeshProUGUI speedText;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject restartMenu;
 
     private Image currentImage;
     private Sprite standardSprite;
+    
 
     private bool isPointerInButton = false;
     private bool isButtonBlocked = false;
+    public bool IsButtonBlocked
+    {
+        get { return this.IsButtonBlocked; }
+        set { this.isButtonBlocked = value; }
+    }
 
     // Start is called before the first frame update
     void Awake()
@@ -52,9 +61,13 @@ public class ButtonBehaviour : MonoBehaviour
             this.pauseMenu.SetActive(true);
 
             this.gameObject.GetComponent<Button>().enabled = false;
+            this.speedButton.GetComponent<Button>().enabled = false;
             
             this.currentImage.sprite = this.blockedButton;
+            this.speedButton.GetComponent<Image>().sprite = this.blockedButton;
+            
             this.isButtonBlocked = true;
+            this.speedButton.GetComponent<ButtonBehaviour>().IsButtonBlocked = true;
         }
         else
         {
@@ -62,9 +75,13 @@ public class ButtonBehaviour : MonoBehaviour
             this.pauseMenu.SetActive(false);
 
             this.gameObject.GetComponent<Button>().enabled = true;
+            this.speedButton.GetComponent<Button>().enabled = true;
 
             this.currentImage.sprite = this.standardSprite;
+            this.speedButton.GetComponent<Image>().sprite = this.standardSprite;
+            
             this.isButtonBlocked = false;
+            this.speedButton.GetComponent<ButtonBehaviour>().IsButtonBlocked = false;
         }
         
     }
@@ -87,6 +104,26 @@ public class ButtonBehaviour : MonoBehaviour
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    public void OnSpeedChangeClick()
+    {
+        if(Mathf.Approximately(Time.timeScale, 1))
+        {
+            Time.timeScale = 2;
+            this.speedText.text = "Speed x4";
+        }
+        else if (Mathf.Approximately(Time.timeScale, 2))
+        {
+            Time.timeScale = 4;
+            this.speedText.text = "Speed x1";
+        }
+        else
+        {
+            Time.timeScale = 1;
+            this.speedText.text = "Speed x2";
+        }
+            
     }
 
 

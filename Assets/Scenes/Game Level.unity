@@ -2117,6 +2117,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+--- !u!114 &153724002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2201847394874938631, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+  m_PrefabInstance: {fileID: 1511539180527621926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &153984780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27848,6 +27859,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e9bb5abf5713ec4aa1947ad0948196f, type: 3}
+--- !u!1 &1909333272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2347385449017163117, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+  m_PrefabInstance: {fileID: 1511539180527621926}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1909333274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8020404174137556756, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+  m_PrefabInstance: {fileID: 1511539180527621926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909333272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa7be6123abf67641be47c8d76065695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1919323020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
@@ -30556,13 +30583,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1131346101, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: blockedButton
+      propertyPath: speedButton
       value: 
-      objectReference: {fileID: -1727787259211401930, guid: ce2fd8dc29c798c4da4910fdddcdccb9, type: 3}
-    - target: {fileID: 1131346101, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: blockingCollider
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1909333272}
     - target: {fileID: 1511539180200878616, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -30655,6 +30678,42 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 4280438586904400751, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -82.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4280438586904400751, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934418641414327610, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934418641414327610, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1909333274}
+    - target: {fileID: 5934418641414327610, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSpeedChangeClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934418641414327610, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ButtonBehaviour, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020404174137556756, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020404174137556756, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 153724002}
+    - target: {fileID: 8020404174137556756, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: restartMenu
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
 --- !u!1001 &3203919052576108692
