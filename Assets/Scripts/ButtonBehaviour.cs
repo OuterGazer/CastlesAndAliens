@@ -7,12 +7,15 @@ public class ButtonBehaviour : MonoBehaviour
 {
     private float currentTimeScale;
 
+    [SerializeField] Sprite blockedButton;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject restartMenu;
 
     private Image currentImage;
     private Sprite standardSprite;
 
     private bool isPointerInButton = false;
+    private bool isButtonBlocked = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -20,7 +23,19 @@ public class ButtonBehaviour : MonoBehaviour
         this.currentImage = this.gameObject.GetComponent<Image>();
 
         if(this.pauseMenu != null)
+        {
             this.pauseMenu.SetActive(false);
+        }
+            
+
+        if (this.restartMenu != null)
+            this.restartMenu.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        if(this.standardSprite != null)
+            this.currentImage.sprite = this.standardSprite;
     }
 
     private void Start()
@@ -35,13 +50,43 @@ public class ButtonBehaviour : MonoBehaviour
             this.currentTimeScale = Time.timeScale;
             Time.timeScale = 0;
             this.pauseMenu.SetActive(true);
+
+            this.gameObject.GetComponent<Button>().enabled = false;
+            
+            this.currentImage.sprite = this.blockedButton;
+            this.isButtonBlocked = true;
         }
         else
         {
             Time.timeScale = this.currentTimeScale;
             this.pauseMenu.SetActive(false);
+
+            this.gameObject.GetComponent<Button>().enabled = true;
+
+            this.currentImage.sprite = this.standardSprite;
+            this.isButtonBlocked = false;
         }
         
+    }
+
+    public void OnRestartClick()
+    {
+        if (!this.restartMenu.activeInHierarchy)
+        {
+            this.pauseMenu.SetActive(false);
+            this.restartMenu.SetActive(true);
+        }
+        else
+        {
+            this.pauseMenu.SetActive(true);
+            this.restartMenu.SetActive(false);
+        }            
+    }
+
+    public void OnConfirmRestartClick()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
 
@@ -49,6 +94,8 @@ public class ButtonBehaviour : MonoBehaviour
 
     public void OnPointerEnter(Sprite hoverOverSprite)
     {
+        if(this.isButtonBlocked) { return; }
+
         this.currentImage.sprite = hoverOverSprite;
 
         this.isPointerInButton = true;
@@ -56,6 +103,8 @@ public class ButtonBehaviour : MonoBehaviour
 
     public void OnPointerExit()
     {
+        if (this.isButtonBlocked) { return; }
+
         this.currentImage.sprite = this.standardSprite;
 
         this.isPointerInButton = false;
@@ -63,12 +112,16 @@ public class ButtonBehaviour : MonoBehaviour
 
     public void OnPointerDown(Sprite clickedSprite)
     {
+        if (this.isButtonBlocked) { return; }
+
         this.currentImage.sprite = clickedSprite;
     }
 
     public void OnPointerUp(Sprite hoverOverSprite)
     {
-        if(this.isPointerInButton)
+        if (this.isButtonBlocked) { return; }
+
+        if (this.isPointerInButton)
             this.currentImage.sprite = hoverOverSprite;
         else
             this.currentImage.sprite = this.standardSprite;

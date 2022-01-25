@@ -15930,17 +15930,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
---- !u!114 &1131346101 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1131346101, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-  m_PrefabInstance: {fileID: 1511539180527621926}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa7be6123abf67641be47c8d76065695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1132250950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30566,13 +30555,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1700224322, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+    - target: {fileID: 1131346101, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: blockedButton
       value: 
-      objectReference: {fileID: 1131346101}
-    - target: {fileID: 1700224322, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPauseClick
+      objectReference: {fileID: -1727787259211401930, guid: ce2fd8dc29c798c4da4910fdddcdccb9, type: 3}
+    - target: {fileID: 1131346101, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: blockingCollider
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1511539180200878616, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
       propertyPath: m_Name
