@@ -7,10 +7,10 @@ public class ButtonBehaviour : MonoBehaviour
 {
     private float currentTimeScale;
 
-    Image currentImage;
-    [SerializeField] Sprite standardSprite;
-    [SerializeField] Sprite hoverOverSprite;
-    [SerializeField] Sprite clickedSprite;
+    [SerializeField] GameObject pauseMenu;
+
+    private Image currentImage;
+    private Sprite standardSprite;
 
     private bool isPointerInButton = false;
 
@@ -18,11 +18,14 @@ public class ButtonBehaviour : MonoBehaviour
     void Awake()
     {
         this.currentImage = this.gameObject.GetComponent<Image>();
+
+        if(this.pauseMenu != null)
+            this.pauseMenu.SetActive(false);
     }
 
     private void Start()
     {
-        this.currentImage.sprite = this.standardSprite;
+        this.standardSprite = this.currentImage.sprite;
     }
 
     public void OnPauseClick()
@@ -31,10 +34,12 @@ public class ButtonBehaviour : MonoBehaviour
         {
             this.currentTimeScale = Time.timeScale;
             Time.timeScale = 0;
+            this.pauseMenu.SetActive(true);
         }
         else
         {
             Time.timeScale = this.currentTimeScale;
+            this.pauseMenu.SetActive(false);
         }
         
     }
@@ -42,9 +47,9 @@ public class ButtonBehaviour : MonoBehaviour
 
     // Button Animation Below
 
-    public void OnPointerEnter()
+    public void OnPointerEnter(Sprite hoverOverSprite)
     {
-        this.currentImage.sprite = this.hoverOverSprite;
+        this.currentImage.sprite = hoverOverSprite;
 
         this.isPointerInButton = true;
     }
@@ -56,15 +61,15 @@ public class ButtonBehaviour : MonoBehaviour
         this.isPointerInButton = false;
     }
 
-    public void OnPointerDown()
+    public void OnPointerDown(Sprite clickedSprite)
     {
-        this.currentImage.sprite = this.clickedSprite;
+        this.currentImage.sprite = clickedSprite;
     }
 
-    public void OnPointerUp()
+    public void OnPointerUp(Sprite hoverOverSprite)
     {
         if(this.isPointerInButton)
-            this.currentImage.sprite = this.hoverOverSprite;
+            this.currentImage.sprite = hoverOverSprite;
         else
             this.currentImage.sprite = this.standardSprite;
     }
