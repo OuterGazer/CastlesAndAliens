@@ -47,7 +47,7 @@ public class BallistaBolt : MonoBehaviour
     {
         if((other.gameObject.CompareTag("Tower Base") && (this.gameObject.CompareTag("Kamikaze") || this.gameObject.CompareTag("Basic Enemy"))) ||
            (this.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
-           other.gameObject.CompareTag("Ground"))
+           other.gameObject.CompareTag("Ground")) 
         {
             if(this.gameObject.name.Contains("Cannon"))
             {
