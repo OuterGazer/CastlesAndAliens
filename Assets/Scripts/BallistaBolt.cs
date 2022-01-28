@@ -51,14 +51,12 @@ public class BallistaBolt : MonoBehaviour
         {
             if(this.gameObject.name.Contains("Cannon"))
             {
-                Debug.Log($"Cannon hit {other.name}!");
                 Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
 
                 if (enemies.Length > 0)
                 {
                     foreach (Collider item in enemies)
                     {
-                        Debug.Log("Explosion hit enemy!");
                         item.GetComponentInParent<EnemyHealth>().ProcessDamage(1);
                     }
                 }
