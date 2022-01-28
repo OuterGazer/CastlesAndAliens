@@ -73,7 +73,7 @@ public class MouseInteraction : MonoBehaviour
     {
         if (this.towerPrefab == null || Mathf.Approximately(Time.timeScale, 0)) { return; }
 
-        if (this.isPlaceable && this.bank.CurrentBalance > 0) // if(this.gridManager[this.tileCoordinates].IsWalkable && !this.pathFinder.WillBlockPath(this.tileCoordinates))
+        if (this.isPlaceable && this.bank.CurrentBalance >= this.towerPrefab.GetComponent<DefenseTower>().GoldCost) // if(this.gridManager[this.tileCoordinates].IsWalkable && !this.pathFinder.WillBlockPath(this.tileCoordinates))
         {
             this.StartCoroutine(BuildTower());
         }        
