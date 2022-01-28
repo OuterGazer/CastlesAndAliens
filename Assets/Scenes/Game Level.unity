@@ -416,6 +416,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (7)
@@ -1524,6 +1528,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (79)
@@ -2245,6 +2253,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (276)
@@ -2689,6 +2701,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (12)
@@ -2755,6 +2771,10 @@ PrefabInstance:
     - target: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
@@ -3522,6 +3542,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (77)
@@ -4156,6 +4180,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (74)
@@ -7210,6 +7238,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (69)
@@ -7356,6 +7388,10 @@ PrefabInstance:
     - target: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
@@ -11299,6 +11335,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (11)
@@ -12157,6 +12197,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (194)
@@ -12944,6 +12988,10 @@ PrefabInstance:
     - target: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
@@ -15517,6 +15565,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (286)
@@ -15929,6 +15981,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (83)
@@ -16072,6 +16128,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 2980999e258c26144bb9923bae1d6b21, type: 2}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (70)
@@ -16491,6 +16551,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (9)
@@ -17857,6 +17921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4331701a072e0f24995ca70f8e441767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPossibleTowerSquare: 0
   isPlaceable: 0
   isRoadTile: 0
   isRiverTile: 0
@@ -19332,6 +19397,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (29)
@@ -20231,6 +20300,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (49)
@@ -20722,6 +20795,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (55)
@@ -21391,6 +21468,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (108)
@@ -21462,6 +21543,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (10)
@@ -22119,6 +22204,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 2980999e258c26144bb9923bae1d6b21, type: 2}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (64)
@@ -22890,6 +22979,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (132)
@@ -23371,6 +23464,10 @@ PrefabInstance:
     - target: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
@@ -24255,6 +24352,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (212)
@@ -24777,6 +24878,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: f599f7463ca27fb4081db8faae7e2835, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (58)
@@ -25661,6 +25766,10 @@ PrefabInstance:
       propertyPath: basicTowerPrefab
       value: 
       objectReference: {fileID: 635282821062413131, guid: af56965d1a53fc24e9e71997d6c7a613, type: 3}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
       value: Feld Tile (233)
@@ -26700,6 +26809,10 @@ PrefabInstance:
     - target: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name
@@ -30265,6 +30378,10 @@ PrefabInstance:
     - target: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575967452778138541, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
+      propertyPath: isPossibleTowerSquare
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8341823203226432043, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
       propertyPath: m_Name

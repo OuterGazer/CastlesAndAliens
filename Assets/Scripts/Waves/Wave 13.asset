@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db6e9b98384ef44083314df56e6e20f, type: 3}
   m_Name: Wave 13
   m_EditorClassIdentifier: 
-  waveEnemyList: 0f0000000f0000000a00000009000000
+  waveEnemyList: 0f0000000f0000000f0000000a00000009000000
   spawnTime: 2

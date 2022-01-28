@@ -8,6 +8,7 @@ public class MouseInteraction : MonoBehaviour
     private GameObject towerPrefab;
     private GameObject previewPrefab;
 
+    [SerializeField] bool isPossibleTowerSquare = false;
     [SerializeField] bool isPlaceable = default;
     public bool IsPlaceable => this.isPlaceable;
     public void SetIsPlaceable(bool isPlaceable)
@@ -38,13 +39,13 @@ public class MouseInteraction : MonoBehaviour
 
     private void SetTowerType(GameObject towerType)
     {
-        if (!this.isPlaceable) { return; }
+        if (!this.isPossibleTowerSquare) { return; }
 
         this.towerPrefab = towerType;
     }
     private void SetPreviewType(GameObject previewType)
     {
-        if (!this.isPlaceable) { return; }
+        if (!this.isPossibleTowerSquare) { return; }
 
         if (this.previewPrefab != null)
             GameObject.Destroy(this.previewPrefab);
