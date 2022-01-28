@@ -131,7 +131,9 @@ public class TargetLocator : MonoBehaviour
     {
         //if (this.target == null) { return; }
 
-        Vector3 newPos = this.target.position - objectToRotate.position;
+        Vector3 newPosCorrected = new Vector3(this.target.transform.position.x, this.target.transform.position.y + 0.3f, this.target.transform.position.z);
+
+        Vector3 newPos = newPosCorrected - objectToRotate.position;
         Vector3 newPosProj = Vector3.ProjectOnPlane(newPos, axis);
 
         float deltaAngle = Vector3.SignedAngle(objectToRotate.forward, newPosProj, axis);
