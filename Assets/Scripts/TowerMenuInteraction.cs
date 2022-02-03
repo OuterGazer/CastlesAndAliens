@@ -8,6 +8,7 @@ public class TowerMenuInteraction : MonoBehaviour
 {
     [SerializeField] Image[] towerButtons;
     [SerializeField] TextMeshProUGUI[] towerTexts;
+    [SerializeField] Image[] coinImages;
     [SerializeField] GameObject[] towerPrefabs;
     [SerializeField] GameObject[] previewPrefabs;
     private Color selectedColor = Color.white;
@@ -25,6 +26,7 @@ public class TowerMenuInteraction : MonoBehaviour
         }
 
         SetTextsColorToGrey();
+        SetCoinsColorToGrey();
     }
 
     private void SetColor(Image towerType, Color color, bool isHoverOver)
@@ -43,6 +45,7 @@ public class TowerMenuInteraction : MonoBehaviour
             item.color = this.unselectedColor;
             ChangeButtonColor(item);
             SetTextsColorToGrey();
+            SetCoinsColorToGrey();
         }
 
         for(int i = 0; i < this.isButtonActivated.Length; i++)
@@ -59,6 +62,14 @@ public class TowerMenuInteraction : MonoBehaviour
         }
     }
 
+    private void SetCoinsColorToGrey()
+    {
+        foreach (Image item in this.coinImages)
+        {
+            item.color = this.unselectedColor;
+        }
+    }
+
     private void ChangeTextColor(Image towerType, Color color)
     {
         for (int i = 0; i < this.towerButtons.Length; i++)
@@ -66,6 +77,7 @@ public class TowerMenuInteraction : MonoBehaviour
             if (this.towerButtons[i] == towerType)
             {
                 this.towerTexts[i].color = color;
+                this.coinImages[i].color = color;
                
                 if(color == this.selectedColor)
                 {
