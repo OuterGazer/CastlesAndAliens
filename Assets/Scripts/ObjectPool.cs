@@ -178,17 +178,23 @@ public class ObjectPool : MonoBehaviour
 
             yield return new WaitUntil(() => this.curEnemyCount < 1);
 
-            // TODO: Somehow tell TowerMenuInteraction it should unlock cannon and catapult towers in certain waves
+            CheckIfTowerShouldBeUnlocked(i);
+        }
+    }
 
-            if(i == 7)
-            {
-                //unlock cannon tower
-            }
-
-            if(i == 18)
-            {
-                //unlock catapult tower
-            }
+    private void CheckIfTowerShouldBeUnlocked(int i)
+    {
+        if (i != 7 && i != 18)
+        {
+            return;
+        }
+        else if (i == 7)
+        {
+            Messenger.Broadcast("UnlockCannonTower");
+        }
+        else if (i == 18)
+        {
+            Messenger.Broadcast("UnlockCatapultTower");
         }
     }
 

@@ -20,9 +20,13 @@ public class TowerMenuInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        foreach(Image item in this.towerButtons)
+        Messenger.AddListener("UnlockCannonTower", OnCannonTowerUnlocked);
+        Messenger.AddListener("UnlockCatapultTower", OnCatapultTowerUnlocked);
+
+        foreach (Image item in this.towerButtons)
         {
-            item.color = this.unselectedColor;
+            if(item.color != Color.black)
+                item.color = this.unselectedColor;
         }
 
         SetTextsColorToGrey();
@@ -42,10 +46,13 @@ public class TowerMenuInteraction : MonoBehaviour
     {
         foreach (Image item in this.towerButtons)
         {
-            item.color = this.unselectedColor;
-            ChangeButtonColor(item);
-            SetTextsColorToGrey();
-            SetCoinsColorToGrey();
+            if (item.color != Color.black)
+            {
+                item.color = this.unselectedColor;
+                ChangeButtonColor(item);
+                SetTextsColorToGrey();
+                SetCoinsColorToGrey();
+            }                
         }
 
         for(int i = 0; i < this.isButtonActivated.Length; i++)
@@ -58,7 +65,8 @@ public class TowerMenuInteraction : MonoBehaviour
     {
         foreach (TextMeshProUGUI item in this.towerTexts)
         {
-            item.color = this.unselectedColor;
+            if(item.gameObject.activeSelf)
+                item.color = this.unselectedColor;
         }
     }
 
@@ -103,6 +111,8 @@ public class TowerMenuInteraction : MonoBehaviour
     {
         for (int i = 0; i < this.towerButtons.Length; i++)
         {
+            if (!this.towerTexts[i].gameObject.activeSelf) { return; }
+
             if (this.towerButtons[i] == towerType)
             {
                 if (!this.isButtonActivated[i])
@@ -127,5 +137,25 @@ public class TowerMenuInteraction : MonoBehaviour
     {
         if (!Mathf.Approximately(Time.timeScale, 0))
             SetHoverOverColor(towerType, this.unselectedColor);
+    }
+
+    private void OnCannonTowerUnlocked()
+    {
+        this.towerTexts[1].gameObject.SetActive(true);
+        this.towerButtons[1].GetComponent<Button>().interactable = true;
+        SetColor(this.towerButtons[1], this.unselectedColor, false);
+    }
+
+    private void OnCatapultTowerUnlocked()
+    {
+        this.towerTexts[2].gameObject.SetActive(true);
+        this.towerButtons[2].GetComponent<Button>().interactable = true;
+        SetColor(this.towerButtons[2], this.unselectedColor, false);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger.RemoveListener("UnlockCannonTower", OnCannonTowerUnlocked);
+        Messenger.RemoveListener("UnlockCatapultTower", OnCatapultTowerUnlocked);
     }
 }
