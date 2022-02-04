@@ -10,6 +10,7 @@ public class TutorialBehaviour : MonoBehaviour
 
     [SerializeField] GameObject redSlowPopUp;
     [SerializeField] GameObject balistaPopUp;
+    [SerializeField] GameObject enemyBalistaPopUp;
 
     private GameObject currentPopUp;
 
@@ -19,11 +20,13 @@ public class TutorialBehaviour : MonoBehaviour
     private void Awake()
     {
         Messenger.AddListener("Slow Red", OnSlowRedAppearance);
+        Messenger.AddListener("Enemy Balistas", OnEnemyBalistaAppearance);
     }
 
     private void OnDestroy()
     {
         Messenger.RemoveListener("Slow Red", OnSlowRedAppearance);
+        Messenger.RemoveListener("Enemy Balistas", OnEnemyBalistaAppearance);
     }
 
     public void OnOkClicked()
@@ -74,5 +77,10 @@ public class TutorialBehaviour : MonoBehaviour
     {
         PopUpWindow(this.balistaPopUp, false);
         this.hasBalistaTutorialAppeared = true;
+    }
+
+    private void OnEnemyBalistaAppearance()
+    {
+        PopUpWindow(this.enemyBalistaPopUp, true);
     }
 }

@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveEnemyList: 0f0000000600000018000000
   spawnTime: 10
+  waveBeginningTutorial: Enemy Balistas
+  waveEndingTutorial: 
