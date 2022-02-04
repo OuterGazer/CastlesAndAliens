@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int goldReward = default;
-    [SerializeField] int goldPenalty = default;
+    //[SerializeField] int goldPenalty = default;
 
 
     private List<TargetLocator> originTower = new List<TargetLocator>();
@@ -46,10 +46,15 @@ public class Enemy : MonoBehaviour
             this.bank.Deposit(this.goldReward);
     }
 
-    public void StealGold()
+    /*public void StealGold()
     {
         if (this.bank != null)
             this.bank.Withdraw(this.goldPenalty);
+    }*/
+
+    public void AnnoyRoyalty()
+    {
+        Messenger<string>.Broadcast("AnnoyRoyalty", this.gameObject.name, MessengerMode.DONT_REQUIRE_LISTENER);
     }
 
     private void OnDisable()

@@ -207,7 +207,7 @@ public class EnemyMover : MonoBehaviour
     {
         if (!this.isKamikaze)
         {
-            this.gameObject.GetComponent<Enemy>().StealGold();
+            this.gameObject.GetComponent<Enemy>().AnnoyRoyalty();
             this.gameObject.SetActive(false);
         }
         else
