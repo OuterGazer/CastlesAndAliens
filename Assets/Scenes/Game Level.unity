@@ -30672,6 +30672,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 310089528, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 985623371, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
