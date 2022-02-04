@@ -3695,6 +3695,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: 58ad0f694283fbc4284ab04e71300006, type: 3}
   m_PrefabInstance: {fileID: 285920643}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &293796607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 293796607, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+  m_PrefabInstance: {fileID: 1511539180527621926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &295312590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17041,6 +17046,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca1a4a238d244f542b7aef1d8344d95e, type: 3}
+--- !u!1 &1171494862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1171494862, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+  m_PrefabInstance: {fileID: 1511539180527621926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1178418971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17529,11 +17539,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4152907214623105922, guid: 4766b23f9c97fbc489185d985f5ff614, type: 3}
   m_PrefabInstance: {fileID: 1214288332}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1216714067 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 831441954, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-  m_PrefabInstance: {fileID: 1511539180527621926}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1219055644
 PrefabInstance:
@@ -27966,11 +27971,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e9bb5abf5713ec4aa1947ad0948196f, type: 3}
---- !u!1 &1906615078 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1149225286425405535, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-  m_PrefabInstance: {fileID: 1511539180527621926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1919323020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3419488108671910210, guid: cd883fb3b617a1b41a6076cc0f43a9d4, type: 3}
@@ -30682,6 +30682,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 293796607, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 985623371, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -30689,6 +30693,14 @@ PrefabInstance:
     - target: {fileID: 985623371, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152868215, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: m_text
+      value: 'The balista is your cheapest and weakest tower. It has the shortest
+        range but the quickest fire rate and building time.
+
+        It can fire
+        at its feet.'
       objectReference: {fileID: 0}
     - target: {fileID: 1306553798, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
       propertyPath: m_AnchorMax.x
@@ -30698,6 +30710,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1434079042, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: balistaPopUp
+      value: 
+      objectReference: {fileID: 293796607}
+    - target: {fileID: 1434079042, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
+      propertyPath: redSlowPopUp
+      value: 
+      objectReference: {fileID: 1171494862}
     - target: {fileID: 1511539180200878616, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -30790,29 +30810,8 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 1511539180527621928, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 1216714067}
-    - target: {fileID: 1511539180527621928, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: towerMenu
-      value: 
-      objectReference: {fileID: 1906615078}
-    - target: {fileID: 1511539180527621928, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: youLostPopUp
-      value: 
-      objectReference: {fileID: 1511539180527621927}
-    - target: {fileID: 2064829691444950441, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
---- !u!1 &1511539180527621927 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2064829691444950441, guid: 2064b1fab2a6cb74abe660e5333db5af, type: 3}
-  m_PrefabInstance: {fileID: 1511539180527621926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3203919052576108692
 PrefabInstance:
   m_ObjectHideFlags: 0

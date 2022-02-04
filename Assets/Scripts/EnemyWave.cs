@@ -41,6 +41,9 @@ public class EnemyWave : ScriptableObject
 
     [SerializeField] float spawnTime = default;
 
+    [SerializeField] string waveBeginningTutorial;
+    [SerializeField] string waveEndingTutorial;
+
     public List<EnemyType> GetEnemies()
     {
         return this.waveEnemyList;
@@ -54,5 +57,15 @@ public class EnemyWave : ScriptableObject
     public float GetSpawnTime()
     {
         return this.spawnTime;
+    }
+
+    public string GetBeginningTutorialWord()
+    {
+        return this.waveBeginningTutorial;
+    }
+
+    public string GetEndingTutorialWord()
+    {
+        return this.waveEndingTutorial;
     }
 }

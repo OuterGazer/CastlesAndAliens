@@ -28,6 +28,8 @@ public class ObjectPool : MonoBehaviour
 
     private Pathfinder pathfinder;
 
+    private bool isFirstTutorial = true;
+
     private void Awake()
     {
         this.pathfinder = this.gameObject.GetComponent<Pathfinder>();
@@ -147,6 +149,9 @@ public class ObjectPool : MonoBehaviour
     {
         for(int i = 0; i < this.enemyWaves.Length; i++)
         {
+            if(!this.isFirstTutorial)
+                CheckForTutorial(i, 0);
+
             List<EnemyType> currentWave = this.enemyWaves[i].GetEnemies();
             float spawnTime = this.enemyWaves[i].GetSpawnTime();
 
@@ -174,11 +179,34 @@ public class ObjectPool : MonoBehaviour
                 this.curEnemyCount++;
 
                 yield return new WaitForSeconds(spawnTime);
+
+                if (this.isFirstTutorial)
+                {
+                    CheckForTutorial(i, 0);
+                    this.isFirstTutorial = false;
+                }
             }
 
             yield return new WaitUntil(() => this.curEnemyCount < 1);
 
             CheckIfTowerShouldBeUnlocked(i);
+
+            CheckForTutorial(i, 1);
+        }
+    }
+
+    private void CheckForTutorial(int waveIndex, int wavePosition)
+    {
+        string tutorialWord;
+
+        if (wavePosition == 0)
+            tutorialWord = this.enemyWaves[waveIndex].GetBeginningTutorialWord();
+        else
+            tutorialWord = this.enemyWaves[waveIndex].GetEndingTutorialWord();
+
+        if (!string.IsNullOrWhiteSpace(tutorialWord))
+        {
+            Messenger.Broadcast(tutorialWord);
         }
     }
 
