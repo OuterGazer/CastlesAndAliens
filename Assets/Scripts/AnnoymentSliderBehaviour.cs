@@ -7,6 +7,9 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
 {
     [SerializeField] Slider queenSlider;
     [SerializeField] Slider kingSlider;
+    [SerializeField] GameObject youLostPopUp;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject towerMenu;
 
     [SerializeField] int queenMaxAnnoymentLevel;
     [SerializeField] int kingMaxAnnoymentLevel;
@@ -41,7 +44,10 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
         if((this.queenSlider.value >= this.queenMaxAnnoymentLevel) ||
            (this.kingSlider.value >= this.kingMaxAnnoymentLevel))
         {
-            // TODO: implement losing logic here
+            Time.timeScale = 0;
+            this.youLostPopUp.SetActive(true);
+            this.pauseMenu.SetActive(false);
+            this.towerMenu.SetActive(false);
         }
     }
 

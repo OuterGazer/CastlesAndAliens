@@ -79,6 +79,12 @@ public class MainMenu : MonoBehaviour
         this.currentWindow = this.instructionsWindows[this.instructionsPageIndex];
     }
 
+    public void OnRestartClick()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
     public void OnQuiteGameClick()
     {
         Application.Quit();
