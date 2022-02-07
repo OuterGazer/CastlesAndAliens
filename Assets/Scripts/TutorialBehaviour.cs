@@ -22,12 +22,15 @@ public class TutorialBehaviour : MonoBehaviour
     [SerializeField] GameObject victoryPopUp;
 
     private GameObject currentPopUp;
+    private float currentGameSpeed;
 
 
     private bool hasBalistaTutorialAppeared = false;
 
     private void Awake()
     {
+        Messenger<float>.AddListener("Change Game Speed", OnGameSpeedChange);
+
         Messenger.AddListener("Slow Red", OnSlowRedAppearance);
         Messenger.AddListener("Enemy Balistas", OnEnemyBalistaAppearance);
         Messenger.AddListener("Normal Red", OnNormalRedAppearance);
@@ -43,6 +46,8 @@ public class TutorialBehaviour : MonoBehaviour
 
     private void OnDestroy()
     {
+        Messenger<float>.RemoveListener("Change Game Speed", OnGameSpeedChange);
+
         Messenger.RemoveListener("Slow Red", OnSlowRedAppearance);
         Messenger.RemoveListener("Enemy Balistas", OnEnemyBalistaAppearance);
         Messenger.RemoveListener("Normal Red", OnNormalRedAppearance);
@@ -56,9 +61,14 @@ public class TutorialBehaviour : MonoBehaviour
         Messenger.RemoveListener("Victory", OnVictoryAppearance);
     }
 
+    private void OnGameSpeedChange(float inGameSpeed)
+    {
+        this.currentGameSpeed = inGameSpeed;
+    }
+
     public void OnOkClicked()
     {
-        Time.timeScale = 1;
+        Time.timeScale = this.currentGameSpeed;
 
         this.currentPopUp.SetActive(false);
         this.currentPopUp = null;

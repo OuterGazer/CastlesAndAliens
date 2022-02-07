@@ -7,6 +7,7 @@ using TMPro;
 public class ButtonBehaviour : MonoBehaviour
 {
     private float currentTimeScale;
+    public float CurrentTimeScale => this.currentTimeScale;
 
     [SerializeField] Sprite blockedButton;
     [SerializeField] GameObject speedButton;
@@ -123,6 +124,8 @@ public class ButtonBehaviour : MonoBehaviour
             Time.timeScale = 1;
             this.speedText.text = "Speed x2";
         }
+
+        Messenger<float>.Broadcast("Change Game Speed", Time.timeScale);
             
     }
 
