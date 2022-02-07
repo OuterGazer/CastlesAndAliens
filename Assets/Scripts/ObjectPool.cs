@@ -199,6 +199,8 @@ public class ObjectPool : MonoBehaviour
             CheckIfTowerShouldBeUnlocked(i);
 
             CheckForTutorial(i, 1);
+
+            yield return new WaitUntil(() => Time.timeScale > 0);
         }
     }
 

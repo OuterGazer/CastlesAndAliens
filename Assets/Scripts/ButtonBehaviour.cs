@@ -129,6 +129,11 @@ public class ButtonBehaviour : MonoBehaviour
             
     }
 
+    public void OnQuitClick()
+    {
+        Application.Quit();
+    }
+
 
     // Button Animation Below
 
