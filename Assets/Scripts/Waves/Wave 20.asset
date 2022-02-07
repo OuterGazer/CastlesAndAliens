@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveEnemyList: 0b0000000b00000006000000
   spawnTime: 3
+  waveBeginningTutorial: Fast Red
+  waveEndingTutorial: 

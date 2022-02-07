@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveEnemyList: 1300000019000000180000001300000018000000120000000f000000
   spawnTime: 2
+  waveBeginningTutorial: 
+  waveEndingTutorial: Catapult Tower

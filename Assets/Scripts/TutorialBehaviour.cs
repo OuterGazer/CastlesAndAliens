@@ -11,6 +11,15 @@ public class TutorialBehaviour : MonoBehaviour
     [SerializeField] GameObject redSlowPopUp;
     [SerializeField] GameObject balistaPopUp;
     [SerializeField] GameObject enemyBalistaPopUp;
+    [SerializeField] GameObject redNormalPopUp;
+    [SerializeField] GameObject cannonPopUp;
+    [SerializeField] GameObject enemyCannonPopUp;
+    [SerializeField] GameObject redFastPopUp;
+    [SerializeField] GameObject catapultPopUp;
+    [SerializeField] GameObject whiteEnemiesPopUp;
+    [SerializeField] GameObject enemyMissilePopUp;
+    [SerializeField] GameObject lastRushPopUp;
+    [SerializeField] GameObject victoryPopUp;
 
     private GameObject currentPopUp;
 
@@ -21,12 +30,30 @@ public class TutorialBehaviour : MonoBehaviour
     {
         Messenger.AddListener("Slow Red", OnSlowRedAppearance);
         Messenger.AddListener("Enemy Balistas", OnEnemyBalistaAppearance);
+        Messenger.AddListener("Normal Red", OnNormalRedAppearance);
+        Messenger.AddListener("Cannon Tower", ShowCannonTutorial);
+        Messenger.AddListener("Enemy Cannons", OnEnemyCannonAppearance);
+        Messenger.AddListener("Fast Red", OnFastRedAppearance);
+        Messenger.AddListener("Catapult Tower", ShowCatapultTutorial);
+        Messenger.AddListener("White Enemies", OnWhiteEnemiesAppearance);
+        Messenger.AddListener("Enemy Missiles", OnEnemyMissileAppearance);
+        Messenger.AddListener("Last Rush", OnLastRushAppearance);
+        Messenger.AddListener("Victory", OnVictoryAppearance);
     }
 
     private void OnDestroy()
     {
         Messenger.RemoveListener("Slow Red", OnSlowRedAppearance);
         Messenger.RemoveListener("Enemy Balistas", OnEnemyBalistaAppearance);
+        Messenger.RemoveListener("Normal Red", OnNormalRedAppearance);
+        Messenger.RemoveListener("Cannon Tower", ShowCannonTutorial);
+        Messenger.RemoveListener("Enemy Cannons", OnEnemyCannonAppearance);
+        Messenger.RemoveListener("Fast Red", OnFastRedAppearance);
+        Messenger.RemoveListener("Catapult Tower", ShowCatapultTutorial);
+        Messenger.RemoveListener("White Enemies", OnWhiteEnemiesAppearance);
+        Messenger.RemoveListener("Enemy Missiles", OnEnemyMissileAppearance);
+        Messenger.RemoveListener("Last Rush", OnLastRushAppearance);
+        Messenger.RemoveListener("Victory", OnVictoryAppearance);
     }
 
     public void OnOkClicked()
@@ -82,5 +109,49 @@ public class TutorialBehaviour : MonoBehaviour
     private void OnEnemyBalistaAppearance()
     {
         PopUpWindow(this.enemyBalistaPopUp, true);
+    }
+
+    private void OnNormalRedAppearance()
+    {
+        PopUpWindow(this.redNormalPopUp, true);
+    }
+
+    private void ShowCannonTutorial()
+    {
+        PopUpWindow(this.cannonPopUp, false);
+    }
+    private void OnEnemyCannonAppearance()
+    {
+        PopUpWindow(this.enemyCannonPopUp, true);
+    }
+
+    private void OnFastRedAppearance()
+    {
+        PopUpWindow(this.redFastPopUp, true);
+    }
+
+    private void ShowCatapultTutorial()
+    {
+        PopUpWindow(this.catapultPopUp, false);
+    }
+
+    private void OnWhiteEnemiesAppearance()
+    {
+        PopUpWindow(this.whiteEnemiesPopUp, true);
+    }
+
+    private void OnEnemyMissileAppearance()
+    {
+        PopUpWindow(this.enemyMissilePopUp, true);
+    }
+
+    private void OnLastRushAppearance()
+    {
+        PopUpWindow(this.lastRushPopUp, true);
+    }
+
+    private void OnVictoryAppearance()
+    {
+        PopUpWindow(this.victoryPopUp, false);
     }
 }

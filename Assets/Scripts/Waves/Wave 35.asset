@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveEnemyList: 11000000100000000f0000000f000000080000000700000006000000060000001a000000190000001800000018000000
   spawnTime: 2
+  waveBeginningTutorial: Last Rush
+  waveEndingTutorial: 

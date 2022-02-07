@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveEnemyList: 0f0000000f00000006000000060000001800000018000000
   spawnTime: 5
+  waveBeginningTutorial: 
+  waveEndingTutorial: Cannon Tower
