@@ -308,7 +308,6 @@ public class ObjectPool : MonoBehaviour
             }
 
             arrayPosition++;
-
         } while (!exitLoop);
     }
 }
