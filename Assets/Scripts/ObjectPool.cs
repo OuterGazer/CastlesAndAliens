@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ObjectPool : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class ObjectPool : MonoBehaviour
         get { return this.curEnemyCount; }
         set { this.curEnemyCount = value; }
     }
+
+    [SerializeField] TextMeshProUGUI waveNumberText;
+    private int waveNumber = 0;
 
     private Transform[] poolLeft;
     private Transform[] poolCenter;
@@ -149,6 +153,9 @@ public class ObjectPool : MonoBehaviour
     {
         for(int i = 0; i < this.enemyWaves.Length; i++)
         {
+            this.waveNumber++;
+            this.waveNumberText.text = $"Wave Number: {this.waveNumber}";
+
             if(!this.isFirstTutorial)
                 CheckForTutorial(i, 0);
 
