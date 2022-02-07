@@ -22,7 +22,7 @@ public class TutorialBehaviour : MonoBehaviour
     [SerializeField] GameObject victoryPopUp;
 
     private GameObject currentPopUp;
-    private float currentGameSpeed;
+    private float currentGameSpeed = 1;
 
 
     private bool hasBalistaTutorialAppeared = false;
