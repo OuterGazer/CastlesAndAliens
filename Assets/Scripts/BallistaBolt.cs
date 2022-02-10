@@ -32,13 +32,20 @@ public class BallistaBolt : MonoBehaviour
         this.shotOriginAlien = origin;
     }
 
+
+    private float rocketCounter;
+
     private bool canShoot = false;
     public void ShootBolt()
     {
         this.canShoot = true;
 
         if (this.gameObject.name.Contains("rocket"))
+        {
             this.rocketFire.SetActive(true);
+            this.rocketCounter = 0;
+        }
+            
     }
 
 
@@ -51,8 +58,24 @@ public class BallistaBolt : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(this.canShoot)
+        if (this.canShoot)
+        {
             this.boltRB.MovePosition(this.boltRB.position + this.boltRB.transform.forward * this.movementSpeed * Time.fixedDeltaTime);
+
+            if (this.gameObject.name.Contains("rocket"))
+            {
+                this.rocketCounter += Time.fixedDeltaTime;
+
+                if(this.rocketCounter > 2.0f)
+                {
+                    AudioSource.PlayClipAtPoint(this.missileAlienExplosion, Camera.main.transform.position);
+                    GameObject.Instantiate<GameObject>(this.rocketExplosion, this.gameObject.transform.position, Quaternion.identity);
+                    this.rocketCounter = 0;
+                    this.gameObject.SetActive(false);
+                }
+
+            }
+        }
     }
     
 
@@ -86,6 +109,7 @@ public class BallistaBolt : MonoBehaviour
             else if(other.gameObject.CompareTag("Tower Base") && this.gameObject.name.Contains("rocket"))
             {
                 AudioSource.PlayClipAtPoint(this.missileAlienExplosion, Camera.main.transform.position);
+                GameObject.Instantiate<GameObject>(this.rocketExplosion, this.gameObject.transform.position, Quaternion.identity);
             }
 
             this.gameObject.SetActive(false);
@@ -95,13 +119,6 @@ public class BallistaBolt : MonoBehaviour
     private void OnDisable()
     {
         this.canShoot = false;
-
-        if (this.gameObject.name.Contains("rocket"))
-        {
-            this.rocketFire.SetActive(false);
-            GameObject.Instantiate<GameObject>(this.rocketExplosion, this.gameObject.transform.position, Quaternion.identity);
-        }
-            
 
         if (this.shotOrigin != null)
         {

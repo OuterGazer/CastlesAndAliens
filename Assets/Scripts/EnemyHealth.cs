@@ -58,8 +58,7 @@ public class EnemyHealth : MonoBehaviour
             AudioSource.PlayClipAtPoint(this.coinsEarnedSFX, Camera.main.transform.position);
 
             this.gameObject.GetComponent<Enemy>().RewardGold();
-            this.maxHitPoints += this.healthIncreaseAfterDeath;
-            this.gameObject.SetActive(false);
+            this.maxHitPoints += this.healthIncreaseAfterDeath; this.gameObject.SetActive(false);
         }
 
         float subtractLifeBar = (this.currentHitPoints * 0.45f) / this.maxHitPoints;

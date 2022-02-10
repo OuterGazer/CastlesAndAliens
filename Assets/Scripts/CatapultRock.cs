@@ -95,7 +95,10 @@ public class CatapultRock : MonoBehaviour
            (other.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
            other.gameObject.CompareTag("Ground"))
         {
-            GameObject.Instantiate<GameObject>(this.rockExplosionVFX, this.gameObject.transform.position, Quaternion.identity);
+            if(other.gameObject.CompareTag("Ground"))
+                GameObject.Instantiate<GameObject>(this.rockExplosionVFX, this.gameObject.transform.position + new Vector3(0,0.1f,0), Quaternion.identity);
+            else
+                GameObject.Instantiate<GameObject>(this.rockExplosionVFX, this.gameObject.transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);
 
             Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
 
