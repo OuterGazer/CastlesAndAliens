@@ -31,12 +31,17 @@ public class ObjectPool : MonoBehaviour
     private List<Transform[]> poolsList = new List<Transform[]>();
 
     private Pathfinder pathfinder;
+    private AudioSource audioSource;
+    [SerializeField] AudioClip redSpawnSFX;
+    [SerializeField] AudioClip normalSpawnSFX;
+    [SerializeField] AudioClip kamikazeSpawnSFX;
 
     private bool isFirstTutorial = true;
 
     private void Awake()
     {
         this.pathfinder = this.gameObject.GetComponent<Pathfinder>();
+        this.audioSource = this.gameObject.GetComponent<AudioSource>();
 
         PopulatePools();
 
@@ -183,6 +188,8 @@ public class ObjectPool : MonoBehaviour
                         break;
                 }
 
+                PlaySpawningSFX(enemyType);
+
                 this.curEnemyCount++;
 
                 yield return new WaitForSeconds(spawnTime);
@@ -202,6 +209,16 @@ public class ObjectPool : MonoBehaviour
 
             yield return new WaitUntil(() => Time.timeScale > 0);
         }
+    }
+
+    private void PlaySpawningSFX(string enemyType)
+    {
+        if (enemyType.Contains("Red"))
+            this.audioSource.PlayOneShot(this.redSpawnSFX);
+        else if (enemyType.Contains("Normal"))
+            this.audioSource.PlayOneShot(this.normalSpawnSFX);
+        else
+            this.audioSource.PlayOneShot(this.kamikazeSpawnSFX);
     }
 
     private void CheckForTutorial(int waveIndex, int wavePosition)

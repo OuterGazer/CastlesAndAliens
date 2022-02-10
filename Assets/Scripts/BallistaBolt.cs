@@ -8,6 +8,12 @@ public class BallistaBolt : MonoBehaviour
 
     [SerializeField] private float blastRadius = default;
 
+    [SerializeField] private AudioClip balistaTowerBolt;
+    [SerializeField] private AudioClip balistaAlienBolt;
+    [SerializeField] private AudioClip cannonTowerExplosion;
+    [SerializeField] private AudioClip cannonAlienHit;
+    [SerializeField] private AudioClip missileAlienExplosion;
+
     private Rigidbody boltRB;
     private LayerMask enemyMask;
     private TargetLocator shotOrigin;
@@ -49,7 +55,7 @@ public class BallistaBolt : MonoBehaviour
            (this.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
            other.gameObject.CompareTag("Ground")) 
         {
-            if(this.gameObject.name.Contains("Cannon"))
+            if(this.gameObject.name.Contains("Cannon") && this.gameObject.CompareTag("Player Weapon"))
             {
                 Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
 
@@ -60,6 +66,17 @@ public class BallistaBolt : MonoBehaviour
                         item.GetComponentInParent<EnemyHealth>().ProcessDamage(1);
                     }
                 }
+
+                AudioSource.PlayClipAtPoint(this.cannonTowerExplosion, Camera.main.transform.position);
+            }
+
+            if(other.gameObject.CompareTag("Tower Base") && this.gameObject.name.Contains("Cannon"))
+            {
+                AudioSource.PlayClipAtPoint(this.cannonAlienHit, Camera.main.transform.position);
+            }
+            else if(other.gameObject.CompareTag("Tower Base") && this.gameObject.name.Contains("rocket"))
+            {
+                AudioSource.PlayClipAtPoint(this.missileAlienExplosion, Camera.main.transform.position);
             }
 
             this.gameObject.SetActive(false);
@@ -71,9 +88,17 @@ public class BallistaBolt : MonoBehaviour
         this.canShoot = false;
 
         if (this.shotOrigin != null)
+        {
             this.shotOrigin.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
+            AudioSource.PlayClipAtPoint(this.balistaTowerBolt, Camera.main.transform.position);
+        }
+            
 
         if (this.shotOriginAlien != null)
+        {
             this.shotOriginAlien.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
+            AudioSource.PlayClipAtPoint(this.balistaAlienBolt, Camera.main.transform.position);
+        }
+            
     }
 }

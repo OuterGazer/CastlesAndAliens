@@ -18,12 +18,18 @@ public class TargetLocatorAlien : MonoBehaviour
 
     [SerializeField] Transform target; // Only for debugging purposes as targets will be added programatically
     private LayerMask towerMask;
+    
+    private AudioSource audioSource;
+    [SerializeField] AudioClip balistaShot;
+    [SerializeField] AudioClip cannonShot;
+    [SerializeField] AudioClip missileShot;
 
     private bool isTargetAcquired = false;
 
     private void Awake()
     {
         this.towerMask = LayerMask.GetMask("DefenseTower");
+        this.audioSource.GetComponent<AudioSource>();
 
         CreateBoltPool(this.bolt, out this.shootingBolt);
 
@@ -146,14 +152,25 @@ public class TargetLocatorAlien : MonoBehaviour
         {
             //Transform bolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
             SetShootingBoltToStandard(this.bolt, this.shootingBolt);
-            
+
             EjectBolt(this.bolt, this.shootingBolt);
+            PlayShootingSFX();
 
             this.timeToNextShot = this.shootingCooldown;
 
             if (this.extraBolt != null)
                 this.StartCoroutine(ShootExtraBolt());
         }
+    }
+
+    private void PlayShootingSFX()
+    {
+        if (this.gameObject.name.Contains("Balista"))
+            this.audioSource.PlayOneShot(this.balistaShot);
+        else if (this.gameObject.name.Contains("Cannon"))
+            this.audioSource.PlayOneShot(this.cannonShot);
+        else if (this.gameObject.name.Contains("Missile"))
+            this.audioSource.PlayOneShot(this.missileShot);
     }
 
     private void EjectBolt(Transform inBolt, Transform shootingBolt)

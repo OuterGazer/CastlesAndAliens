@@ -8,6 +8,8 @@ public class TowerHealth : MonoBehaviour
     [SerializeField] int maxHitPoints = default;
     private int currentHitPoints = 0;
 
+    [SerializeField] AudioClip deathSFX;
+
     [SerializeField] int balistaEnemyDamage = default;
     [SerializeField] int cannonEnemyDamage = default;
     [SerializeField] int missileEnemyDamage = default;
@@ -46,6 +48,8 @@ public class TowerHealth : MonoBehaviour
 
         if(this.currentHitPoints <= 0)
         {
+            AudioSource.PlayClipAtPoint(this.deathSFX, Camera.main.transform.position);
+
             GameObject.Destroy(this.gameObject);
         }
 

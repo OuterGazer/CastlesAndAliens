@@ -23,11 +23,18 @@ public class TargetLocator : MonoBehaviour
     private LayerMask enemyMask;
     private CatapultRock currentInstance;
 
+    private AudioSource audioSource;
+    [SerializeField] AudioClip balistaShot;
+    [SerializeField] AudioClip cannonShot;
+    [SerializeField] AudioClip catapultShot;
+    [SerializeField] AudioClip catapultRetraction;
+
     private bool isTargetAcquired = false;
 
     private void Awake()
     {
         this.defenseTower = this.gameObject.GetComponent<DefenseTower>();
+        this.audioSource = this.gameObject.GetComponent<AudioSource>();
         this.enemyMask = LayerMask.GetMask("Enemy");
 
         this.shootingBolt = GameObject.Instantiate<Transform>(this.bolt, this.bolt.position, this.bolt.rotation);
@@ -192,12 +199,24 @@ public class TargetLocator : MonoBehaviour
                 rock.ShootRock();
                 rock.SetShotOrigin(this);
             }
+
+            PlayShootingSFX();
             
 
             this.bolt.gameObject.SetActive(false);
 
             this.timeToNextShot = this.shootingCooldown;
         }
+    }
+
+    private void PlayShootingSFX()
+    {
+        if (this.gameObject.name.Contains("Balista"))
+            this.audioSource.PlayOneShot(this.balistaShot);
+        else if (this.gameObject.name.Contains("Cannon"))
+            this.audioSource.PlayOneShot(this.cannonShot);
+        else if (this.gameObject.name.Contains("Catapult"))
+            this.audioSource.PlayOneShot(this.catapultShot);
     }
 
     private void SetShootingBoltToStandard()
@@ -215,6 +234,9 @@ public class TargetLocator : MonoBehaviour
 
     private IEnumerator LoadBolt()
     {
+        if (this.gameObject.name.Contains("Catapult"))
+            this.audioSource.PlayOneShot(this.catapultRetraction);
+
         yield return new WaitForSeconds(this.shootingCooldown - 0.5f);
 
         this.bolt.gameObject.SetActive(true);

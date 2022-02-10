@@ -12,6 +12,8 @@ public class CatapultRock : MonoBehaviour
     [SerializeField] private float maxAngle = 90f;
     [SerializeField] Transform catapult;
 
+    [SerializeField] AudioClip rockExplosion;
+
     private Rigidbody rockRB;
     private TargetLocator shotOrigin;
     private TargetLocatorAlien shotOriginAlien;
@@ -100,7 +102,9 @@ public class CatapultRock : MonoBehaviour
                 {
                     item.GetComponentInParent<EnemyHealth>().ProcessDamage(2);
                 }
-            }            
+            }
+
+            AudioSource.PlayClipAtPoint(this.rockExplosion, Camera.main.transform.position);
 
             this.gameObject.SetActive(false);
         }

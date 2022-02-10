@@ -9,6 +9,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int healthIncreaseAfterDeath = default;
     private int currentHitPoints = 0;
 
+    [SerializeField] AudioClip deathSFX;
+
     [SerializeField] int balistaTowerDamage = default;
     [SerializeField] int cannonTowerDamage = default;
     [SerializeField] int catapultTowerDamage = default;
@@ -51,6 +53,8 @@ public class EnemyHealth : MonoBehaviour
 
         if(this.currentHitPoints <= 0)
         {
+            AudioSource.PlayClipAtPoint(this.deathSFX, Camera.main.transform.position);
+
             this.gameObject.GetComponent<Enemy>().RewardGold();
             this.maxHitPoints += this.healthIncreaseAfterDeath;
             this.gameObject.SetActive(false);
