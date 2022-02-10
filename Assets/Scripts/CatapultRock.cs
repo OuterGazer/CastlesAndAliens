@@ -13,6 +13,7 @@ public class CatapultRock : MonoBehaviour
     [SerializeField] Transform catapult;
 
     [SerializeField] AudioClip rockExplosion;
+    [SerializeField] GameObject rockExplosionVFX;
 
     private Rigidbody rockRB;
     private TargetLocator shotOrigin;
@@ -94,6 +95,8 @@ public class CatapultRock : MonoBehaviour
            (other.gameObject.CompareTag("Player Weapon") && (other.gameObject.CompareTag("Kamikaze") || other.gameObject.CompareTag("Basic Enemy"))) ||
            other.gameObject.CompareTag("Ground"))
         {
+            GameObject.Instantiate<GameObject>(this.rockExplosionVFX, this.gameObject.transform.position, Quaternion.identity);
+
             Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
 
             if (enemies.Length > 0)

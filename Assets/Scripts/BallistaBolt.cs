@@ -14,6 +14,10 @@ public class BallistaBolt : MonoBehaviour
     [SerializeField] private AudioClip cannonAlienHit;
     [SerializeField] private AudioClip missileAlienExplosion;
 
+    [SerializeField] private GameObject rocketFire;
+    [SerializeField] private GameObject rocketExplosion;
+    [SerializeField] private GameObject cannonExplosion;
+
     private Rigidbody boltRB;
     private LayerMask enemyMask;
     private TargetLocator shotOrigin;
@@ -32,6 +36,9 @@ public class BallistaBolt : MonoBehaviour
     public void ShootBolt()
     {
         this.canShoot = true;
+
+        if (this.gameObject.name.Contains("rocket"))
+            this.rocketFire.SetActive(true);
     }
 
 
@@ -57,6 +64,8 @@ public class BallistaBolt : MonoBehaviour
         {
             if(this.gameObject.name.Contains("Cannon") && this.gameObject.CompareTag("Player Weapon"))
             {
+                GameObject.Instantiate<GameObject>(this.cannonExplosion, this.gameObject.transform.position, Quaternion.identity);
+
                 Collider[] enemies = Physics.OverlapSphere(this.gameObject.transform.position, this.blastRadius, this.enemyMask);
 
                 if (enemies.Length > 0)
@@ -86,6 +95,13 @@ public class BallistaBolt : MonoBehaviour
     private void OnDisable()
     {
         this.canShoot = false;
+
+        if (this.gameObject.name.Contains("rocket"))
+        {
+            this.rocketFire.SetActive(false);
+            GameObject.Instantiate<GameObject>(this.rocketExplosion, this.gameObject.transform.position, Quaternion.identity);
+        }
+            
 
         if (this.shotOrigin != null)
         {
