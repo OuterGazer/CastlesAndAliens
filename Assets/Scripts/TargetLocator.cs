@@ -27,7 +27,6 @@ public class TargetLocator : MonoBehaviour
     [SerializeField] AudioClip balistaShot;
     [SerializeField] AudioClip cannonShot;
     [SerializeField] AudioClip catapultShot;
-    [SerializeField] AudioClip catapultRetraction;
 
     private bool isTargetAcquired = false;
 
@@ -234,9 +233,6 @@ public class TargetLocator : MonoBehaviour
 
     private IEnumerator LoadBolt()
     {
-        if (this.gameObject.name.Contains("Catapult"))
-            this.audioSource.PlayOneShot(this.catapultRetraction);
-
         yield return new WaitForSeconds(this.shootingCooldown - 0.5f);
 
         this.bolt.gameObject.SetActive(true);

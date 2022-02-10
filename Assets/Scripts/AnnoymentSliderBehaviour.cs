@@ -56,12 +56,12 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
         if((this.queenSlider.value >= this.queenMaxAnnoymentLevel) ||
            (this.kingSlider.value >= this.kingMaxAnnoymentLevel))
         {
-            Time.timeScale = 0;
-            
-            this.youLostPopUp.SetActive(true);
-            this.audioSource.PlayOneShot(this.youLostSFX);
+            AudioSource.PlayClipAtPoint(this.youLostSFX, Camera.main.transform.position);
 
-            this.annoymentMenu.SetActive(true);
+            Time.timeScale = 0;
+
+            this.youLostPopUp.SetActive(true);
+            
             this.pauseMenu.SetActive(false);
             this.towerMenu.SetActive(false);
         }
@@ -73,7 +73,7 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 
-        this.audioSource.PlayOneShot(this.alienAskingSFX, 2.0f);
+        this.audioSource.PlayOneShot(this.alienAskingSFX, AudioListener.volume * 3.0f);
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 
@@ -86,7 +86,7 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 
-        this.audioSource.PlayOneShot(this.alienAskingSFX, 2.0f);
+        this.audioSource.PlayOneShot(this.alienAskingSFX, AudioListener.volume * 3.0f);
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 

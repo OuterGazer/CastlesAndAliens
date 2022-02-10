@@ -91,7 +91,7 @@ public class BallistaBolt : MonoBehaviour
         {
             this.shotOrigin.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
             
-            if (!this.gameObject.name.Contains("Cannon"))
+            if (this.gameObject.name.Contains("arrow"))
                 AudioSource.PlayClipAtPoint(this.balistaTowerBolt, Camera.main.transform.position);
         }
             
@@ -99,7 +99,9 @@ public class BallistaBolt : MonoBehaviour
         if (this.shotOriginAlien != null)
         {
             this.shotOriginAlien.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
-            AudioSource.PlayClipAtPoint(this.balistaAlienBolt, Camera.main.transform.position);
+
+            if (this.gameObject.name.Contains("arrow"))
+                AudioSource.PlayClipAtPoint(this.balistaAlienBolt, Camera.main.transform.position);
         }
             
     }

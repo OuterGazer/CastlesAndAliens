@@ -25,6 +25,8 @@ public class TowerMenuInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        this.audioSource = this.gameObject.GetComponent<AudioSource>();
+
         Messenger.AddListener("UnlockCannonTower", OnCannonTowerUnlocked);
         Messenger.AddListener("UnlockCatapultTower", OnCatapultTowerUnlocked);
 
