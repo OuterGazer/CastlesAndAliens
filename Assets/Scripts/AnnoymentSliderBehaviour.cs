@@ -8,6 +8,7 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
     [SerializeField] Slider queenSlider;
     [SerializeField] Slider kingSlider;
     [SerializeField] GameObject youLostPopUp;
+    [SerializeField] GameObject annoymentMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject towerMenu;
 
@@ -60,6 +61,7 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
             this.youLostPopUp.SetActive(true);
             this.audioSource.PlayOneShot(this.youLostSFX);
 
+            this.annoymentMenu.SetActive(true);
             this.pauseMenu.SetActive(false);
             this.towerMenu.SetActive(false);
         }
@@ -71,7 +73,7 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 
-        this.audioSource.PlayOneShot(this.alienAskingSFX);
+        this.audioSource.PlayOneShot(this.alienAskingSFX, 2.0f);
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 
@@ -84,7 +86,7 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 
-        this.audioSource.PlayOneShot(this.alienAskingSFX);
+        this.audioSource.PlayOneShot(this.alienAskingSFX, 2.0f);
 
         yield return new WaitUntil(() => !this.audioSource.isPlaying);
 

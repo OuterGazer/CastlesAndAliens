@@ -49454,6 +49454,7 @@ GameObject:
   - component: {fileID: 1906615082}
   - component: {fileID: 1906615081}
   - component: {fileID: 1906615080}
+  - component: {fileID: 1906615083}
   m_Layer: 5
   m_Name: Tower Menu
   m_TagString: Untagged
@@ -49516,6 +49517,8 @@ MonoBehaviour:
   - {fileID: 6464015520220318122, guid: 2824cc24d162daa4ca877435a7a9dcf4, type: 3}
   - {fileID: 114746919212818726, guid: dc5c3a870ead9e74a91e27a796baee21, type: 3}
   - {fileID: 3599264404323525938, guid: 7892538029fd1ea4687f981af299de2b, type: 3}
+  hoverOverSFX: {fileID: 8300000, guid: 219d3f1d4f0e9954eb218d1bf83c7ef4, type: 3}
+  clickSFX: {fileID: 8300000, guid: 33e70f473561b1340a238c924e9f7c9f, type: 3}
 --- !u!114 &1906615081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49554,6 +49557,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906615078}
   m_CullTransparentMesh: 1
+--- !u!82 &1906615083
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906615078}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1908063294
 GameObject:
   m_ObjectHideFlags: 0
@@ -53006,7 +53105,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52ff853bd043d794f93fcae4381eb794, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -55228,6 +55327,7 @@ MonoBehaviour:
   queenSlider: {fileID: 1511539180527621930}
   kingSlider: {fileID: 1511539180527621929}
   youLostPopUp: {fileID: 1442058944}
+  annoymentMenu: {fileID: 1511539180527621927}
   pauseMenu: {fileID: 1216714067}
   towerMenu: {fileID: 1906615078}
   youLostSFX: {fileID: 8300000, guid: 01e274696d6e50e46ae58a2520d3ae18, type: 3}

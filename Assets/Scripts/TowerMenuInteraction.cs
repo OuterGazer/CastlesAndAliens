@@ -15,6 +15,11 @@ public class TowerMenuInteraction : MonoBehaviour
     private Color unselectedColor = Color.grey;
     private Color hoverOverColor = new Color32(192, 192, 192, 255);
 
+    [SerializeField] AudioClip hoverOverSFX;
+    [SerializeField] AudioClip clickSFX;
+
+    private AudioSource audioSource;
+
     private bool[] isButtonActivated = new bool[3];
 
     // Start is called before the first frame update
@@ -90,6 +95,8 @@ public class TowerMenuInteraction : MonoBehaviour
                 if(color == this.selectedColor)
                 {
                     this.isButtonActivated[i] = true;
+                    this.audioSource.PlayOneShot(this.clickSFX);
+
                     Messenger<GameObject>.Broadcast("SetTowerType", this.towerPrefabs[i]);
                     Messenger<GameObject>.Broadcast("SetPreviewType", this.previewPrefabs[i]);
                 }
@@ -116,7 +123,10 @@ public class TowerMenuInteraction : MonoBehaviour
             if (this.towerButtons[i] == towerType)
             {
                 if (!this.isButtonActivated[i])
+                {
+                    this.audioSource.PlayOneShot(this.hoverOverSFX);
                     SetColor(towerType, color, true);
+                }                    
             }
         }
     }

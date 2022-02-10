@@ -90,7 +90,9 @@ public class BallistaBolt : MonoBehaviour
         if (this.shotOrigin != null)
         {
             this.shotOrigin.SendMessage("ChargeNextBolt", SendMessageOptions.DontRequireReceiver);
-            AudioSource.PlayClipAtPoint(this.balistaTowerBolt, Camera.main.transform.position);
+            
+            if (!this.gameObject.name.Contains("Cannon"))
+                AudioSource.PlayClipAtPoint(this.balistaTowerBolt, Camera.main.transform.position);
         }
             
 

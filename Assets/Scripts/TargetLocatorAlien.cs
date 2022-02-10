@@ -29,7 +29,7 @@ public class TargetLocatorAlien : MonoBehaviour
     private void Awake()
     {
         this.towerMask = LayerMask.GetMask("DefenseTower");
-        this.audioSource.GetComponent<AudioSource>();
+        this.audioSource = this.gameObject.GetComponent<AudioSource>();
 
         CreateBoltPool(this.bolt, out this.shootingBolt);
 
