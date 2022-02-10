@@ -55205,6 +55205,7 @@ GameObject:
   - component: {fileID: 1511539180527621933}
   - component: {fileID: 1511539180527621932}
   - component: {fileID: 1511539180527621928}
+  - component: {fileID: 1511539180527621934}
   m_Layer: 5
   m_Name: Annoyment Menu
   m_TagString: Untagged
@@ -55230,6 +55231,10 @@ MonoBehaviour:
   pauseMenu: {fileID: 1216714067}
   towerMenu: {fileID: 1906615078}
   youLostSFX: {fileID: 8300000, guid: 01e274696d6e50e46ae58a2520d3ae18, type: 3}
+  doorKnockSFX: {fileID: 8300000, guid: 128230e8df3be8a4380a829766d2baaa, type: 3}
+  alienAskingSFX: {fileID: 8300000, guid: 20b52da2e9f88a6418e0cb796e6103eb, type: 3}
+  queenAnnoyedSFX: {fileID: 8300000, guid: af8acb33d3646b24fa1237085772a2f9, type: 3}
+  kingAnnoyedSFX: {fileID: 8300000, guid: 16af7bfd52f4da2438626764c702d1d8, type: 3}
   queenMaxAnnoymentLevel: 6
   kingMaxAnnoymentLevel: 3
 --- !u!114 &1511539180527621929
@@ -55393,6 +55398,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511539180527621927}
   m_CullTransparentMesh: 1
+--- !u!82 &1511539180527621934
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511539180527621927}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!222 &1566559288047123771
 CanvasRenderer:
   m_ObjectHideFlags: 0

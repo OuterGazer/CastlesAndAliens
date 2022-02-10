@@ -11,7 +11,12 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject towerMenu;
 
+    private AudioSource audioSource;
     [SerializeField] AudioClip youLostSFX;
+    [SerializeField] AudioClip doorKnockSFX;
+    [SerializeField] AudioClip alienAskingSFX;
+    [SerializeField] AudioClip queenAnnoyedSFX;
+    [SerializeField] AudioClip kingAnnoyedSFX;
 
     [SerializeField] int queenMaxAnnoymentLevel;
     [SerializeField] int kingMaxAnnoymentLevel;
@@ -19,6 +24,8 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        this.audioSource = this.gameObject.GetComponent<AudioSource>();
+
         Messenger<string>.AddListener("AnnoyRoyalty", OnRoyaltyAnnoyed);
     }
 
@@ -37,10 +44,12 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
         if (enemyName.Contains("Red"))
         {
             this.queenSlider.value++;
+            StartCoroutine(AnnoyQueen());
         }
         else
         {
             this.kingSlider.value++;
+            StartCoroutine(AnnoyKing());
         }
 
         if((this.queenSlider.value >= this.queenMaxAnnoymentLevel) ||
@@ -49,11 +58,37 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
             Time.timeScale = 0;
             
             this.youLostPopUp.SetActive(true);
-            AudioSource.PlayClipAtPoint(this.youLostSFX, Camera.main.transform.position);
+            this.audioSource.PlayOneShot(this.youLostSFX);
 
             this.pauseMenu.SetActive(false);
             this.towerMenu.SetActive(false);
         }
+    }
+
+    private IEnumerator AnnoyQueen()
+    {
+        this.audioSource.PlayOneShot(this.doorKnockSFX);
+
+        yield return new WaitUntil(() => !this.audioSource.isPlaying);
+
+        this.audioSource.PlayOneShot(this.alienAskingSFX);
+
+        yield return new WaitUntil(() => !this.audioSource.isPlaying);
+
+        this.audioSource.PlayOneShot(this.queenAnnoyedSFX);
+    }
+
+    private IEnumerator AnnoyKing()
+    {
+        this.audioSource.PlayOneShot(this.doorKnockSFX);
+
+        yield return new WaitUntil(() => !this.audioSource.isPlaying);
+
+        this.audioSource.PlayOneShot(this.alienAskingSFX);
+
+        yield return new WaitUntil(() => !this.audioSource.isPlaying);
+
+        this.audioSource.PlayOneShot(this.kingAnnoyedSFX);
     }
 
     private void OnDestroy()
