@@ -7,6 +7,8 @@ public class MouseInteraction : MonoBehaviour
     //[SerializeField] GameObject basicTowerPrefab;
     private GameObject towerPrefab;
     private GameObject previewPrefab;
+    [SerializeField] AudioClip buildTowerSFX;
+    [SerializeField] AudioClip spentCoinsSFX;
 
     [SerializeField] bool isPossibleTowerSquare = false;
     [SerializeField] bool isPlaceable = default;
@@ -86,6 +88,9 @@ public class MouseInteraction : MonoBehaviour
             this.previewPrefab.SetActive(false);
 
         Vector3 placementPos = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 0.5f, this.gameObject.transform.position.z);
+
+        AudioSource.PlayClipAtPoint(this.spentCoinsSFX, Camera.main.transform.position);
+        AudioSource.PlayClipAtPoint(this.buildTowerSFX, Camera.main.transform.position);
         
         GameObject tower = Instantiate<GameObject>(this.towerPrefab, placementPos, Quaternion.identity);
         DefenseTower defenseTower = tower.GetComponent<DefenseTower>();

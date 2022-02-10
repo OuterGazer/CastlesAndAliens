@@ -11,6 +11,8 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject towerMenu;
 
+    [SerializeField] AudioClip youLostSFX;
+
     [SerializeField] int queenMaxAnnoymentLevel;
     [SerializeField] int kingMaxAnnoymentLevel;
 
@@ -45,7 +47,10 @@ public class AnnoymentSliderBehaviour : MonoBehaviour
            (this.kingSlider.value >= this.kingMaxAnnoymentLevel))
         {
             Time.timeScale = 0;
+            
             this.youLostPopUp.SetActive(true);
+            AudioSource.PlayClipAtPoint(this.youLostSFX, Camera.main.transform.position);
+
             this.pauseMenu.SetActive(false);
             this.towerMenu.SetActive(false);
         }

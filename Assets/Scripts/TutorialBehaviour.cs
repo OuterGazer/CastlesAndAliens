@@ -21,9 +21,14 @@ public class TutorialBehaviour : MonoBehaviour
     [SerializeField] GameObject lastRushPopUp;
     [SerializeField] GameObject victoryPopUp;
 
+    [SerializeField] AudioClip enemyTutorialSFX;
+    [SerializeField] AudioClip towerTutorialSFX;
+    [SerializeField] AudioClip warningSFX;
+
     private GameObject currentPopUp;
     private float currentGameSpeed = 1;
 
+    private AudioSource audioSource;
 
     private bool hasBalistaTutorialAppeared = false;
 
@@ -42,6 +47,8 @@ public class TutorialBehaviour : MonoBehaviour
         Messenger.AddListener("Enemy Missiles", OnEnemyMissileAppearance);
         Messenger.AddListener("Last Rush", OnLastRushAppearance);
         Messenger.AddListener("Victory", OnVictoryAppearance);
+
+        this.audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
     private void OnDestroy()
@@ -86,23 +93,31 @@ public class TutorialBehaviour : MonoBehaviour
 
     private void PopUpWindow(GameObject window, bool isEnemy)
     {
-        if (isEnemy)
-        {
-            //play boo SFX
-        }
-        else
-        {
-            //play horaay SFX
-        }
-
         Time.timeScale = 0;
 
         window.SetActive(true);
         this.currentPopUp = window;
 
+        PlayPopUpSFX(isEnemy);
+
         this.towerMenu.SetActive(false);
         this.gameSpeedMenu.SetActive(false);
         this.annoymentBars.SetActive(true);
+    }
+
+    private void PlayPopUpSFX(bool isEnemy)
+    {
+        if (isEnemy)
+        {
+            if (!this.gameObject.name.Contains("Rush"))
+                this.audioSource.PlayOneShot(this.enemyTutorialSFX);
+            else
+                this.audioSource.PlayOneShot(this.warningSFX);
+        }
+        else
+        {
+            this.audioSource.PlayOneShot(this.towerTutorialSFX);
+        }
     }
 
     private void OnSlowRedAppearance()
