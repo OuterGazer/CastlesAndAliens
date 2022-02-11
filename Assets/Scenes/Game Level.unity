@@ -31315,9 +31315,10 @@ MonoBehaviour:
     Music track courtesy of http://nosoapradio.us
 
     Visual
-    effects courtesy of ...
+    effects courtesy of gaph.artstation.com
 
-    Sound effects courtesy of Sidearm Studios'
+    Sound effects courtesy of Sidearm
+    Studios'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7ff1f2e20ed3d094fbf947ac53023bb5, type: 2}
   m_sharedMaterial: {fileID: 359561015298182420, guid: 7ff1f2e20ed3d094fbf947ac53023bb5, type: 2}
