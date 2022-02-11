@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject speedMenu;
     [SerializeField] GameObject annoymentSliders;
     [SerializeField] GameObject infoPopUp;
+    [SerializeField] GameObject settingsPopUp;
     [SerializeField] GameObject[] instructionsWindows;
 
     private GameObject currentWindow;
@@ -41,6 +42,14 @@ public class MainMenu : MonoBehaviour
         this.gameObject.SetActive(false);
 
         Time.timeScale = 1;
+    }
+
+    public void OnSettingsClick()
+    {
+        this.gameObject.SetActive(false);
+
+        this.settingsPopUp.SetActive(true);
+        Messenger<bool>.Broadcast("SettingsHasPoppedUp", true);
     }
 
     public void OnInfoPopUpClick()

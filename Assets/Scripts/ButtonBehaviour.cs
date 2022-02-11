@@ -13,6 +13,7 @@ public class ButtonBehaviour : MonoBehaviour
     [SerializeField] GameObject speedButton;
     [SerializeField] TextMeshProUGUI speedText;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject settingsPopUp;
     [SerializeField] GameObject restartMenu;
 
     private Image currentImage;
@@ -105,6 +106,14 @@ public class ButtonBehaviour : MonoBehaviour
     {
         Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    public void OnSettingsClick()
+    {
+        this.pauseMenu.SetActive(false);
+
+        this.settingsPopUp.SetActive(true);
+        Messenger<bool>.Broadcast("SettingsHasPoppedUp", false);
     }
 
     public void OnSpeedChangeClick()
