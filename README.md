@@ -21,5 +21,6 @@ My original implementations are:
 - Implemented 40 waves in total.
 - Player is able to see a preview of the tower in place before placing it. They can also see a preview of its range.
 - Added UI pop-ups to explain characteristics of new enemies and towers as they pop up.
+- Added in-game menus to accelerate/slow down the game, pause it and to select the tower to build.
 
 To play the game download the zip file, extract and double click on the executable. Alternatively, the game can be played online at https://sharemygame.com/@OuterGazer/aliens-castles.
