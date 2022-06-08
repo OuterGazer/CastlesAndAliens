@@ -1,4 +1,4 @@
-# CastlesAndAliens
+# Castles And Aliens
 An isometric tower defense game with a medieval fantasy aesthetic. Protect King and Queen Rock from being disturbed by encyclopedia-selling aliens!
 
 
